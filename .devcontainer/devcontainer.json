@@ -12,10 +12,19 @@
   // "forwardPorts": [],
 
   // コンテナ作成後にコマンドを実行するには、"postCreateCommand"を使用する。
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
 
   // ツール固有のプロパティを設定する。
-  // "customizations": {},
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+
+      "extensions": ["esbenp.prettier-vscode"]
+    }
+  }
 
   // 代わりにrootとして接続する場合はコメントを外してください。詳細はこちら: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
