@@ -22,7 +22,17 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
       },
 
-      "extensions": ["esbenp.prettier-vscode"]
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "GitHub.copilot",
+        "eamodio.gitlens",
+        "oderwat.indent-rainbow",
+        "aaron-bond.better-comments",
+        "mosapride.zenkaku",
+        "formulahendry.auto-rename-tag"
+      ]
     }
   }
 
