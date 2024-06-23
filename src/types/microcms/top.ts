@@ -1,4 +1,6 @@
 import { MicroCMSRelation } from "./microcms-schema";
+import { Page } from "./page";
+import { Post } from "./post";
 
 export type Top = {
   /**
@@ -70,7 +72,7 @@ export type TopCustomFieldPageLink = {
   /**
    * リンク（固定ページ）
    */
-  page?: MicroCMSRelation<unknown | null>;
+  page?: MicroCMSRelation<Page | null>;
 };
 
 export type TopCustomFieldPostLink = {
@@ -81,7 +83,7 @@ export type TopCustomFieldPostLink = {
   /**
    * リンク（お知らせ）
    */
-  post?: MicroCMSRelation<unknown | null>;
+  post?: MicroCMSRelation<Post | null>;
 };
 
 export type TopCustomFieldLink = {
