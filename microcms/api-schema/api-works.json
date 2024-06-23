@@ -1,1 +1,0 @@
-{"apiFields":[{"idValue":"arZqPwuduU","fieldId":"group","name":"班","kind":"relation"},{"fieldId":"title","name":"タイトル","kind":"text","isUnique":false},{"fieldId":"description","name":"説明","kind":"text"},{"fieldId":"image","name":"画像","kind":"media"},{"fieldId":"body","name":"詳細な説明文","kind":"richEditorV2"}],"customFields":[]}
