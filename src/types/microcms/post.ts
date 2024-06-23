@@ -1,4 +1,6 @@
 import { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
+import { PostCategory } from "./post_category";
+import { Member } from "./member";
 
 export type Post = {
   /**
@@ -12,11 +14,11 @@ export type Post = {
   /**
    * カテゴリ
    */
-  category?: MicroCMSRelation<unknown | null>[];
+  category?: MicroCMSRelation<PostCategory | null>[];
   /**
    * 著者
    */
-  author?: MicroCMSRelation<unknown | null>[];
+  author?: MicroCMSRelation<Member | null>[];
   /**
    * 本文
    */

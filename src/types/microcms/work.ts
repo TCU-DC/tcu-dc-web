@@ -1,14 +1,16 @@
 import { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
+import { Group } from "./group";
+import { Member } from "./member";
 
 export type Work = {
   /**
    * 班
    */
-  group?: MicroCMSRelation<unknown | null>;
+  group?: MicroCMSRelation<Group | null>;
   /**
    * 作者
    */
-  author?: MicroCMSRelation<unknown | null>[];
+  author?: MicroCMSRelation<Member | null>[];
   /**
    * タイトル
    */
