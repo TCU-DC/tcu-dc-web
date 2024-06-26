@@ -1,13 +1,18 @@
-import { Top } from "@/types/microcms/top";
+import type { Metadata } from "next";
+import type { Top } from "@/types/microcms/top";
 import { getTopSetting } from "@/utils/microcms/getContents";
-import Banner from "@/components/Banner";
 
 export default async function Home() {
-  const top: Top = await getTopSetting();
-
   return (
     <div>
-      <Banner {...top}></Banner>
+      <div></div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const top: Top = await getTopSetting();
+  return {
+    description: top.description,
+  };
 }

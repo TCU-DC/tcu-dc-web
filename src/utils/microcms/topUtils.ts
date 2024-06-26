@@ -10,8 +10,7 @@ export const normalizedCustomFieldLink = (
   customField:
     | TopCustomFieldPageLink
     | TopCustomFieldPostLink
-    | TopCustomFieldLink
-    | undefined,
+    | TopCustomFieldLink,
 ): Link => {
   // TopCustomFieldLinkの場合
   if (

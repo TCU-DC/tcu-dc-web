@@ -1,23 +1,23 @@
-import { Top } from "@/types/microcms/top";
+import type { Top } from "@/types/microcms/top";
 import { normalizedCustomFieldLink } from "@/utils/microcms/topUtils";
 
-const Banner = (p: Top) => {
+const Banner = (top: Top) => {
   return (
     <div>
-      <div>{p.title}</div>
+      <div>{top.title}</div>
       <div>
-        {p.navbarLinks?.right &&
-          normalizedCustomFieldLink(p.navbarLinks?.right[0]).link}
+        {top.navbarLinks?.right &&
+          normalizedCustomFieldLink(top.navbarLinks?.right[0]).link}
       </div>
       <div>
-        {p.navbarLinks?.center &&
-          normalizedCustomFieldLink(p.navbarLinks?.center[0]).link}
+        {top.navbarLinks?.center &&
+          normalizedCustomFieldLink(top.navbarLinks?.center[0]).link}
       </div>
       <div>
-        {p.navbarLinks?.left &&
-          normalizedCustomFieldLink(p.navbarLinks?.left[0]).link}
+        {top.navbarLinks?.left &&
+          normalizedCustomFieldLink(top.navbarLinks?.left[0]).link}
       </div>
-      <div>{p.join && normalizedCustomFieldLink(p.join[0]).link}</div>
+      <div>{top.join && normalizedCustomFieldLink(top.join[0]).link}</div>
     </div>
   );
 };
