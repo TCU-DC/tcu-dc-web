@@ -1,6 +1,91 @@
-import { MicroCMSQueries } from "microcms-js-sdk";
-import { Top } from "@/types/microcms/top";
+import type { MicroCMSListResponse } from "microcms-js-sdk";
+import type { MicroCMSQueries } from "microcms-js-sdk";
+import type { Group } from "@/types/microcms/group";
+import type { Member } from "@/types/microcms/member";
+import type { Page } from "@/types/microcms/page";
+import type { Post } from "@/types/microcms/post";
+import type { PostCategory } from "@/types/microcms/post_category";
+import type { Top } from "@/types/microcms/top";
+import type { Work } from "@/types/microcms/work";
 import { apiClient } from "@/libs/apiClient";
 
+export const getGroups = (queries?: MicroCMSQueries) =>
+  apiClient.getList<Group>({ endpoint: "groups", queries });
+export const getGroup = (queries?: MicroCMSQueries) => (contentId: string) =>
+  apiClient.getListDetail<Group>({
+    endpoint: "groups",
+    contentId,
+    queries,
+  });
+export const getMembers = (queries?: MicroCMSQueries) =>
+  apiClient.getList<Member>({ endpoint: "members", queries });
+export const getMember = (queries?: MicroCMSQueries) => (contentId: string) =>
+  apiClient.getListDetail<Member>({
+    endpoint: "members",
+    contentId,
+    queries,
+  });
+
+export const getPages = (queries?: MicroCMSQueries) =>
+  apiClient.getList<Page>({ endpoint: "pages", queries });
+export const getPage = (queries?: MicroCMSQueries) => (contentId: string) =>
+  apiClient.getListDetail<Page>({
+    endpoint: "pages",
+    contentId,
+    queries,
+  });
+export const getPageIds = () =>
+  apiClient.getAllContentIds({ endpoint: "pages" });
+export const getPosts = (queries?: MicroCMSQueries) =>
+  apiClient.getList<Post>({ endpoint: "posts", queries });
+export const getPost = (queries?: MicroCMSQueries) => (contentId: string) =>
+  apiClient.getListDetail<Post>({
+    endpoint: "posts",
+    contentId,
+    queries,
+  });
+export const getPostIds = () =>
+  apiClient.getAllContentIds({ endpoint: "posts" });
+export const getPostCategories = (queries?: MicroCMSQueries) =>
+  apiClient.getList<PostCategory>({ endpoint: "post_category", queries });
+export const getPostCategory =
+  (queries?: MicroCMSQueries) => (contentId: string) =>
+    apiClient.getListDetail<PostCategory>({
+      endpoint: "post_category",
+      contentId,
+      queries,
+    });
+
 export const getTopSetting = (queries?: MicroCMSQueries) =>
-  apiClient.getObject<Top>({ endpoint: "top/setting", queries });
+  apiClient.getListDetail<Top>({
+    endpoint: "top",
+    contentId: "setting",
+    queries,
+  });
+export const getWorks = (queries?: MicroCMSQueries) =>
+  apiClient.getList<Work>({ endpoint: "works", queries });
+export const getWork = (queries?: MicroCMSQueries) => (contentId: string) =>
+  apiClient.getListDetail<Work>({
+    endpoint: "works",
+    contentId,
+    queries,
+  });
+
+/**
+ * ページネーションとカテゴリフィルターを適用した記事一覧取得
+ */
+export async function getPostsPaginated(
+  currentPage: number = 1,
+  limit: number = 10,
+  categoryId?: string,
+): Promise<{ posts: MicroCMSListResponse<Post>; maxPage: number }> {
+  const posts = await getPosts({
+    limit,
+    offset: (currentPage - 1) * limit,
+    filters: categoryId ? `category[equals]${categoryId}` : "",
+  });
+  // 最大のページ数を計算
+  const maxPage = Math.ceil(posts.totalCount / limit);
+
+  return { posts, maxPage };
+}
