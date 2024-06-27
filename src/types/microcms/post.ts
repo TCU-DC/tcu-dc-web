@@ -14,7 +14,7 @@ export type Post = {
   /**
    * カテゴリ
    */
-  category?: MicroCMSRelation<PostCategory | null>[];
+  category?: MicroCMSRelation<PostCategory | null>;
   /**
    * 著者
    */
