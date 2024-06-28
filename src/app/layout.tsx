@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const top: Top = await getTopSetting();
   return {
     title: {
-      template: "%s | " + top.title,
+      template: `%s | ${top.title ?? ""}`,
       default: top.title ?? "",
     },
   };

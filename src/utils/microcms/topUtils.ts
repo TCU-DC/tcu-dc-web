@@ -5,7 +5,9 @@ import {
 } from "@/types/microcms/top";
 import { Link } from "@/types/link";
 
-// TopCustomFieldLink, TopCustomFieldPageLink, TopCustomFieldPostLink 異なる形式のリンクを揃える
+/**
+ * TopCustomFieldLink, TopCustomFieldPageLink, TopCustomFieldPostLink 異なる形式のリンクを揃える
+ */
 export const normalizedCustomFieldLink = (
   customField:
     | TopCustomFieldPageLink
