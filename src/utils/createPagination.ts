@@ -15,8 +15,8 @@ export const createPagination = (
   // 常に最初のページを表示
   pagination.push(pages[0]);
 
-  let start = Math.max(2, currentPage - half); // 2に変更
-  let end = Math.min(totalPages - 1, currentPage + half); // totalPages - 1に変更
+  let start = Math.max(2, currentPage - half);
+  let end = Math.min(totalPages - 1, currentPage + half);
 
   // 現在のページが中央になるように調整
   if (currentPage - half < 2) {
