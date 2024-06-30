@@ -6,6 +6,7 @@ import {
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
 import Link from "next/link";
+import { createPagination } from "@/utils/createPagination";
 
 // SSG のため、1ページあたりの表示件数は固定とする
 const FIRST_PAGE: number = 1;
@@ -45,11 +46,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Page() {
+export default async function Page({ params }: { params: { slug: string[] } }) {
+  // params から ページ番号を取得。params.slug[1] に 値がない場合 params.slug[0] がページ番号
+  const currentPage = Number(params.slug[1] ?? params.slug[0]);
+  // params から カテゴリIDを取得。params.slug[1] に 値がある場合 params.slug[0] がカテゴリID。ない場合は undefined
+  const categoryId = params.slug[1] ? params.slug[0] : undefined;
+
   const postsPaginated: {
     posts: MicroCMSListResponse<Post>;
     pager: number[];
-  } = await getPostsPaginated(1);
+  } = await getPostsPaginated(currentPage, PER_PAGE, categoryId);
   const posts: MicroCMSListResponse<Post> = postsPaginated.posts;
   // const pager: number[] = postsPaginated.pager;
   return (
@@ -65,6 +71,27 @@ export default async function Page() {
               </Link>
             );
           })
+        }
+      </div>
+      <div>
+        {
+          // ページネーションを表示
+          createPagination(postsPaginated.pager, currentPage).map(
+            (page, index) => {
+              // page が number ではない場合"..." を表示
+              if (typeof page !== "number") {
+                return <div key={index}>{page}</div>;
+              }
+              return (
+                <Link
+                  key={index}
+                  href={`/post/list/${categoryId ? `${categoryId}/` : ""}${page}`}
+                >
+                  <div>{page}</div>
+                </Link>
+              );
+            },
+          )
         }
       </div>
     </div>
