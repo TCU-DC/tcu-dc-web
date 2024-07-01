@@ -6,7 +6,7 @@ import {
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
 import Link from "next/link";
-import { createPagination } from "@/utils/createPagination";
+import Pagination from "@/components/Pagination";
 
 // SSG のため、1ページあたりの表示件数は固定とする
 const FIRST_PAGE: number = 1;
@@ -76,22 +76,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       <div>
         {
           // ページネーションを表示
-          createPagination(postsPaginated.pager, currentPage).map(
-            (page, index) => {
-              // page が number ではない場合"..." を表示
-              if (typeof page !== "number") {
-                return <div key={index}>{page}</div>;
-              }
-              return (
-                <Link
-                  key={index}
-                  href={`/post/list/${categoryId ? `${categoryId}/` : ""}${page}`}
-                >
-                  <div>{page}</div>
-                </Link>
-              );
-            },
-          )
+          <Pagination
+            categoryId={categoryId ?? ""}
+            pager={postsPaginated.pager}
+            currentPage={currentPage}
+          />
         }
       </div>
     </div>
