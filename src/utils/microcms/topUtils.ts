@@ -22,7 +22,7 @@ export const normalizedCustomFieldLink = (
   ) {
     const linkField = customField as TopCustomFieldLink;
     const link: Link = {} as Link;
-    link.isExternal = true;
+    link.fieldId = linkField.fieldId;
     link.title = linkField.title;
     link.englishTitle = linkField.englishTitle;
     link.link = linkField.link;
@@ -36,7 +36,7 @@ export const normalizedCustomFieldLink = (
   ) {
     const pageLink = customField as TopCustomFieldPageLink;
     const link: Link = {} as Link;
-    link.isExternal = false;
+    link.fieldId = pageLink.fieldId;
     link.title = pageLink.page?.title;
     link.englishTitle = pageLink.page?.id;
     link.link = pageLink.page?.id;
@@ -50,7 +50,7 @@ export const normalizedCustomFieldLink = (
   ) {
     const postLink = customField as TopCustomFieldPostLink;
     const link: Link = {} as Link;
-    link.isExternal = false;
+    link.fieldId = postLink.fieldId;
     link.title = postLink.post?.title;
     link.englishTitle = postLink.post?.id;
     link.link = postLink.post?.id;

@@ -1,8 +1,8 @@
 export type Link = {
   /**
-   * 外部リンクかどうか（`false`の場合内部リンク）
+   * リンク種別
    */
-  isExternal: boolean;
+  fieldId: "link" | "pageLink" | "postLink";
   /**
    * リンクタイトル
    */
