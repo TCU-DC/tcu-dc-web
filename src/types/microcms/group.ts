@@ -1,4 +1,4 @@
-import { MicroCMSImage } from "./microcms-schema";
+import type { MicroCMSImage } from "./microcms-schema";
 
 export type Group = {
   /**

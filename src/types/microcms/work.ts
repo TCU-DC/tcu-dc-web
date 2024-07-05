@@ -1,6 +1,6 @@
-import { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
-import { Group } from "./group";
-import { Member } from "./member";
+import type { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
+import type { Group } from "./group";
+import type { Member } from "./member";
 
 export type Work = {
   /**

@@ -2,7 +2,7 @@ export type CustomLink = {
   /**
    * リンク種別
    */
-  fieldId: "link" | "pageLink" | "postLink";
+  fieldId: "externalLink" | "pageLink" | "postLink";
   /**
    * リンクタイトル
    */

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import type { Top } from "@/types/microcms/top";
+import type { Config } from "@/types/microcms/config";
 import type { Group } from "@/types/microcms/group";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
-import { getTopSetting, getGroups } from "@/utils/microcms/getContents";
+import { getConfig, getGroups } from "@/utils/microcms/getContents";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const top: Top = await getTopSetting();
+  const config: Config = await getConfig();
   return {
-    description: top.description,
+    description: config.description,
   };
 }
 

@@ -1,25 +1,26 @@
 import React from "react";
-import type { Top } from "@/types/microcms/top";
-import { normalizedCustomFieldLink } from "@/utils/microcms/topUtils";
+import type { Config } from "@/types/microcms/config";
+import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
 import BannerLink from "@/components/BannerLink";
 import type { CustomLink } from "@/types/customLink";
 import Link from "next/link";
 
-const Banner = (top: Top) => {
+const Banner = (config: Config) => {
   const leftLink =
-    (top?.navbarLinks?.left &&
-      normalizedCustomFieldLink(top.navbarLinks.left[0])) ??
+    (config?.navbarLinks?.left &&
+      normalizedCustomFieldLink(config.navbarLinks.left[0])) ??
     ({} as CustomLink);
   const centerLink =
-    (top?.navbarLinks?.center &&
-      normalizedCustomFieldLink(top.navbarLinks.center[0])) ??
+    (config?.navbarLinks?.center &&
+      normalizedCustomFieldLink(config.navbarLinks.center[0])) ??
     ({} as CustomLink);
   const rightLink =
-    (top?.navbarLinks?.right &&
-      normalizedCustomFieldLink(top.navbarLinks.right[0])) ??
+    (config?.navbarLinks?.right &&
+      normalizedCustomFieldLink(config.navbarLinks.right[0])) ??
     ({} as CustomLink);
   const joinLink =
-    (top?.join && normalizedCustomFieldLink(top.join[0])) ?? ({} as CustomLink);
+    (config?.join && normalizedCustomFieldLink(config.join[0])) ??
+    ({} as CustomLink);
 
   return (
     <div className="fixed top-0 w-full flex items-center justify-between p-3 bg-white shadow-md z-50">

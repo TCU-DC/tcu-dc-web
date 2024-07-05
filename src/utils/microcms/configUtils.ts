@@ -1,26 +1,26 @@
 import {
-  TopCustomFieldLink,
-  TopCustomFieldPageLink,
-  TopCustomFieldPostLink,
-} from "@/types/microcms/top";
+  ConfigCustomFieldExternalLink,
+  ConfigCustomFieldPageLink,
+  ConfigCustomFieldPostLink,
+} from "@/types/microcms/config";
 import { CustomLink } from "@/types/customLink";
 
 /**
- * TopCustomFieldLink, TopCustomFieldPageLink, TopCustomFieldPostLink 異なる形式のリンクを揃える
+ * ConfigCustomFieldExternalLink, ConfigCustomFieldPageLink, ConfigCustomFieldPostLink 異なる形式のリンクを揃える
  */
 export const normalizedCustomFieldLink = (
   customField:
-    | TopCustomFieldPageLink
-    | TopCustomFieldPostLink
-    | TopCustomFieldLink,
+    | ConfigCustomFieldExternalLink
+    | ConfigCustomFieldPageLink
+    | ConfigCustomFieldPostLink,
 ): CustomLink => {
-  // TopCustomFieldLinkの場合
+  // ConfigCustomFieldExternalLinkの場合
   if (
     customField &&
     "fieldId" in customField &&
-    customField.fieldId === "link"
+    customField.fieldId === "externalLink"
   ) {
-    const linkField = customField as TopCustomFieldLink;
+    const linkField = customField as ConfigCustomFieldExternalLink;
     const link: CustomLink = {} as CustomLink;
     link.fieldId = linkField.fieldId;
     link.title = linkField.title;
@@ -28,31 +28,31 @@ export const normalizedCustomFieldLink = (
     link.link = linkField.link;
     return link;
   }
-  // TopCustomFieldPageLinkの場合
+  // ConfigCustomFieldPageLinkの場合
   if (
     customField &&
     "fieldId" in customField &&
     customField.fieldId === "pageLink"
   ) {
-    const pageLink = customField as TopCustomFieldPageLink;
+    const pageLink = customField as ConfigCustomFieldPageLink;
     const link: CustomLink = {} as CustomLink;
     link.fieldId = pageLink.fieldId;
     link.title = pageLink.page?.title;
-    link.englishTitle = pageLink.page?.id;
+    link.englishTitle = pageLink.englishTitle;
     link.link = pageLink.page?.id;
     return link;
   }
-  // TopCustomFieldPostLinkの場合
+  // ConfigCustomFieldPostLinkの場合
   if (
     customField &&
     "fieldId" in customField &&
     customField.fieldId === "postLink"
   ) {
-    const postLink = customField as TopCustomFieldPostLink;
+    const postLink = customField as ConfigCustomFieldPostLink;
     const link: CustomLink = {} as CustomLink;
     link.fieldId = postLink.fieldId;
     link.title = postLink.post?.title;
-    link.englishTitle = postLink.post?.id;
+    link.englishTitle = postLink.englishTitle;
     link.link = postLink.post?.id;
     return link;
   }

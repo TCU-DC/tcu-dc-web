@@ -1,6 +1,6 @@
-import { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
-import { PostCategory } from "./post_category";
-import { Member } from "./member";
+import type { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
+import type { PostCategory } from "./post_category";
+import type { Member } from "./member";
 
 export type Post = {
   /**

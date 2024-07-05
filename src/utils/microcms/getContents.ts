@@ -5,7 +5,7 @@ import type { Member } from "@/types/microcms/member";
 import type { Page } from "@/types/microcms/page";
 import type { Post } from "@/types/microcms/post";
 import type { PostCategory } from "@/types/microcms/post_category";
-import type { Top } from "@/types/microcms/top";
+import type { Config } from "@/types/microcms/config";
 import type { Work } from "@/types/microcms/work";
 import { apiClient } from "@/libs/apiClient";
 
@@ -61,10 +61,10 @@ export const getPostCategory =
 export const getPostCategoryIds = () =>
   apiClient.getAllContentIds({ endpoint: "post_categories" });
 
-export const getTopSetting = (queries?: MicroCMSQueries) =>
-  apiClient.getListDetail<Top>({
-    endpoint: "top",
-    contentId: "setting",
+export const getConfig = (queries?: MicroCMSQueries) =>
+  apiClient.getListDetail<Config>({
+    endpoint: "config",
+    contentId: "all",
     queries,
   });
 export const getWorks = (queries?: MicroCMSQueries) =>

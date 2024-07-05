@@ -1,7 +1,7 @@
-import type { Top } from "@/types/microcms/top";
-import { normalizedCustomFieldLink } from "@/utils/microcms/topUtils";
+import type { Config } from "@/types/microcms/config";
+import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
 
-const Banner = (top: Top) => {
+const Banner = (top: Config) => {
   return (
     <div>
       {top.footerLinks?.map((link) => {
