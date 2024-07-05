@@ -1,3 +1,11 @@
+/**
+ *  ページネーションの作成
+ * @param pages - 総ページの配列
+ * @param currentPage - 現在のページ
+ * @param maxDisplay - 1ページに表示する最大数
+ * @return - ページネーションの配列（例：[1, "...", 3, 4, 5, 6, 7, "...", 12]）
+ */
+
 export const createPagination = (
   pages: number[],
   currentPage: number,
