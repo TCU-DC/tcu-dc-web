@@ -1,8 +1,9 @@
-import React from "react";
 import type { Config } from "@/types/microcms/config";
-import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
-import BannerLink from "@/components/BannerLink";
 import type { CustomLink } from "@/types/customLink";
+import React from "react";
+import BannerLink from "@/components/BannerLink";
+import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
+
 import Link from "next/link";
 
 const Banner = (config: Config) => {

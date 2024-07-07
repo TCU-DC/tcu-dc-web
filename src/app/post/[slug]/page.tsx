@@ -3,8 +3,8 @@ import type { Config } from "@/types/microcms/config";
 import type { Metadata } from "next";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import parse from "html-react-parser";
-import { getConfig, getPostIds, getPost } from "@/utils/microcms/getContents";
 import { notFound } from "next/navigation";
+import { getConfig, getPostIds, getPost } from "@/utils/microcms/getContents";
 import { generateOgpUrl } from "@/utils/microcms/generateOGP";
 
 export async function generateStaticParams() {

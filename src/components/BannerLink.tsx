@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { CustomLink } from "@/types/customLink";
+import Link from "next/link";
 
 function NavbarLink({ link }: { link: CustomLink }) {
   const href =

@@ -1,4 +1,4 @@
-import {
+import type {
   ConfigCustomFieldExternalLink,
   ConfigCustomFieldPageLink,
   ConfigCustomFieldPostLink,
