@@ -3,8 +3,9 @@ import type { CustomLink } from "@/types/customLink";
 
 function NavbarLink({ link }: { link: CustomLink }) {
   const href =
-    (link?.fieldId === "postLink" ? "/post/" : "/") + (link?.link || "");
-
+    link?.fieldId === "externalLink"
+      ? link?.link ?? ""
+      : `${link?.fieldId === "postLink" ? "/post/" : "/"}${link?.link ?? ""}`;
   return (
     <Link
       href={href}
