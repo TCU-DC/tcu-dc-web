@@ -11,7 +11,7 @@ function NavbarLink({ link }: { link: CustomLink }) {
       href={href}
       className="flex flex-col items-center text-black text-sm px-3"
     >
-      {link?.title}
+      <span className="font-bold">{link?.title}</span>
       <span className="text-xs text-gray-500">{link?.englishTitle}</span>
     </Link>
   );

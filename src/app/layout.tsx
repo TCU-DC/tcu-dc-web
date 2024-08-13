@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { Config } from "@/types/microcms/config";
-import { Inter } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { getConfig } from "@/utils/microcms/getContents";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
@@ -26,7 +26,7 @@ export default async function RootLayout({
   const config: Config = await getConfig();
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={notoSansJP.className}>
         <Banner {...config}></Banner>
         {children}
         <Footer {...config}></Footer>
