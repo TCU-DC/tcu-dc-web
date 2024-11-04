@@ -3,7 +3,7 @@ import type { Config } from "@/types/microcms/config";
 import { Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import { getConfig } from "@/utils/microcms/getContents";
-import Banner from "@/components/Banner";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const zenKakuGothicNew = Zen_Kaku_Gothic_New({
@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={zenKakuGothicNew.className}>
-        <Banner {...config}></Banner>
+        <Header {...config}></Header>
         {children}
         <Footer {...config}></Footer>
       </body>

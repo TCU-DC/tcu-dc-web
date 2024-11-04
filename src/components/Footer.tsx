@@ -1,7 +1,7 @@
 import type { Config } from "@/types/microcms/config";
 import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
 
-const Banner = (config: Config) => {
+const Footer = (config: Config) => {
   return (
     <div>
       {config.footerLinks?.map((link) => {
@@ -13,4 +13,4 @@ const Banner = (config: Config) => {
   );
 };
 
-export default Banner;
+export default Footer;
