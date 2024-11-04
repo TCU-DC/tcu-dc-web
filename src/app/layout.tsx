@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import type { Config } from "@/types/microcms/config";
-import { Noto_Sans_JP } from "next/font/google";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import { getConfig } from "@/utils/microcms/getContents";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 
-const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400"] });
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
@@ -26,7 +29,7 @@ export default async function RootLayout({
   const config: Config = await getConfig();
   return (
     <html lang="ja">
-      <body className={notoSansJP.className}>
+      <body className={zenKakuGothicNew.className}>
         <Banner {...config}></Banner>
         {children}
         <Footer {...config}></Footer>
