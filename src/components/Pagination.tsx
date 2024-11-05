@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { createPagination } from "@/utils/createPagination";
+import Link from "next/link";
 
 import { FC } from "react";
 

@@ -1,9 +1,9 @@
+import { CustomLink } from "@/types/customLink";
 import type {
   ConfigCustomFieldExternalLink,
   ConfigCustomFieldPageLink,
   ConfigCustomFieldPostLink,
 } from "@/types/microcms/config";
-import { CustomLink } from "@/types/customLink";
 
 /**
  * ConfigCustomFieldExternalLink, ConfigCustomFieldPageLink, ConfigCustomFieldPostLink 異なる形式のリンクを揃える

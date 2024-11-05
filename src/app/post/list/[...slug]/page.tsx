@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import Pagination from "@/components/Pagination";
 import type { Post } from "@/types/microcms/post";
-import type { MicroCMSListResponse } from "microcms-js-sdk";
 import {
   getPostCategoryIds,
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
+import type { MicroCMSListResponse } from "microcms-js-sdk";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Pagination from "@/components/Pagination";
 
 // SSG のため、1ページあたりの表示件数は固定とする
 const FIRST_PAGE: number = 1;

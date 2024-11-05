@@ -1,11 +1,11 @@
-import type { Post } from "@/types/microcms/post";
 import type { Config } from "@/types/microcms/config";
-import type { Metadata } from "next";
-import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
-import parse from "html-react-parser";
-import { notFound } from "next/navigation";
-import { getConfig, getPostIds, getPost } from "@/utils/microcms/getContents";
+import type { Post } from "@/types/microcms/post";
 import { generateOgpUrl } from "@/utils/microcms/generateOGP";
+import { getConfig, getPost, getPostIds } from "@/utils/microcms/getContents";
+import parse from "html-react-parser";
+import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const postIds: string[] = await getPostIds();

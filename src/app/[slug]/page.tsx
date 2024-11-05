@@ -1,8 +1,8 @@
 import type { Page } from "@/types/microcms/page";
-import type { Metadata } from "next";
-import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
+import { getPage, getPageIds } from "@/utils/microcms/getContents";
 import parse from "html-react-parser";
-import { getPageIds, getPage } from "@/utils/microcms/getContents";
+import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {

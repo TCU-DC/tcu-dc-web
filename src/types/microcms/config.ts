@@ -1,7 +1,7 @@
-import type { MicroCMSRelation, MicroCMSImage } from "./microcms-schema";
+import type { Group } from "./group";
+import type { MicroCMSImage, MicroCMSRelation } from "./microcms-schema";
 import type { Page } from "./page";
 import type { Post } from "./post";
-import type { Group } from "./group";
 
 export type Config = {
   /**

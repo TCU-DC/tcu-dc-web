@@ -1,13 +1,12 @@
-import type { MicroCMSListResponse } from "microcms-js-sdk";
-import type { MicroCMSQueries } from "microcms-js-sdk";
+import { apiClient } from "@/libs/apiClient";
+import type { Config } from "@/types/microcms/config";
 import type { Group } from "@/types/microcms/group";
 import type { Member } from "@/types/microcms/member";
 import type { Page } from "@/types/microcms/page";
 import type { Post } from "@/types/microcms/post";
 import type { PostCategory } from "@/types/microcms/post_category";
-import type { Config } from "@/types/microcms/config";
 import type { Work } from "@/types/microcms/work";
-import { apiClient } from "@/libs/apiClient";
+import type { MicroCMSListResponse, MicroCMSQueries } from "microcms-js-sdk";
 
 export const getGroups = (queries?: MicroCMSQueries) =>
   apiClient.getList<Group>({ endpoint: "groups", queries });
