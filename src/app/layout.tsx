@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import type { Config } from "@/types/microcms/config";
 import { getConfig } from "@/utils/microcms/getContents";
 import type { Metadata } from "next";
@@ -26,14 +24,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const config: Config = await getConfig();
   return (
     <html lang="ja">
-      <body className={zenKakuGothicNew.className}>
-        <Header {...config}></Header>
-        {children}
-        <Footer {...config}></Footer>
-      </body>
+      <body className={zenKakuGothicNew.className}>{children}</body>
     </html>
   );
 }
