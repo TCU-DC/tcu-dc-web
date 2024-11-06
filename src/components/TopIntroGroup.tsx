@@ -1,18 +1,20 @@
 "use client";
 
+import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+import Image from "next/image";
 import { useEffect } from "react";
 
 function TopIntroGroup({
   heading,
-  imageSources,
+  image,
   children,
 }: {
   heading: string;
-  imageSources: string[];
+  image: MicroCMSImage[];
   children: React.ReactNode;
 }) {
   const options: EmblaOptionsType = { loop: true };
@@ -60,11 +62,14 @@ function TopIntroGroup({
         <div className="embla">
           <div className="embla__viewport" ref={emblaRef}>
             <div className="embla__container">
-              {imageSources.map((imgSrc) => {
+              {image.map((img) => {
                 return (
-                  <div className="embla__slide" key={imgSrc}>
-                    <img
-                      src={imgSrc}
+                  <div className="embla__slide" key={img.url}>
+                    <Image
+                      src={img.url}
+                      alt="班紹介画像"
+                      width={img.width ? img.width : 320}
+                      height={img.height ? img.height : 192}
                       className="h-48 w-80 rounded-sm object-cover"
                     />
                   </div>

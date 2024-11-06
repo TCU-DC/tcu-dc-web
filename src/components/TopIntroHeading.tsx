@@ -22,7 +22,9 @@ function TopIntroHeading({
         ></span>
         <span className="text-base">{headingJa}</span>
       </div>
-      {children && <p className="ml-4 mt-4 text-xl font-bold">{children}</p>}
+      {children && (
+        <div className="ml-4 mt-4 text-xl font-bold">{children}</div>
+      )}
     </>
   );
 }
