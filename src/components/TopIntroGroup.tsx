@@ -1,12 +1,31 @@
+"use client";
+
+import { EmblaOptionsType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+import { useEffect } from "react";
+
 function TopIntroGroup({
   heading,
-  imageSrc,
+  imageSources,
   children,
 }: {
   heading: string;
-  imageSrc: string;
+  imageSources: string[];
   children: React.ReactNode;
 }) {
+  const options: EmblaOptionsType = { loop: true };
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Autoplay(),
+    WheelGesturesPlugin(),
+  ]);
+  useEffect(() => {
+    if (emblaApi) {
+      console.log(emblaApi.slideNodes());
+    }
+  }, [emblaApi]);
+
   return (
     <div className="relative h-96 w-96 rounded-sm bg-gray-100">
       <div className="absolute z-0 h-12 w-12">
@@ -34,12 +53,27 @@ function TopIntroGroup({
       </div>
       <div className="absolute z-10 h-96 w-96 p-8">
         <h3 className="text-4xl font-bold">{heading}</h3>
-        <p className="mt-4 text-base">{children}</p>
+        <div className="mt-4 text-base">{children}</div>
       </div>
-      <img
-        src={imageSrc}
-        className="absolute bottom-0 z-0 m-8 h-48 w-80 rounded-sm object-cover"
-      />
+
+      <div className="absolute bottom-0 z-50 m-8">
+        <div className="embla">
+          <div className="embla__viewport" ref={emblaRef}>
+            <div className="embla__container">
+              {imageSources.map((imgSrc) => {
+                return (
+                  <div className="embla__slide" key={imgSrc}>
+                    <img
+                      src={imgSrc}
+                      className="h-48 w-80 rounded-sm object-cover"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
