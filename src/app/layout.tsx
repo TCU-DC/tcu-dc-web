@@ -4,7 +4,7 @@ import type { Config } from "@/types/microcms/config";
 import { getConfig } from "@/utils/microcms/getContents";
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New } from "next/font/google";
-import "./globals.css";
+import "./global.css";
 
 const zenKakuGothicNew = Zen_Kaku_Gothic_New({
   subsets: ["latin"],
