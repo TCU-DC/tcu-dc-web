@@ -9,7 +9,7 @@ const IMGIX_TYPESETTING_ENDPOINT: string = "https://assets.imgix.net/~text";
  * @param text - OGP画像に表示するテキスト
  * @return - OGP画像のURL
  */
-export function generateOgpUrl(imgixUrl: string, text?: string): string {
+export function generateOGP(imgixUrl: string, text?: string): string {
   // imgixのテキスト画像のURLパラメータ
   const imgixTextUrlParams: { [key: string]: string } = {
     w: "1000", // 文字画像のサイズ
