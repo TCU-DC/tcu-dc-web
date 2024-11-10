@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { getPage } from "@/utils/microcms/getContents";
 import { cookies, draftMode } from "next/headers";
 
@@ -29,20 +31,13 @@ export async function GET(request: Request) {
     name: "draftKey",
     value: draftKey,
     httpOnly: true,
-    path: "/",
-  });
-
-  cookies().set({
-    name: "previewPath",
-    value: `/${contentId}`,
-    httpOnly: true,
-    path: "/",
+    path: "/draft/",
   });
 
   const response = new Response(null, {
     status: 302,
     headers: {
-      Location: `/${contentId}`,
+      Location: `/draft/${contentId}`,
     },
   });
 
