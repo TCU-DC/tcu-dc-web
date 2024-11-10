@@ -3,9 +3,8 @@ import type { CustomLink } from "@/types/customLink";
 import type { Config } from "@/types/microcms/config";
 import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
 import Image from "next/image";
-import React from "react";
-
 import Link from "next/link";
+import React from "react";
 
 const Navbar = (config: Config) => {
   const leftLink =
@@ -42,20 +41,22 @@ const Navbar = (config: Config) => {
     </svg>
   );
   return (
-    <div>
+    <>
       <div className="fixed top-0 z-50 flex h-20 w-full items-center justify-between bg-white shadow-md">
-        <Image
-          className="ml-8 h-12"
-          src="/logo.svg"
-          alt="東京都市大学デジタルコンテンツ研究会"
-          width="307"
-          height="48"
-        />
+        <Link href="/">
+          <Image
+            className="ml-8 h-12 transition duration-500 hover:opacity-50"
+            src="/dc_logo.svg"
+            alt="東京都市大学デジタルコンテンツ研究会"
+            width="307"
+            height="48"
+          />
+        </Link>
         <nav className="ml-auto flex items-center">
           <HeaderLink link={leftLink} />
-          <div className="h-4 w-px bg-gray-300"></div>
+          <div className="h-4 w-px bg-zinc-300"></div>
           <HeaderLink link={centerLink} />
-          <div className="h-4 w-px bg-gray-300"></div>
+          <div className="h-4 w-px bg-zinc-300"></div>
           <HeaderLink link={rightLink} />
         </nav>
         <Link
@@ -64,16 +65,20 @@ const Navbar = (config: Config) => {
         >
           <div className="w-24">{svgArrowWhite}</div>
           <div className="flex w-56 justify-center">{joinLink.title}</div>
-          {/* 以下の div はホバー表示用 */}
-          <div className="absolute flex h-full w-80 items-center bg-gradient-to-r from-[#0070D9] to-[#05C0FF] opacity-0 transition duration-500 hover:opacity-100">
+          <div
+            // ホバー表示用
+            className="absolute flex h-full w-80 items-center bg-gradient-to-r from-[#0070D9] to-[#05C0FF] opacity-0 transition duration-500 hover:opacity-100"
+          >
             <div className="w-24">{svgArrowWhite}</div>
             <div className="flex w-56 justify-center">{joinLink.title}</div>
           </div>
         </Link>
       </div>
-      {/* 以下の div はヘッダーの高さ分のスペースを確保するためのもの */}
-      <div className="h-20"></div>
-    </div>
+      <div
+        // ヘッダーの高さ分のスペースを確保
+        className="h-20"
+      ></div>
+    </>
   );
 };
 

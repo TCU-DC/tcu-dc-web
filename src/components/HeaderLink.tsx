@@ -9,10 +9,10 @@ function HeaderLink({ link }: { link: CustomLink }) {
   return (
     <Link
       href={href}
-      className="flex min-w-40 flex-col items-center px-3 text-base text-black"
+      className="flex min-w-40 flex-col items-center px-3 text-base text-black transition duration-500 hover:opacity-50"
     >
       <span className="font-bold">{link?.title}</span>
-      <span className="text-gray-500">{link?.englishTitle}</span>
+      <span className="text-zinc-500">{link?.englishTitle}</span>
     </Link>
   );
 }

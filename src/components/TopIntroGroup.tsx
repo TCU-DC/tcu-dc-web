@@ -29,7 +29,7 @@ function TopIntroGroup({
   }, [emblaApi]);
 
   return (
-    <div className="relative h-96 w-96 rounded-sm bg-gray-100">
+    <div className="relative h-96 w-96 rounded-sm bg-zinc-100">
       <div className="absolute z-0 h-12 w-12">
         <svg
           className="h-full w-full rounded-tl-sm"
