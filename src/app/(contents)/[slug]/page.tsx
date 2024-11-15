@@ -1,9 +1,11 @@
-import type { Page } from "@/types/microcms/page";
+import PageComponent from "@/components/Page";
+import type { Page as PageType } from "@/types/microcms/page";
 import { getPage, getPageIds } from "@/utils/microcms/getContents";
-import parse from "html-react-parser";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const pageIds: string[] = await getPageIds();
@@ -18,26 +20,23 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const page: Page & MicroCMSContentId & MicroCMSDate = await getPage()(
+  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage()(
     params.slug,
-  );
+  ).catch(() => notFound());
+
   return {
     title: page.title,
     description: page.description,
+    robots: {
+      index: !page.noindex,
+    },
   };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const page: Page & MicroCMSContentId & MicroCMSDate = await getPage()(
+  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage()(
     params.slug,
-  );
-  if (!page) {
-    notFound();
-  }
-  return (
-    <div>
-      <div>{page.title}</div>
-      {parse(page.body ?? "")}
-    </div>
-  );
+  ).catch(() => notFound());
+
+  return <PageComponent page={page} />;
 }

@@ -1,16 +1,20 @@
-import Pagination from "@/components/Pagination";
+import PostList from "@/components/PostList";
+import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
 import {
+  getConfig,
   getPostCategoryIds,
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // SSG のため、1ページあたりの表示件数は固定とする
 const FIRST_PAGE: number = 1;
 const PER_PAGE: number = 10;
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slug: string[][] = [];
@@ -55,34 +59,20 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const postsPaginated: {
     posts: MicroCMSListResponse<Post>;
     pager: number[];
-  } = await getPostsPaginated(currentPage, PER_PAGE, categoryId);
+  } = await getPostsPaginated(currentPage, PER_PAGE, categoryId).catch(() =>
+    notFound(),
+  );
   const posts: MicroCMSListResponse<Post> = postsPaginated.posts;
+  const config: Config = await getConfig().catch(() => notFound());
+
   // const pager: number[] = postsPaginated.pager;
   return (
-    <div>
-      <div>
-        {
-          // posts を map して表示
-          posts.contents.map((post) => {
-            return (
-              <Link key={post.id} href={`/post/${encodeURIComponent(post.id)}`}>
-                <div>{post.title}</div>
-                <div>{post.description}</div>
-              </Link>
-            );
-          })
-        }
-      </div>
-      <div>
-        {
-          // ページネーションを表示
-          <Pagination
-            categoryId={categoryId ?? ""}
-            pager={postsPaginated.pager}
-            currentPage={currentPage}
-          />
-        }
-      </div>
-    </div>
+    <PostList
+      config={config}
+      posts={posts}
+      postsPaginated={postsPaginated}
+      currentPage={currentPage}
+      categoryId={categoryId}
+    ></PostList>
   );
 }
