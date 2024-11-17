@@ -41,7 +41,7 @@ function PostList({
               return (
                 <>
                   <PostOutline
-                    linkHref={`/post/${encodeURIComponent(post.id)}`}
+                    linkHref={`/posts/${encodeURIComponent(post.id)}`}
                     image={
                       post.image
                         ? post.image

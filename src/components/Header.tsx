@@ -25,7 +25,7 @@ const Navbar = (config: Config) => {
   const href =
     joinLink?.fieldId === "externalLink"
       ? (joinLink?.link ?? "")
-      : `${joinLink?.fieldId === "postLink" ? "/post/" : "/"}${joinLink?.link ?? ""}`;
+      : `${joinLink?.fieldId === "postLink" ? "/posts/" : "/"}${joinLink?.link ?? ""}`;
   const svgArrowWhite = (
     <svg
       width="w-24"

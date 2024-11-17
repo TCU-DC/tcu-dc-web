@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   // params から カテゴリIDを取得。params.slug[1] に 値がある場合 params.slug[0] がカテゴリID。ない場合は undefined
   const categoryId = params.slug[1] ? params.slug[0] : undefined;
 
-  const REDIRECT_PATH = `/post/list/${categoryId ? `${categoryId}/` : ""}${currentPage}`; // ドラフトモードが無効の場合のリダイレクト先
+  const REDIRECT_PATH = `/posts/list/${categoryId ? `${categoryId}/` : ""}${currentPage}`; // ドラフトモードが無効の場合のリダイレクト先
 
   const { isEnabled } = draftMode();
   const currentCookies = cookies();

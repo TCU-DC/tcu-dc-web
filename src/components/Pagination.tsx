@@ -48,7 +48,7 @@ const Pagination: FC<PaginationProps> = ({
             <Link
               className="flex h-9 w-9 items-center justify-center rounded bg-zinc-200 text-lg font-bold text-black transition duration-500 hover:bg-zinc-300"
               key={index}
-              href={`/post/list/${categoryId ? `${categoryId}/` : ""}${page}`}
+              href={`/posts/list/${categoryId ? `${categoryId}/` : ""}${page}`}
             >
               <div>{page}</div>
             </Link>

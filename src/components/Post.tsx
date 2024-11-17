@@ -38,7 +38,7 @@ function Post({
         ></Heading>
         <div className="pt-3">
           <Link
-            href={`/post/list/${post.category?.id ? `${post.category?.id}/1` : "1"}`}
+            href={`/posts/list/${post.category?.id ? `${post.category?.id}/1` : "1"}`}
             className="transition duration-500 hover:opacity-50"
           >
             <PostCategory>
@@ -79,7 +79,7 @@ function Post({
           <span className="flex w-full border-b border-zinc-200"></span>
         </div>
         <div className="flex flex-row-reverse">
-          <LinkButton href="/post/list/1">記事一覧へ</LinkButton>
+          <LinkButton href="/posts/list/1">記事一覧へ</LinkButton>
         </div>
       </div>
       <div className="mx-auto mt-8 h-fit w-fit rounded-md bg-white px-12 pb-12 pt-10">
@@ -91,7 +91,7 @@ function Post({
               return (
                 <>
                   <PostOutline
-                    linkHref={`/post/${encodeURIComponent(post.id)}`}
+                    linkHref={`/posts/${encodeURIComponent(post.id)}`}
                     image={
                       post.image
                         ? post.image
@@ -113,7 +113,7 @@ function Post({
           }
         </div>
         <div className="flex flex-row-reverse">
-          <LinkButton href="/post/list/1">もっとみる</LinkButton>
+          <LinkButton href="/posts/list/1">もっとみる</LinkButton>
         </div>
       </div>
     </div>

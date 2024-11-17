@@ -44,7 +44,7 @@ function Top({
                 return (
                   <>
                     <PostOutline
-                      linkHref={`/post/${encodeURIComponent(post.id)}`}
+                      linkHref={`/posts/${encodeURIComponent(post.id)}`}
                       image={
                         post.image
                           ? post.image
@@ -66,7 +66,7 @@ function Top({
             }
           </div>
           <div className="flex flex-row-reverse">
-            <LinkButton href="/post/list/1">もっとみる</LinkButton>
+            <LinkButton href="/posts/list/1">もっとみる</LinkButton>
           </div>
         </div>
 

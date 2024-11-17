@@ -15,7 +15,7 @@ import { redirect } from "next/navigation";
 export const dynamicParams = true;
 
 export default async function Post({ params }: { params: { slug: string } }) {
-  const REDIRECT_PATH = `/post/${params.slug}`; // ドラフトモードが無効の場合のリダイレクト先
+  const REDIRECT_PATH = `/posts/${params.slug}`; // ドラフトモードが無効の場合のリダイレクト先
   const NEWS_LIMIT = 2; // 表示する記事一覧の数
 
   const { isEnabled } = draftMode();

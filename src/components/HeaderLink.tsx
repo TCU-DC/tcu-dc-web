@@ -5,7 +5,7 @@ function HeaderLink({ link }: { link: CustomLink }) {
   const href =
     link?.fieldId === "externalLink"
       ? (link?.link ?? "")
-      : `${link?.fieldId === "postLink" ? "/post/" : "/"}${link?.link ?? ""}`;
+      : `${link?.fieldId === "postLink" ? "/posts/" : "/"}${link?.link ?? ""}`;
   return (
     <Link
       href={href}

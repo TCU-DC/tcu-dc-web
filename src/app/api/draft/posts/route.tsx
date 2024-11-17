@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: `/post/${contentId}`,
+        Location: `/posts/${contentId}`,
       },
     });
   }
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
   const response = new Response(null, {
     status: 302,
     headers: {
-      Location: `/draft/post/${contentId}`,
+      Location: `/draft/posts/${contentId}`,
     },
   });
 
