@@ -21,6 +21,6 @@ export default async function Page() {
   const config: Config = await getConfig().catch(() => notFound());
   const posts: MicroCMSListResponse<Post> = await getPosts({
     limit: NEWS_LIMIT,
-  })().catch(() => notFound());
+  }).catch(() => notFound());
   return <Top config={config} posts={posts}></Top>;
 }

@@ -8,7 +8,7 @@ import type { PostCategory } from "@/types/microcms/post_category";
 import type { Work } from "@/types/microcms/work";
 import type { MicroCMSListResponse, MicroCMSQueries } from "microcms-js-sdk";
 
-export const getGroups = (queries?: MicroCMSQueries) => async () => {
+export const getGroups = async (queries?: MicroCMSQueries) => {
   try {
     return await apiClient.getList<Group>({ endpoint: "groups", queries });
   } catch (error) {
@@ -34,7 +34,7 @@ export const getGroup =
     }
   };
 
-export const getMembers = (queries?: MicroCMSQueries) => async () => {
+export const getMembers = async (queries?: MicroCMSQueries) => {
   try {
     return await apiClient.getList<Member>({ endpoint: "members", queries });
   } catch (error) {
@@ -60,7 +60,7 @@ export const getMember =
     }
   };
 
-export const getPages = (queries?: MicroCMSQueries) => async () => {
+export const getPages = async (queries?: MicroCMSQueries) => {
   try {
     return await apiClient.getList<Page>({ endpoint: "pages", queries });
   } catch (error) {
@@ -90,7 +90,7 @@ export const getPageIds = async () => {
   }
 };
 
-export const getPosts = (queries?: MicroCMSQueries) => async () => {
+export const getPosts = async (queries?: MicroCMSQueries) => {
   try {
     return await apiClient.getList<Post>({ endpoint: "posts", queries });
   } catch (error) {
@@ -120,7 +120,7 @@ export const getPostIds = async () => {
   }
 };
 
-export const getPostCategories = (queries?: MicroCMSQueries) => async () => {
+export const getPostCategories = async (queries?: MicroCMSQueries) => {
   try {
     return await apiClient.getList<PostCategory>({
       endpoint: "post_categories",
@@ -208,7 +208,7 @@ export async function getPostsPaginated(
     offset: (currentPage - 1) * limit,
     filters: categoryId ? `category[equals]${categoryId}` : "",
     draftKey: draftKey,
-  })();
+  });
   // 最大のページ数を計算
   const maxPage = Math.ceil(posts.totalCount / limit);
   // ページャーの配列を作成

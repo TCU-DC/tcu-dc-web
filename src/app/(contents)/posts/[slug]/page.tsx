@@ -58,7 +58,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   ).catch(() => notFound());
   const posts: MicroCMSListResponse<PostType> = await getPosts({
     limit: NEWS_LIMIT,
-  })().catch(() => notFound());
+  }).catch(() => notFound());
 
   return <PostComponent config={config} post={post} posts={posts} />;
 }

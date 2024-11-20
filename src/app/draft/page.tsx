@@ -35,6 +35,6 @@ export default async function Page() {
   const posts: MicroCMSListResponse<Post> = await getPosts({
     draftKey: draftKey,
     limit: NEWS_LIMIT,
-  })().catch(() => redirect(REDIRECT_PATH));
+  }).catch(() => redirect(REDIRECT_PATH));
   return <Top config={config} posts={posts}></Top>;
 }

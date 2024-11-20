@@ -36,7 +36,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const posts: MicroCMSListResponse<PostType> = await getPosts({
     draftKey: draftKey,
     limit: NEWS_LIMIT,
-  })().catch(() => redirect(REDIRECT_PATH));
+  }).catch(() => redirect(REDIRECT_PATH));
 
   return <PostComponent config={config} post={post} posts={posts} />;
 }
