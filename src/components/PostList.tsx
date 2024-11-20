@@ -1,15 +1,19 @@
 import Heading from "@/components/Heading";
 import Pagination from "@/components/Pagination";
+import PostCategory from "@/components/PostCategory";
 import PostOutline from "@/components/PostOutline";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
+import type { PostCategory as PostCategotyType } from "@/types/microcms/post_category";
 import { NoImage } from "@/utils/microcms/NoImage";
-import type { MicroCMSListResponse } from "microcms-js-sdk";
+import type { MicroCMSContentId, MicroCMSListResponse } from "microcms-js-sdk";
+import Link from "next/link";
 
 function PostList({
   config,
   posts,
   postsPaginated,
+  postCategories,
   currentPage,
   categoryId,
 }: {
@@ -19,13 +23,38 @@ function PostList({
     posts: MicroCMSListResponse<Post>;
     pager: number[];
   };
+  postCategories: MicroCMSListResponse<PostCategotyType>;
   currentPage: number;
   categoryId?: string;
 }) {
+  const postCategoryLink = (category: PostCategotyType & MicroCMSContentId) => {
+    if (category.id === categoryId || (!category.id && !categoryId)) {
+      return <PostCategory color="black">{category.name}</PostCategory>;
+    } else {
+      return (
+        <PostCategory
+          color="gray"
+          linkHref={`/posts/list/${category.id ? `${category.id}/` : ""}1`}
+        >
+          {category.name}
+        </PostCategory>
+      );
+    }
+  };
+
   return (
     <div className="bg-zinc-100 pb-16 pt-32">
       <div className="mx-auto w-fit rounded bg-white px-12 pb-12 pt-10">
         <Heading heading="Articles" subheading="記事一覧"></Heading>
+        <div className="mt-5 flex gap-2">
+          {postCategoryLink({
+            id: "",
+            name: "All",
+          })}
+          {postCategories.contents.map((category) => {
+            return postCategoryLink(category);
+          })}
+        </div>
         <div className="mb-12 mt-5 flex justify-center">
           <Pagination
             categoryId={categoryId ?? ""}

@@ -1,8 +1,10 @@
 import PostList from "@/components/PostList";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
+import { PostCategory } from "@/types/microcms/post_category";
 import {
   getConfig,
+  getPostCategories,
   getPostCategoryIds,
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
@@ -64,6 +66,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   );
   const posts: MicroCMSListResponse<Post> = postsPaginated.posts;
   const config: Config = await getConfig().catch(() => notFound());
+  const postCategories: MicroCMSListResponse<PostCategory> =
+    await getPostCategories().catch(() => notFound());
 
   // const pager: number[] = postsPaginated.pager;
   return (
@@ -71,6 +75,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       config={config}
       posts={posts}
       postsPaginated={postsPaginated}
+      postCategories={postCategories}
       currentPage={currentPage}
       categoryId={categoryId}
     ></PostList>

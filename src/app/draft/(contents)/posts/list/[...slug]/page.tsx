@@ -3,7 +3,12 @@ export const runtime = "edge";
 import PostList from "@/components/PostList";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
-import { getConfig, getPostsPaginated } from "@/utils/microcms/getContents";
+import { PostCategory } from "@/types/microcms/post_category";
+import {
+  getConfig,
+  getPostCategories,
+  getPostsPaginated,
+} from "@/utils/microcms/getContents";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 import { cookies, draftMode } from "next/headers";
 import { redirect } from "next/navigation";
@@ -42,6 +47,10 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const config: Config = await getConfig({ draftKey: draftKey }).catch(() =>
     redirect(REDIRECT_PATH),
   );
+  const postCategories: MicroCMSListResponse<PostCategory> =
+    await getPostCategories({ draftKey: draftKey }).catch(() =>
+      redirect(REDIRECT_PATH),
+    );
 
   // const pager: number[] = postsPaginated.pager;
   return (
@@ -49,6 +58,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       config={config}
       posts={posts}
       postsPaginated={postsPaginated}
+      postCategories={postCategories}
       currentPage={currentPage}
       categoryId={categoryId}
     ></PostList>
