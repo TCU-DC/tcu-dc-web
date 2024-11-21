@@ -7,13 +7,12 @@ import type { Post } from "@/types/microcms/post";
 import type { PostCategory as PostCategotyType } from "@/types/microcms/post_category";
 import { NoImage } from "@/utils/microcms/NoImage";
 import type { MicroCMSContentId, MicroCMSListResponse } from "microcms-js-sdk";
-import Link from "next/link";
 
 function PostList({
   config,
   posts,
   postsPaginated,
-  postCategories,
+  postCountsByCategory,
   currentPage,
   categoryId,
 }: {
@@ -23,20 +22,30 @@ function PostList({
     posts: MicroCMSListResponse<Post>;
     pager: number[];
   };
-  postCategories: MicroCMSListResponse<PostCategotyType>;
+  postCountsByCategory: {
+    category: PostCategotyType & MicroCMSContentId;
+    count: number;
+  }[];
   currentPage: number;
   categoryId?: string;
 }) {
-  const postCategoryLink = (category: PostCategotyType & MicroCMSContentId) => {
-    if (category.id === categoryId || (!category.id && !categoryId)) {
-      return <PostCategory color="black">{category.name}</PostCategory>;
+  const postCategoryLink = (c: {
+    category: PostCategotyType & MicroCMSContentId;
+    count: number;
+  }) => {
+    if (c.category.id === categoryId || (!c.category.id && !categoryId)) {
+      return (
+        <PostCategory color="black">
+          {c.category.name}: {c.count}
+        </PostCategory>
+      );
     } else {
       return (
         <PostCategory
           color="gray"
-          linkHref={`/posts/list/${category.id ? `${category.id}/` : ""}1`}
+          linkHref={`/posts/list/${c.category.id ? `${c.category.id}/` : ""}1`}
         >
-          {category.name}
+          {c.category.name}: {c.count}
         </PostCategory>
       );
     }
@@ -48,12 +57,16 @@ function PostList({
         <Heading heading="Articles" subheading="記事一覧"></Heading>
         <div className="mt-5 flex gap-2">
           {postCategoryLink({
-            id: "",
-            name: "All",
+            category: { id: "", name: "All" },
+            count: postCountsByCategory
+              .map((c) => c.count)
+              .reduce((a, b) => a + b),
           })}
-          {postCategories.contents.map((category) => {
-            return postCategoryLink(category);
-          })}
+          {postCountsByCategory
+            .sort((a, b) => b.count - a.count)
+            .map((category) => {
+              return category.count > 0 ? postCategoryLink(category) : null;
+            })}
         </div>
         <div className="mb-12 mt-5 flex justify-center">
           <Pagination

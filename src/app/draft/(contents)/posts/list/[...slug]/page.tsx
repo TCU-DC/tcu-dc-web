@@ -6,10 +6,10 @@ import type { Post } from "@/types/microcms/post";
 import { PostCategory } from "@/types/microcms/post_category";
 import {
   getConfig,
-  getPostCategories,
+  getPostCountsByCategory,
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
-import type { MicroCMSListResponse } from "microcms-js-sdk";
+import type { MicroCMSContentId, MicroCMSListResponse } from "microcms-js-sdk";
 import { cookies, draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -47,18 +47,19 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const config: Config = await getConfig({ draftKey: draftKey }).catch(() =>
     redirect(REDIRECT_PATH),
   );
-  const postCategories: MicroCMSListResponse<PostCategory> =
-    await getPostCategories({ draftKey: draftKey }).catch(() =>
-      redirect(REDIRECT_PATH),
-    );
+  const postCountsByCategory: {
+    category: PostCategory & MicroCMSContentId;
+    count: number;
+  }[] = await getPostCountsByCategory(draftKey).catch(() =>
+    redirect(REDIRECT_PATH),
+  );
 
-  // const pager: number[] = postsPaginated.pager;
   return (
     <PostList
       config={config}
       posts={posts}
       postsPaginated={postsPaginated}
-      postCategories={postCategories}
+      postCountsByCategory={postCountsByCategory}
       currentPage={currentPage}
       categoryId={categoryId}
     ></PostList>

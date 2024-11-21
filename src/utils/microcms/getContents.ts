@@ -6,7 +6,11 @@ import type { Page } from "@/types/microcms/page";
 import type { Post } from "@/types/microcms/post";
 import type { PostCategory } from "@/types/microcms/post_category";
 import type { Work } from "@/types/microcms/work";
-import type { MicroCMSListResponse, MicroCMSQueries } from "microcms-js-sdk";
+import type {
+  MicroCMSContentId,
+  MicroCMSListResponse,
+  MicroCMSQueries,
+} from "microcms-js-sdk";
 
 export const getGroups = async (queries?: MicroCMSQueries) => {
   try {
@@ -215,4 +219,23 @@ export async function getPostsPaginated(
   const pager = Array.from({ length: maxPage }, (_, i) => i + 1);
 
   return { posts, pager };
+}
+
+/**
+ * カテゴリとカテゴリごとの記事数の一覧を取得
+ */
+export async function getPostCountsByCategory(
+  draftKey?: string,
+): Promise<{ category: PostCategory & MicroCMSContentId; count: number }[]> {
+  const categories = await getPostCategories();
+  const categoryPostCounts = await Promise.all(
+    categories.contents.map(async (category) => {
+      const posts = await getPosts({
+        filters: `category[equals]${category.id}`,
+        draftKey: draftKey,
+      });
+      return { category, count: posts.totalCount };
+    }),
+  );
+  return categoryPostCounts;
 }
