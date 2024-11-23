@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type color = "black" | "white";
+type color = "black" | "white" | "gradation";
 
 function LinkButton({
   href,
@@ -11,9 +11,22 @@ function LinkButton({
   children: React.ReactNode;
   color?: color;
 }) {
-  const bgColor = color === "black" ? "bg-black" : "bg-white";
-  const textColor = color === "black" ? "text-white" : "text-black";
-  const svgColor = color === "black" ? "white" : "black";
+  let bgColor = "";
+  let textColor = "";
+  let svgColor = "";
+  if (color === "black") {
+    bgColor = "bg-black";
+    textColor = "text-white";
+    svgColor = "white";
+  } else if (color === "white") {
+    bgColor = "bg-white";
+    textColor = "text-black";
+    svgColor = "black";
+  } else {
+    bgColor = "bg-gradient-to-r from-[#05C0FF] to-[#0070D9]";
+    textColor = "text-white";
+    svgColor = "white";
+  }
 
   return (
     <Link
