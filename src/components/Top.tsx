@@ -23,19 +23,19 @@ function Top({
     <>
       <Header {...config}></Header>
       <div className="relative">
-        <div className="absolute z-30 flex h-32 items-center rounded-sm bg-white pl-4 text-8xl font-bold text-black lg:top-12 lg:ml-6 xl:top-[calc(100dvh-(5rem+25rem))] xl:ml-8">
+        <div className="absolute top-12 z-30 flex h-24 items-center rounded-sm bg-white pl-4 text-7xl font-bold text-black md:ml-6 lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+25rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             世界
             <span className="text-black">を</span>創
           </span>
           るのは、
         </div>
-        <div className="absolute z-30 flex h-32 items-center rounded-sm bg-white pl-4 text-8xl font-bold lg:top-52 lg:ml-6 xl:top-[calc(100dvh-(5rem+15rem))] xl:ml-8">
+        <div className="absolute top-[10.5rem] z-30 flex h-24 items-center rounded-sm bg-white pl-4 text-7xl font-bold md:ml-6 lg:top-52 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+15rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             君<span className="text-black">だ。</span>
           </span>
         </div>
-        <div className="absolute z-40 h-fit w-fit rounded-md bg-white px-12 pb-12 pt-10 lg:right-6 lg:top-[calc(100dvh-(25rem-1.5rem))] xl:right-20 xl:top-[calc(100dvh-(25rem-5rem))]">
+        <div className="absolute z-40 mx-6 h-fit w-[calc(100dvw-3rem)] rounded-md bg-white px-12 pb-12 pt-10 md:top-[calc(100dvh-20rem)] lg:right-6 lg:top-[calc(100dvh-(25rem-1.5rem))] lg:mx-0 lg:w-fit xl:right-20 xl:top-[calc(100dvh-(25rem-5rem))]">
           <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
           <div className="py-5">
             {
@@ -73,7 +73,7 @@ function Top({
         <Image
           // w-80 は Tailwind で 20rem として定義されているため、100% - 20rem で w-full から w-80 を引いた横幅を表現
           // h-20 は Tailwind で 5rem と定義されているため、100dvh - 5rem と指定することで、ビューポートの高さから h-20 分を引いた高さを表現
-          className="absolute z-20 h-[calc(100dvh-5rem)] rounded-br-3xl object-cover lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
+          className="absolute z-20 h-[calc(100dvh-4rem)] w-[calc(100%-4rem)] rounded-br-3xl object-cover lg:h-[calc(100dvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
           src="https://picsum.photos/1082/960"
           alt="トップ画像"
           width={1082}
@@ -81,7 +81,7 @@ function Top({
         />
         <svg
           preserveAspectRatio="none"
-          className="absolute top-[calc(100dvh-25rem)] z-10"
+          className="absolute z-10 md:top-[calc(100dvh-21.5rem)] lg:top-[calc(100dvh-25rem)]"
           width="w-full"
           height="700"
           viewBox="0 0 1920 700"
@@ -122,7 +122,7 @@ function Top({
               </defs>
             </svg>
             <div className="absolute top-52 z-50 w-full">
-              <div className="lg:mx-28 xl:mx-36">
+              <div className="mx-6 lg:mx-28 xl:mx-36">
                 <Heading heading="About" subheading="デジコンとは" level="h2">
                   <div
                     dangerouslySetInnerHTML={{
@@ -175,7 +175,7 @@ function Top({
                     fill="white"
                   />
                 </svg>
-                <div className="h-96 lg:mx-28 xl:mx-36">
+                <div className="mx-6 h-96 lg:mx-28 xl:mx-36">
                   <div className="mb-8 mt-16">
                     <Heading
                       heading="Gallery"
@@ -240,7 +240,7 @@ function Top({
                       "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 292px, rgb(244 244 245) 292px,rgb(244 244 245) 100%)",
                   }}
                 >
-                  <div className="lg:px-28 xl:px-36">
+                  <div className="px-6 lg:px-28 xl:px-36">
                     <Heading
                       heading="Activities"
                       subheading="活動内容"
