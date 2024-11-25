@@ -53,9 +53,10 @@ function PostList({
 
   return (
     <div className="bg-zinc-100 pb-16 pt-32">
-      <div className="mx-auto w-fit rounded bg-white px-12 pb-12 pt-10">
+      <div className="m-8 rounded bg-white p-8 sm:px-12 sm:pb-12 sm:pt-10 md:mx-20 lg:mx-auto lg:w-fit">
         <Heading heading="Articles" subheading="記事一覧"></Heading>
-        <div className="mt-5 flex gap-2">
+        <div className="mt-5"></div>
+        <div className="flex flex-wrap gap-2">
           {postCategoryLink({
             category: { id: "", name: "All" },
             count: postCountsByCategory
