@@ -25,8 +25,8 @@ function Post({
   posts: MicroCMSListResponse<Post>;
 }) {
   return (
-    <div className="bg-zinc-100 pb-16 pt-32">
-      <div className="mx-auto w-[848px] rounded bg-white p-20">
+    <div className="bg-zinc-100 pb-16 pt-8 md:pt-20 lg:pt-32">
+      <div className="mx-8 rounded bg-white p-8 sm:p-16 md:mx-20 md:p-20 lg:mx-auto lg:w-[848px]">
         <Heading
           heading={post.title ?? ""}
           subheading={
@@ -82,7 +82,7 @@ function Post({
           <LinkButton href="/posts/list/1">記事一覧へ</LinkButton>
         </div>
       </div>
-      <div className="mx-auto mt-8 h-fit w-fit rounded-md bg-white px-12 pb-12 pt-10">
+      <div className="mx-8 mt-8 h-fit rounded-md bg-white px-8 pb-12 pt-10 sm:px-12 md:mx-20 lg:mx-auto lg:w-fit">
         <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
         <div className="py-5">
           {
