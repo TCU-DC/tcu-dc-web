@@ -10,7 +10,7 @@ function DraftModeBanner() {
   return (
     <>
       {isDraftMode && (
-        <div className="fixed top-20 z-50 w-full bg-yellow-200 p-2 text-center text-sm opacity-95">
+        <div className="fixed top-16 z-50 w-full bg-yellow-200 p-2 text-center text-sm opacity-95 lg:top-20">
           プレビューモードで閲覧中
           <Link href={`/api/draft/end`} className="px-1 underline">
             プレビューモード終了
