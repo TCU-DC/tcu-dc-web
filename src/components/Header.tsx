@@ -66,7 +66,7 @@ const Navbar = (config: Config) => {
       <div className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white shadow-md lg:h-20">
         <Link href="/" className="cursor-pointer">
           <Image
-            className="ml-6 transition duration-500 hover:opacity-50 lg:h-12 xl:ml-8"
+            className="ml-2 transition duration-500 hover:opacity-50 sm:ml-6 lg:h-12 xl:ml-8"
             src="/dc_logo.svg"
             alt="東京都市大学デジタルコンテンツ研究会"
             width="307"
@@ -130,7 +130,7 @@ const Navbar = (config: Config) => {
         </div>
         <div
           // メニュー表示
-          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} fixed left-0 top-16 z-50 flex h-screen w-full flex-col items-center justify-center bg-zinc-100 bg-opacity-95 shadow-md transition-opacity duration-500 lg:hidden`}
+          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} fixed left-0 top-16 z-50 flex h-dvh w-full flex-col items-center justify-center bg-zinc-100 bg-opacity-95 shadow-md transition-opacity duration-500 lg:hidden`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <nav className="flex flex-col items-center justify-center space-y-2">
