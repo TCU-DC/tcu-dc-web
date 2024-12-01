@@ -35,7 +35,7 @@ function TopIntroActivity({
           </defs>
         </svg>
       </div>
-      <div className="flex w-full flex-col p-8 md:flex-row lg:w-[800px] xl:w-[848px]">
+      <div className="flex w-full flex-col p-8 md:w-[720px] md:flex-row lg:w-[800px] xl:w-[848px]">
         <div>
           <h3 className="text-4xl font-bold">{heading}</h3>
           <div className="prose md:ml-4 md:mt-4">{children}</div>

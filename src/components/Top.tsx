@@ -252,7 +252,7 @@ function Top({
                         }}
                       ></div>
                     </Heading>
-                    <div className="mb-16 mt-8 flex flex-wrap justify-center gap-8">
+                    <div className="mb-16 mt-8 flex w-full flex-wrap justify-center gap-8">
                       {config.top?.activities &&
                         config.top.activities.map((activity) => {
                           return (
