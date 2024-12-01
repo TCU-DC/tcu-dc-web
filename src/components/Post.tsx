@@ -82,7 +82,7 @@ function Post({
           <LinkButton href="/posts/list/1">記事一覧へ</LinkButton>
         </div>
       </div>
-      <div className="mx-2 mt-8 h-fit rounded-md bg-white px-4 py-8 sm:mx-8 sm:px-12 sm:py-10 md:mx-20 md:px-8 lg:mx-auto lg:w-fit">
+      <div className="mx-2 mt-8 h-fit rounded-md bg-white px-4 py-8 sm:mx-8 sm:px-12 sm:py-10 md:mx-20 md:px-8 lg:mx-auto lg:w-[848px]">
         <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
         <div className="py-5">
           {
