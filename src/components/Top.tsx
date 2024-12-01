@@ -274,16 +274,16 @@ function Top({
                     </div>
                   </div>
                   <div className="bg-gradient-to-t from-[#0070D9] to-[#05C0FF] text-center">
-                    <h3 className="pt-20 text-4xl font-bold text-white">
+                    <h3 className="pt-12 text-4xl font-bold text-white sm:pt-20">
                       お問い合わせ
                     </h3>
                     <div
                       className={`mx-auto flex w-12 border-b-2 border-white pt-6`}
                     ></div>
-                    <p className="pt-12 text-xl font-bold text-white">
+                    <p className="pt-6 text-xl font-bold text-white">
                       ご不明な点はお気軽にお問い合わせください
                     </p>
-                    <div className="flex justify-center gap-12 pt-20">
+                    <div className="flex flex-col items-center justify-center gap-6 pt-6 sm:flex-row sm:gap-12 sm:pt-20">
                       <LinkButton href="/contact" color="white">
                         フォームへ
                       </LinkButton>
@@ -292,7 +292,7 @@ function Top({
                       </LinkButton>
                     </div>
                     <svg
-                      className="mt-20"
+                      className="mt-12 sm:mt-20"
                       preserveAspectRatio="meet"
                       width="w-full"
                       height="h-fit"
