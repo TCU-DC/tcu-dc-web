@@ -34,7 +34,8 @@ function LinkButton({
       className={`${bgColor} ${color === "black" ? "hover:bg-zinc-800" : "hover:bg-zinc-200"} flex h-16 w-64 cursor-pointer items-center rounded transition duration-500 hover:scale-105`}
     >
       <svg
-        width="w-24"
+        className="shrink-0"
+        width="97"
         height="16"
         viewBox="0 0 97 16"
         fill="none"
@@ -47,7 +48,7 @@ function LinkButton({
       </svg>
       <div>
         <p
-          className={`flex w-40 justify-center text-xl font-bold ${textColor}`}
+          className={`flex w-40 justify-center text-lg font-bold sm:text-xl ${textColor}`}
         >
           {children}
         </p>

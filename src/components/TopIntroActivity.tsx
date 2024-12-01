@@ -37,15 +37,17 @@ function TopIntroActivity({
       </div>
       <div className="flex w-full flex-col p-8 md:w-[720px] md:flex-row lg:w-[800px] xl:w-[848px]">
         <div>
-          <h3 className="text-4xl font-bold">{heading}</h3>
-          <div className="prose md:ml-4 md:mt-4">{children}</div>
+          <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
+          <div className="prose text-sm sm:text-base md:ml-4 md:mt-4">
+            {children}
+          </div>
         </div>
         <Image
           src={image.url}
           alt="活動紹介画像"
           width={image.width ? image.width : 320}
           height={image.height ? image.height : 192}
-          className="h-80 w-full rounded-sm object-cover md:ml-8 md:w-80"
+          className="h-60 w-full rounded-sm object-cover sm:h-80 md:ml-8 md:w-80"
         />
       </div>
     </div>

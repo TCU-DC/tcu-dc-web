@@ -16,24 +16,25 @@ function Heading({
 }) {
   const tailWindClassNameBorderColor =
     borderColor === "black" ? "border-black" : "border-white";
+  const headingClassName = "text-3xl sm:text-4xl font-bold";
   return (
     <>
-      {level === "h1" && <h1 className="text-4xl font-bold">{heading}</h1>}
-      {level === "h2" && <h2 className="text-4xl font-bold">{heading}</h2>}
-      {level === "h3" && <h3 className="text-4xl font-bold">{heading}</h3>}
-      {level === "h4" && <h4 className="text-4xl font-bold">{heading}</h4>}
-      {level === "h5" && <h5 className="text-4xl font-bold">{heading}</h5>}
-      {level === "h6" && <h6 className="text-4xl font-bold">{heading}</h6>}
+      {level === "h1" && <h1 className={headingClassName}>{heading}</h1>}
+      {level === "h2" && <h2 className={headingClassName}>{heading}</h2>}
+      {level === "h3" && <h3 className={headingClassName}>{heading}</h3>}
+      {level === "h4" && <h4 className={headingClassName}>{heading}</h4>}
+      {level === "h5" && <h5 className={headingClassName}>{heading}</h5>}
+      {level === "h6" && <h6 className={headingClassName}>{heading}</h6>}
       {subheading && (
         <div className="flex items-center">
           <span
             className={`mr-2 flex w-8 border-b ${tailWindClassNameBorderColor}`}
           ></span>
-          <span className="text-base">{subheading}</span>
+          <span className="text-sm sm:text-base">{subheading}</span>
         </div>
       )}
       {children && (
-        <div className="ml-4 mt-4 text-xl font-bold">{children}</div>
+        <div className="ml-4 mt-4 text-lg font-bold sm:text-xl">{children}</div>
       )}
     </>
   );

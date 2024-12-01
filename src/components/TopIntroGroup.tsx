@@ -54,12 +54,12 @@ function TopIntroGroup({
         </svg>
       </div>
       <div className="flex flex-col p-8 md:flex-row lg:p-0">
-        <div className="mr-8 flex max-w-80 flex-col justify-normal pb-6 md:h-80 md:justify-center lg:absolute lg:z-10 lg:h-96 lg:w-96 lg:max-w-96 lg:justify-normal lg:p-8">
-          <h3 className="text-4xl font-bold">{heading}</h3>
-          <div className="mt-4 text-base">{children}</div>
+        <div className="mr-8 flex flex-col justify-normal pb-6 md:h-80 md:max-w-80 md:justify-center lg:absolute lg:z-10 lg:h-96 lg:w-96 lg:max-w-96 lg:justify-normal lg:p-8">
+          <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
+          <div className="mt-4 text-sm sm:text-base">{children}</div>
         </div>
 
-        <div className="h-80 md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:w-80 lg:h-48 lg:w-80">
+        <div className="h-60 w-full sm:h-80 md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:w-80 lg:h-48 lg:w-80">
           <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
@@ -71,7 +71,7 @@ function TopIntroGroup({
                         alt="班紹介画像"
                         width={img.width ? img.width : 320}
                         height={img.height ? img.height : 192}
-                        className="h-80 rounded-sm object-cover md:w-80 lg:h-48 lg:w-80"
+                        className="h-60 w-full rounded-sm object-cover sm:h-80 md:w-80 lg:h-48 lg:w-80"
                       />
                     </div>
                   );

@@ -36,18 +36,20 @@ function PostOutline({
       >
         <h4
           // 524px = 752px - (13rem + 1.25rem)
-          className={`line-clamp-2 truncate whitespace-pre-wrap break-words text-xl font-bold lg:mt-1 lg:w-[524px]`}
+          className={`line-clamp-2 whitespace-pre-wrap break-words text-lg font-bold sm:text-xl lg:mt-1 lg:line-clamp-1 lg:w-[524px]`}
         >
           {headline}
         </h4>
         <div className="w-fit">
-          <div className="ml-0 flex flex-row-reverse gap-2 lg:flex-col lg:gap-0">
-            <p className="mt-2 text-base tracking-wide">
+          <div className="ml-0 flex flex-row-reverse items-center gap-2 sm:items-start lg:flex-col lg:gap-0">
+            <p className="mt-2 text-sm tracking-wide sm:text-base">
               {date ? formatDateToJST(date, "YYYY/MM/DD") : "0000/00/00"}
             </p>
-            <PostCategory>
-              {(category && category.name) ?? "カテゴリなし"}
-            </PostCategory>
+            <div className="w-20 sm:w-fit">
+              <PostCategory>
+                {(category && category.name) ?? "カテゴリなし"}
+              </PostCategory>
+            </div>
           </div>
         </div>
       </div>
