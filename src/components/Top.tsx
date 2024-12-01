@@ -22,15 +22,15 @@ function Top({
   return (
     <>
       <Header {...config}></Header>
-      <div className="relative">
-        <div className="absolute top-12 z-30 flex h-24 items-center rounded-sm bg-white pl-4 text-7xl font-bold text-black md:ml-6 lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+25rem))] xl:ml-8">
+      <div className="relative w-full">
+        <div className="absolute top-12 z-30 ml-6 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold text-black sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+25rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             世界
             <span className="text-black">を</span>創
           </span>
           るのは、
         </div>
-        <div className="absolute top-[10.5rem] z-30 flex h-24 items-center rounded-sm bg-white pl-4 text-7xl font-bold md:ml-6 lg:top-52 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+15rem))] xl:ml-8">
+        <div className="absolute top-[8rem] z-30 ml-6 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold sm:top-[10.5rem] sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-52 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+15rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             君<span className="text-black">だ。</span>
           </span>
