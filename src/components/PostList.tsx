@@ -52,8 +52,8 @@ function PostList({
   };
 
   return (
-    <div className="bg-zinc-100 pb-16 pt-32">
-      <div className="m-8 rounded bg-white p-8 sm:px-12 sm:pb-12 sm:pt-10 md:mx-20 lg:mx-auto lg:w-fit">
+    <div className="bg-zinc-100 py-8 md:pb-16 md:pt-20 lg:pt-32">
+      <div className="mx-2 rounded bg-white px-4 py-8 sm:mx-8 sm:p-8 sm:px-12 sm:pb-12 sm:pt-10 md:mx-20 lg:mx-auto lg:w-fit">
         <Heading heading="Articles" subheading="記事一覧"></Heading>
         <div className="mt-5"></div>
         <div className="flex flex-wrap gap-2">
