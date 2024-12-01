@@ -23,19 +23,19 @@ function Top({
     <>
       <Header {...config}></Header>
       <div className="relative w-full">
-        <div className="absolute top-12 z-30 ml-6 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold text-black sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+25rem))] xl:ml-8">
+        <div className="absolute top-12 z-30 ml-2 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold text-black sm:ml-6 sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100lvh-(5rem+25rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             世界
             <span className="text-black">を</span>創
           </span>
           るのは、
         </div>
-        <div className="absolute top-[8rem] z-30 ml-6 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold sm:top-[10.5rem] sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-52 lg:h-32 lg:text-8xl xl:top-[calc(100dvh-(5rem+15rem))] xl:ml-8">
+        <div className="absolute top-[8rem] z-30 ml-2 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold sm:top-[10.5rem] sm:ml-6 sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-52 lg:h-32 lg:text-8xl xl:top-[calc(100lvh-(5rem+15rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
             君<span className="text-black">だ。</span>
           </span>
         </div>
-        <div className="absolute z-40 mx-6 h-fit w-[calc(100dvw-3rem)] rounded-md bg-white px-12 pb-12 pt-10 md:top-[calc(100dvh-20rem)] lg:right-6 lg:top-[calc(100dvh-(25rem-1.5rem))] lg:mx-0 lg:w-fit xl:right-20 xl:top-[calc(100dvh-(25rem-5rem))]">
+        <div className="absolute top-[calc(100lvh-20rem)] z-40 mx-2 h-fit w-[calc(100%-1rem)] rounded-md bg-white p-4 pb-8 pt-6 sm:mx-6 sm:w-[calc(100%-3rem)] sm:p-8 md:top-[calc(100lvh-20rem)] md:px-12 md:pb-12 md:pt-10 lg:right-6 lg:top-[calc(100lvh-(25rem-1.5rem))] lg:mx-0 lg:w-fit xl:right-20 xl:top-[calc(100lvh-(25rem-5rem))]">
           <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
           <div className="py-5">
             {
@@ -72,8 +72,8 @@ function Top({
 
         <Image
           // w-80 は Tailwind で 20rem として定義されているため、100% - 20rem で w-full から w-80 を引いた横幅を表現
-          // h-20 は Tailwind で 5rem と定義されているため、100dvh - 5rem と指定することで、ビューポートの高さから h-20 分を引いた高さを表現
-          className="absolute z-20 h-[calc(100dvh-4rem)] w-[calc(100%-4rem)] rounded-br-3xl object-cover lg:h-[calc(100dvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
+          // h-20 は Tailwind で 5rem と定義されているため、100lvh - 5rem と指定することで、ビューポートの高さから h-20 分を引いた高さを表現
+          className="absolute z-20 h-[calc(100lvh-4rem)] w-[calc(100%-4rem)] rounded-br-3xl object-cover lg:h-[calc(100lvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
           src="https://picsum.photos/1082/960"
           alt="トップ画像"
           width={1082}
@@ -81,8 +81,8 @@ function Top({
         />
         <svg
           preserveAspectRatio="none"
-          className="absolute z-10 md:top-[calc(100dvh-21.5rem)] lg:top-[calc(100dvh-25rem)]"
-          width="w-full"
+          className="absolute top-[calc(100lvh-21.5rem)] z-10 lg:top-[calc(100lvh-25rem)]"
+          width="100%"
           height="700"
           viewBox="0 0 1920 700"
           fill="none"
@@ -93,10 +93,10 @@ function Top({
             fill="#F4F4F5"
           />
         </svg>
-        <div className="absolute top-[calc(100dvh+5rem)] z-0 w-full">
+        <div className="absolute top-[calc(100lvh+5rem)] z-0 w-full">
           <div className="relative">
             <svg
-              className="absolute z-0 h-fit lg:w-[400px] xl:w-[500px]"
+              className="absolute z-0 h-fit w-80 lg:w-[400px] xl:w-[500px]"
               width="500"
               height="500"
               viewBox="0 0 500 500"
@@ -122,7 +122,7 @@ function Top({
               </defs>
             </svg>
             <div className="absolute top-52 z-50 w-full">
-              <div className="mx-6 lg:mx-28 xl:mx-36">
+              <div className="mx-2 sm:mx-6 lg:mx-28 xl:mx-36">
                 <Heading heading="About" subheading="デジコンとは" level="h2">
                   <div
                     dangerouslySetInnerHTML={{
@@ -164,7 +164,7 @@ function Top({
                 <svg
                   preserveAspectRatio="none"
                   className="mt-0"
-                  width="w-full"
+                  width="100%"
                   height="80"
                   viewBox="0 0 1920 80"
                   fill="none"
@@ -175,7 +175,7 @@ function Top({
                     fill="white"
                   />
                 </svg>
-                <div className="mx-6 h-96 lg:mx-28 xl:mx-36">
+                <div className="mx-2 h-96 sm:mx-6 lg:mx-28 xl:mx-36">
                   <div className="mb-8 mt-16">
                     <Heading
                       heading="Gallery"
@@ -194,7 +194,7 @@ function Top({
                   preserveAspectRatio="none"
                   // absolute を使用しているが、親要素の高さがコンテンツによって可変するため、500px まで bg-zinc-100 の背景色を指定する。超えた部分からは子要素で背景色指定に対応する。
                   className="absolute z-10"
-                  width="w-full"
+                  width="100%"
                   height="100"
                   viewBox="0 0 1920 100"
                   fill="none"
@@ -206,7 +206,7 @@ function Top({
                   />
                 </svg>
                 <svg
-                  className="absolute z-0 h-fit lg:w-[400px] xl:w-[500px]"
+                  className="absolute z-0 h-fit w-80 lg:w-[400px] xl:w-[500px]"
                   width="500"
                   height="500"
                   viewBox="0 0 500 500"
@@ -240,7 +240,7 @@ function Top({
                       "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 292px, rgb(244 244 245) 292px,rgb(244 244 245) 100%)",
                   }}
                 >
-                  <div className="px-6 lg:px-28 xl:px-36">
+                  <div className="px-2 sm:px-6 lg:px-28 xl:px-36">
                     <Heading
                       heading="Activities"
                       subheading="活動内容"
@@ -274,13 +274,13 @@ function Top({
                     </div>
                   </div>
                   <div className="bg-gradient-to-t from-[#0070D9] to-[#05C0FF] text-center">
-                    <h3 className="pt-12 text-4xl font-bold text-white sm:pt-20">
+                    <h3 className="pt-12 text-3xl font-bold text-white sm:pt-20 sm:text-4xl">
                       お問い合わせ
                     </h3>
                     <div
                       className={`mx-auto flex w-12 border-b-2 border-white pt-6`}
                     ></div>
-                    <p className="pt-6 text-xl font-bold text-white">
+                    <p className="pt-6 text-lg font-bold text-white sm:text-xl">
                       ご不明な点はお気軽にお問い合わせください
                     </p>
                     <div className="flex flex-col items-center justify-center gap-6 pt-6 sm:flex-row sm:gap-12 sm:pt-20">
