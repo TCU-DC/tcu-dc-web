@@ -25,14 +25,14 @@ function PostOutline({
       className="flex transition duration-500 hover:opacity-50 lg:w-[752px]"
     >
       <Image
-        className="h-28 w-28 rounded-sm object-cover md:w-52"
+        className="h-28 w-28 shrink-0 rounded-sm object-cover md:w-52"
         src={image.url}
         alt="OGP"
         width={image.width ? image.width : 208}
         height={image.height ? image.height : 112}
       />
       <div
-        className={`lg:w-[calc(752px - 13rem)] flex h-28 flex-col justify-center pl-5`}
+        className={`lg:w-[calc(752px - 13rem)] flex h-28 flex-col justify-center pl-4`}
       >
         <h4
           // 524px = 752px - (13rem + 1.25rem)
