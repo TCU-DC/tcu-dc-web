@@ -130,7 +130,7 @@ function Top({
                     }}
                   ></div>
                 </Heading>
-                <div className="mb-16 mt-8 flex flex-wrap justify-center gap-8">
+                <div className="mb-16 mt-8 flex flex-col flex-wrap justify-center gap-8 md:flex-row">
                   {config.top &&
                     config.top.groups &&
                     config.top.groups.map((group) => {

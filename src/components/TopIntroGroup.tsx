@@ -29,7 +29,7 @@ function TopIntroGroup({
   }, [emblaApi]);
 
   return (
-    <div className="relative h-96 w-96 rounded-sm bg-zinc-100">
+    <div className="relative rounded-sm bg-zinc-100 md:h-96 md:w-[720px] lg:w-96">
       <div className="absolute z-0 h-12 w-12">
         <svg
           className="h-full w-full rounded-tl-sm"
@@ -53,28 +53,30 @@ function TopIntroGroup({
           </defs>
         </svg>
       </div>
-      <div className="absolute z-10 h-96 w-96 p-8">
-        <h3 className="text-4xl font-bold">{heading}</h3>
-        <div className="mt-4 text-base">{children}</div>
-      </div>
+      <div className="flex flex-col p-8 md:flex-row lg:p-0">
+        <div className="mr-8 flex max-w-80 flex-col justify-normal pb-6 md:h-80 md:justify-center lg:absolute lg:z-10 lg:h-96 lg:w-96 lg:max-w-96 lg:justify-normal lg:p-8">
+          <h3 className="text-4xl font-bold">{heading}</h3>
+          <div className="mt-4 text-base">{children}</div>
+        </div>
 
-      <div className="absolute bottom-0 z-50 m-8">
-        <div className="embla">
-          <div className="embla__viewport" ref={emblaRef}>
-            <div className="embla__container">
-              {image.map((img) => {
-                return (
-                  <div className="embla__slide" key={img.url}>
-                    <Image
-                      src={img.url}
-                      alt="班紹介画像"
-                      width={img.width ? img.width : 320}
-                      height={img.height ? img.height : 192}
-                      className="h-48 w-80 rounded-sm object-cover"
-                    />
-                  </div>
-                );
-              })}
+        <div className="h-80 md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:w-80 lg:h-48 lg:w-80">
+          <div className="embla">
+            <div className="embla__viewport" ref={emblaRef}>
+              <div className="embla__container">
+                {image.map((img) => {
+                  return (
+                    <div className="embla__slide" key={img.url}>
+                      <Image
+                        src={img.url}
+                        alt="班紹介画像"
+                        width={img.width ? img.width : 320}
+                        height={img.height ? img.height : 192}
+                        className="h-80 rounded-sm object-cover md:w-80 lg:h-48 lg:w-80"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
