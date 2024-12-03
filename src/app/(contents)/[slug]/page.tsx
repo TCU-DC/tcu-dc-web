@@ -24,9 +24,13 @@ export async function generateMetadata({
     params.slug,
   ).catch(() => notFound());
 
+  const ogp = page.ogp?.url ?? "/ogp.png";
   return {
     title: page.title,
     description: page.description,
+    openGraph: {
+      images: [ogp],
+    },
     robots: {
       index: !page.noindex,
     },

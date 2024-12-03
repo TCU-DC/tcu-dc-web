@@ -46,9 +46,13 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const ogp = "/ogp.png";
   return {
     title: "記事一覧",
-    description: "記事一覧です。",
+    description: "記事の一覧です。",
+    openGraph: {
+      images: [ogp],
+    },
   };
 }
 
