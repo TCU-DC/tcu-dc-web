@@ -10,11 +10,11 @@ import { useEffect } from "react";
 
 function TopIntroGroup({
   heading,
-  image,
+  images,
   children,
 }: {
   heading: string;
-  image: MicroCMSImage[];
+  images: MicroCMSImage[];
   children: React.ReactNode;
 }) {
   const options: EmblaOptionsType = { loop: true };
@@ -58,20 +58,19 @@ function TopIntroGroup({
           <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
           <div className="mt-4 text-sm sm:text-base">{children}</div>
         </div>
-
         <div className="h-60 w-full sm:h-80 md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:w-80 lg:h-48 lg:w-80">
-          <div className="embla">
-            <div className="embla__viewport" ref={emblaRef}>
-              <div className="embla__container">
-                {image.map((img) => {
+          <div className="embla h-full w-full">
+            <div className="embla__viewport h-full w-full" ref={emblaRef}>
+              <div className="embla__container h-full w-full">
+                {images.map((img) => {
                   return (
-                    <div className="embla__slide" key={img.url}>
+                    <div className="embla__slide h-full w-full" key={img.url}>
                       <Image
                         src={img.url}
                         alt="班紹介画像"
                         width={img.width ? img.width : 320}
                         height={img.height ? img.height : 192}
-                        className="h-60 w-full rounded-sm object-cover sm:h-80 md:w-80 lg:h-48 lg:w-80"
+                        className="h-full w-full rounded-sm object-cover"
                       />
                     </div>
                   );

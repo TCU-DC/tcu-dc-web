@@ -1,6 +1,5 @@
 import { createPagination } from "@/utils/createPagination";
 import Link from "next/link";
-
 import { FC } from "react";
 
 interface PaginationProps {

@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
@@ -9,6 +11,11 @@ import type { Config } from "@/types/microcms/config";
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
 import type { Post } from "@/types/microcms/post";
 import { NoImage } from "@/utils/microcms/NoImage";
+import { normalizedCustomFieldLink } from "@/utils/microcms/normalizedCustomFieldLink";
+import { EmblaOptionsType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
+import useEmblaCarousel from "embla-carousel-react";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 import Image from "next/image";
 
@@ -19,6 +26,15 @@ function Top({
   config: Config;
   posts: MicroCMSListResponse<Post>;
 }) {
+  const options: EmblaOptionsType = {
+    loop: true,
+    watchDrag: false,
+    duration: 100,
+  };
+  const [emblaRef] = useEmblaCarousel(options, [
+    Autoplay({ delay: 5000 }),
+    Fade(),
+  ]);
   return (
     <>
       <Header {...config}></Header>
@@ -70,18 +86,48 @@ function Top({
           </div>
         </div>
 
+        {/*
         <Image
           // w-80 は Tailwind で 20rem として定義されているため、100% - 20rem で w-full から w-80 を引いた横幅を表現
           // h-20 は Tailwind で 5rem と定義されているため、100lvh - 5rem と指定することで、ビューポートの高さから h-20 分を引いた高さを表現
           className="absolute z-20 h-[calc(100lvh-4rem)] w-[calc(100%-4rem)] rounded-br-3xl object-cover lg:h-[calc(100lvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
-          src="https://picsum.photos/1082/960"
+          src={
+            config.topImages
+              ? (config.topImages[0].url ?? NoImage.gray.url)
+              : NoImage.gray.url
+          }
           alt="トップ画像"
           width={1082}
           height={960}
         />
+        */}
+
+        <div className="absolute z-20 h-[calc(100lvh-4rem)] w-full sm:w-[calc(100%-4rem)] lg:h-[calc(100lvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]">
+          <div className="embla h-full w-full">
+            <div className="embla__viewport h-full w-full" ref={emblaRef}>
+              <div className="embla__container h-full w-full">
+                {config.topImages &&
+                  config.topImages.map((img) => {
+                    return (
+                      <div className="embla__slide h-full w-full" key={img.url}>
+                        <Image
+                          src={img.url}
+                          alt="サークル紹介画像"
+                          width={img.width ? img.width : 320}
+                          height={img.height ? img.height : 192}
+                          className="h-full w-full object-cover sm:rounded-br-3xl"
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </div>
         <svg
+          // お知らせ裏装飾
           preserveAspectRatio="none"
-          className="absolute top-[calc(100lvh-21.5rem)] z-10 lg:top-[calc(100lvh-25rem)]"
+          className="absolute top-[calc(100lvh-21.5rem)] z-10 hidden md:block lg:top-[calc(100lvh-25rem)]"
           width="100%"
           height="700"
           viewBox="0 0 1920 700"
@@ -93,10 +139,33 @@ function Top({
             fill="#F4F4F5"
           />
         </svg>
-        <div className="absolute top-[calc(100lvh+5rem)] z-0 w-full">
+        <div
+        // お知らせ裏装飾 スマホ用
+        >
+          <div className="absolute top-[calc(100lvh-21.5rem)] z-10 h-[500px] w-full bg-zinc-100 md:hidden"></div>
+          <svg
+            preserveAspectRatio="none"
+            className="absolute top-[calc(100lvh+9rem)] z-10 md:hidden"
+            width="100%"
+            height="100"
+            viewBox="0 0 1920 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1920 87V87C1592.17 110.939 1262.76 101.752 936.773 59.5778L897.524 54.5V54.5C620.251 22.5849 340.428 19.3271 62.4876 44.778L0 50.5V0H1920V87Z"
+              fill="#F4F4F5"
+            />
+          </svg>
+        </div>
+        <div
+          // About
+          className="absolute top-[calc(100lvh+5rem)] z-0 w-full sm:top-[calc(100lvh+5rem)]"
+        >
           <div className="relative">
             <svg
-              className="absolute z-0 h-fit w-80 lg:w-[400px] xl:w-[500px]"
+              // 裏装飾 青円
+              className="absolute top-20 z-0 h-52 w-52 sm:h-80 sm:w-80 lg:top-0 lg:h-[400px] lg:w-[400px] xl:h-[500px] xl:w-[500px]"
               width="500"
               height="500"
               viewBox="0 0 500 500"
@@ -121,37 +190,40 @@ function Top({
                 </radialGradient>
               </defs>
             </svg>
-            <div className="absolute top-52 z-50 w-full">
+            <div className="absolute top-40 z-50 w-full md:top-52">
               <div className="mx-2 sm:mx-6 lg:mx-28 xl:mx-36">
-                <Heading heading="About" subheading="デジコンとは" level="h2">
+                <Heading
+                  heading={config.aboutHeader?.title ?? ""}
+                  subheading={config.aboutHeader?.subtitle ?? ""}
+                  level="h2"
+                >
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: config.top?.aboutDesc ?? "",
+                      __html: config.aboutHeader?.description ?? "",
                     }}
                   ></div>
                 </Heading>
                 <div className="mb-16 mt-8 flex flex-col flex-wrap justify-center gap-8 md:flex-row">
-                  {config.top &&
-                    config.top.groups &&
-                    config.top.groups.map((group) => {
+                  {config.groupCards &&
+                    config.groupCards.map((card) => {
                       // group.image[i].url を 配列にする
                       let image: MicroCMSImage[] = [];
-                      if (group.image) {
-                        for (let i = 0; i < group.image.length; i++) {
-                          image.push(group.image[i]);
+                      if (card.images && card.images.length > 0) {
+                        for (let i = 0; i < card.images.length; i++) {
+                          image.push(card.images[i]);
                         }
                       } else {
                         image.push(NoImage.white);
                       }
                       return (
-                        <div key={group.id}>
+                        <div key={card.id}>
                           <TopIntroGroup
-                            heading={group.name ?? ""}
-                            image={image}
+                            heading={card.name ?? ""}
+                            images={image}
                           >
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: group.description ?? "",
+                                __html: card.description ?? "",
                               }}
                             ></div>
                           </TopIntroGroup>
@@ -162,8 +234,9 @@ function Top({
               </div>
               <div className="bg-black text-white">
                 <svg
+                  // セクション始まり 装飾
                   preserveAspectRatio="none"
-                  className="mt-0"
+                  className="mt-0 hidden lg:block"
                   width="100%"
                   height="80"
                   viewBox="0 0 1920 80"
@@ -175,25 +248,44 @@ function Top({
                     fill="white"
                   />
                 </svg>
+                <svg
+                  // セクション始まり 装飾 スマホ用
+                  preserveAspectRatio="none"
+                  className="mt-0 lg:hidden"
+                  width="100%"
+                  height="54"
+                  viewBox="0 0 640 54"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0L640 4.04101e-05V4.04101e-05C433.055 70.9497 206.83 71.2862 0 0V0Z"
+                    fill="white"
+                  />
+                </svg>
                 <div className="mx-2 h-96 sm:mx-6 lg:mx-28 xl:mx-36">
                   <div className="mb-8 mt-16">
                     <Heading
-                      heading="Gallery"
-                      subheading="作品紹介"
+                      heading={config.galleryHeader?.title ?? ""}
+                      subheading={config.galleryHeader?.subtitle ?? ""}
                       borderColor="white"
                       level="h2"
                     >
-                      東京都市大学デジタルコンテンツ研究会の会員が制作した作品です。
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: config.galleryHeader?.description ?? "",
+                        }}
+                      ></div>
                     </Heading>
                   </div>
                 </div>
               </div>
-
               <div className="relative h-[500px] w-full bg-zinc-100">
                 <svg
+                  // セクション終わり 装飾
                   preserveAspectRatio="none"
                   // absolute を使用しているが、親要素の高さがコンテンツによって可変するため、500px まで bg-zinc-100 の背景色を指定する。超えた部分からは子要素で背景色指定に対応する。
-                  className="absolute z-10"
+                  className="absolute top-0 z-10"
                   width="100%"
                   height="100"
                   viewBox="0 0 1920 100"
@@ -206,7 +298,8 @@ function Top({
                   />
                 </svg>
                 <svg
-                  className="absolute z-0 h-fit w-80 lg:w-[400px] xl:w-[500px]"
+                  // 裏装飾 青円
+                  className="absolute top-5 z-0 h-52 w-52 sm:h-80 sm:w-80 md:top-0 lg:h-[400px] lg:w-[400px] xl:h-[500px] xl:w-[500px]"
                   width="500"
                   height="500"
                   viewBox="0 0 500 500"
@@ -234,7 +327,7 @@ function Top({
                 <div
                   // tyle属性の background は 292px = 500px - 208px（※TailWindの高さ t-52 が 208px 13rem）までは透明、超えた部分から背景色 rgb(244 244 245)（bg-zinc-100）を設定している。
                   // z-index の関係上500pxを超えた部分から以下の子要素に対して背景色を指定するため。
-                  className="absolute top-52 z-20 w-full"
+                  className="absolute top-24 z-20 w-full sm:top-28 md:top-36 lg:top-44 xl:top-52"
                   style={{
                     background:
                       "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 292px, rgb(244 244 245) 292px,rgb(244 244 245) 100%)",
@@ -242,30 +335,37 @@ function Top({
                 >
                   <div className="px-2 sm:px-6 lg:px-28 xl:px-36">
                     <Heading
-                      heading="Activities"
-                      subheading="活動内容"
+                      heading={config.activitiesHeader?.title ?? ""}
+                      subheading={config.activitiesHeader?.subtitle ?? ""}
                       level="h2"
                     >
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: config.top?.activitiesDesc ?? "",
+                          __html: config.activitiesHeader?.description ?? "",
                         }}
                       ></div>
                     </Heading>
                     <div className="mb-16 mt-8 flex w-full flex-wrap justify-center gap-8">
-                      {config.top?.activities &&
-                        config.top.activities.map((activity) => {
+                      {config.activityCards &&
+                        config.activityCards.map((card) => {
+                          // group.image[i].url を 配列にする
+                          let image: MicroCMSImage[] = [];
+                          if (card.images && card.images.length > 0) {
+                            for (let i = 0; i < card.images.length; i++) {
+                              image.push(card.images[i]);
+                            }
+                          } else {
+                            image.push(NoImage.gray);
+                          }
                           return (
                             <TopIntroActivity
-                              key={activity.title}
-                              heading={activity.title ?? ""}
-                              image={
-                                activity.image ? activity.image : NoImage.gray
-                              }
+                              key={card.title}
+                              heading={card.title ?? ""}
+                              images={image ?? ""}
                             >
                               <div
                                 dangerouslySetInnerHTML={{
-                                  __html: activity.description ?? "",
+                                  __html: card.description ?? "",
                                 }}
                               ></div>
                             </TopIntroActivity>
@@ -275,20 +375,36 @@ function Top({
                   </div>
                   <div className="bg-gradient-to-t from-[#0070D9] to-[#05C0FF] text-center">
                     <h3 className="pt-12 text-3xl font-bold text-white sm:pt-20 sm:text-4xl">
-                      お問い合わせ
+                      {config.contactHeader}
                     </h3>
                     <div
                       className={`mx-auto flex w-12 border-b-2 border-white pt-6`}
                     ></div>
-                    <p className="pt-6 text-lg font-bold text-white sm:text-xl">
-                      ご不明な点はお気軽にお問い合わせください
-                    </p>
+                    <div
+                      className="pt-6 text-lg font-bold text-white sm:text-xl"
+                      dangerouslySetInnerHTML={{
+                        __html: config.contactDescription ?? "",
+                      }}
+                    ></div>
                     <div className="flex flex-col items-center justify-center gap-6 pt-6 sm:flex-row sm:gap-12 sm:pt-20">
-                      <LinkButton href="/contact" color="white">
-                        フォームへ
+                      <LinkButton
+                        href={
+                          config.contactLink01
+                            ? (normalizedCustomFieldLink(
+                                config.contactLink01[0],
+                              ).link ?? "")
+                            : ""
+                        }
+                        color="white"
+                      >
+                        {config.contactLink01 &&
+                          normalizedCustomFieldLink(config.contactLink01[0])
+                            .title}
                       </LinkButton>
-                      <LinkButton href="/joinus" color="white">
-                        入会する
+                      <LinkButton href="/contact" color="white">
+                        {config.contactLink02 &&
+                          normalizedCustomFieldLink(config.contactLink02[0])
+                            .title}
                       </LinkButton>
                     </div>
                     <svg

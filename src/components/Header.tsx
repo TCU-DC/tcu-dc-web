@@ -4,31 +4,27 @@ import HeaderLink from "@/components/HeaderLink";
 import LinkButton from "@/components/LinkButton";
 import type { CustomLink } from "@/types/customLink";
 import type { Config } from "@/types/microcms/config";
-import { normalizedCustomFieldLink } from "@/utils/microcms/configUtils";
+import { normalizedCustomFieldLink } from "@/utils/microcms/normalizedCustomFieldLink";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
 const Navbar = (config: Config) => {
   const leftLink =
-    (config?.navbarLinks?.left &&
-      normalizedCustomFieldLink(config.navbarLinks.left[0])) ??
+    (config?.headerLinks?.link01 &&
+      normalizedCustomFieldLink(config.headerLinks.link01[0])) ??
     ({} as CustomLink);
   const centerLink =
-    (config?.navbarLinks?.center &&
-      normalizedCustomFieldLink(config.navbarLinks.center[0])) ??
+    (config?.headerLinks?.link02 &&
+      normalizedCustomFieldLink(config.headerLinks?.link02[0])) ??
     ({} as CustomLink);
   const rightLink =
-    (config?.navbarLinks?.right &&
-      normalizedCustomFieldLink(config.navbarLinks.right[0])) ??
+    (config?.headerLinks?.link03 &&
+      normalizedCustomFieldLink(config.headerLinks?.link03[0])) ??
     ({} as CustomLink);
   const joinLink =
-    (config?.join && normalizedCustomFieldLink(config.join[0])) ??
+    (config?.joinLink && normalizedCustomFieldLink(config.joinLink[0])) ??
     ({} as CustomLink);
-  const href =
-    joinLink?.fieldId === "externalLink"
-      ? (joinLink?.link ?? "")
-      : `${joinLink?.fieldId === "postLink" ? "/posts/" : "/"}${joinLink?.link ?? ""}`;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   class SvgArrowWhite {
@@ -81,7 +77,7 @@ const Navbar = (config: Config) => {
           <HeaderLink link={rightLink} />
         </nav>
         <Link
-          href={href}
+          href={joinLink.link ?? ""}
           className="hidden h-16 cursor-pointer items-center bg-gradient-to-r from-[#05C0FF] to-[#0070D9] font-bold text-white lg:flex lg:h-20 lg:w-48 lg:text-xl xl:w-80 xl:text-2xl"
         >
           <div className="hidden w-24 xl:inline-block">

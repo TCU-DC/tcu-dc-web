@@ -1,15 +1,32 @@
+"use client";
+
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
+import { EmblaOptionsType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Image from "next/image";
+import { useEffect } from "react";
 
 function TopIntroActivity({
   heading,
-  image,
+  images,
   children,
 }: {
   heading: string;
-  image: MicroCMSImage;
+  images: MicroCMSImage[];
   children: React.ReactNode;
 }) {
+  const options: EmblaOptionsType = { loop: true };
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Autoplay(),
+    WheelGesturesPlugin(),
+  ]);
+  useEffect(() => {
+    if (emblaApi) {
+      console.log(emblaApi.slideNodes());
+    }
+  }, [emblaApi]);
   return (
     <div className="relative w-full rounded-sm bg-white md:w-fit">
       <div className="absolute z-0 h-12 w-12">
@@ -42,13 +59,27 @@ function TopIntroActivity({
             {children}
           </div>
         </div>
-        <Image
-          src={image.url}
-          alt="活動紹介画像"
-          width={image.width ? image.width : 320}
-          height={image.height ? image.height : 192}
-          className="h-60 w-full rounded-sm object-cover sm:h-80 md:ml-8 md:w-80"
-        />
+        <div className="h-60 w-full shrink-0 rounded-sm object-cover sm:h-80 md:ml-8 md:w-80">
+          <div className="embla h-full w-full">
+            <div className="embla__viewport h-full w-full" ref={emblaRef}>
+              <div className="embla__container h-full w-full">
+                {images.map((img) => {
+                  return (
+                    <div className="embla__slide h-full w-full" key={img.url}>
+                      <Image
+                        src={img.url}
+                        alt="活動紹介画像"
+                        width={img.width ? img.width : 320}
+                        height={img.height ? img.height : 192}
+                        className="h-full w-full rounded-sm object-cover"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
