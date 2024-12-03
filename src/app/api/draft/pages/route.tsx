@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     name: "draftKey",
     value: draftKey,
     httpOnly: true,
-    path: "/draft/",
+    path: "/draft",
   });
 
   const response = new Response(null, {
