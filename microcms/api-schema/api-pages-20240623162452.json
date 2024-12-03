@@ -1,1 +1,0 @@
-{"apiFields":[{"idValue":"g8lCzZR-cg","fieldId":"title","name":"タイトル","kind":"text","isUnique":false},{"fieldId":"description","name":"ページの説明","kind":"text"},{"fieldId":"body","name":"本文","kind":"richEditorV2"},{"fieldId":"noindex","name":"このページを検索結果から非表示にする","kind":"boolean"}],"customFields":[]}

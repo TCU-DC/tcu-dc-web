@@ -12,5 +12,5 @@ export type Group = {
   /**
    * 紹介画像
    */
-  image?: MicroCMSImage[];
+  images?: MicroCMSImage[];
 };
