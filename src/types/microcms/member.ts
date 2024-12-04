@@ -1,10 +1,10 @@
-import type { MicroCMSImage } from "./microcms-schema";
+import { MicroCMSImage } from "./microcms-schema";
 
 export type Member = {
   /**
    * 名前
    */
-  name?: string;
+  name: string;
   /**
    * プロフィール画像
    */
