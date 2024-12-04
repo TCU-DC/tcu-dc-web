@@ -62,7 +62,7 @@ const Navbar = (config: Config) => {
       <div className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white shadow-md lg:h-20">
         <Link href="/" className="cursor-pointer">
           <Image
-            className="ml-2 transition duration-500 hover:opacity-50 sm:ml-6 lg:h-12 xl:ml-8"
+            className="ml-2 h-10 w-fit transition duration-500 hover:opacity-50 sm:ml-6 lg:h-12 xl:ml-8"
             src="/dc_logo.svg"
             alt="東京都市大学デジタルコンテンツ研究会"
             width="307"

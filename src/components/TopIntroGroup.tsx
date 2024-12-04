@@ -56,9 +56,9 @@ function TopIntroGroup({
       <div className="flex flex-col p-8 md:flex-row lg:p-0">
         <div className="mr-8 flex flex-col justify-normal pb-6 md:h-80 md:max-w-80 md:justify-center lg:absolute lg:z-10 lg:h-96 lg:w-96 lg:max-w-96 lg:justify-normal lg:p-8">
           <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
-          <div className="mt-4 text-sm sm:text-base">{children}</div>
+          <div className="mt-4">{children}</div>
         </div>
-        <div className="h-60 w-full sm:h-80 md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:w-80 lg:h-48 lg:w-80">
+        <div className="h-[calc((100vw-5rem)/1.6)] w-full sm:h-[calc((100vw-7rem)/1.6)] md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:h-80 md:w-80 lg:h-48 lg:w-80">
           <div className="embla h-full w-full">
             <div className="embla__viewport h-full w-full" ref={emblaRef}>
               <div className="embla__container h-full w-full">

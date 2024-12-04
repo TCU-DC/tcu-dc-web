@@ -85,23 +85,6 @@ function Top({
             <LinkButton href="/posts/list/1">もっとみる</LinkButton>
           </div>
         </div>
-
-        {/*
-        <Image
-          // w-80 は Tailwind で 20rem として定義されているため、100% - 20rem で w-full から w-80 を引いた横幅を表現
-          // h-20 は Tailwind で 5rem と定義されているため、100lvh - 5rem と指定することで、ビューポートの高さから h-20 分を引いた高さを表現
-          className="absolute z-20 h-[calc(100lvh-4rem)] w-[calc(100%-4rem)] rounded-br-3xl object-cover lg:h-[calc(100lvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]"
-          src={
-            config.topImages
-              ? (config.topImages[0].url ?? NoImage.gray.url)
-              : NoImage.gray.url
-          }
-          alt="トップ画像"
-          width={1082}
-          height={960}
-        />
-        */}
-
         <div className="absolute z-20 h-[calc(100lvh-4rem)] w-full sm:w-[calc(100%-4rem)] lg:h-[calc(100lvh-5rem)] lg:w-[calc(100%-12rem)] xl:w-[calc(100%-20rem)]">
           <div className="embla h-full w-full">
             <div className="embla__viewport h-full w-full" ref={emblaRef}>

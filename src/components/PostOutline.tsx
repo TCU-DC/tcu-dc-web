@@ -25,14 +25,14 @@ function PostOutline({
       className="flex transition duration-500 hover:opacity-50 lg:w-[752px]"
     >
       <Image
-        className="h-28 w-28 shrink-0 rounded-sm object-cover md:w-52"
+        className="h-24 w-24 shrink-0 rounded-sm object-cover sm:h-28 sm:w-28 md:w-52"
         src={image.url}
         alt="OGP"
         width={image.width ? image.width : 208}
         height={image.height ? image.height : 112}
       />
       <div
-        className={`lg:w-[calc(752px - 13rem)] flex h-28 flex-col justify-center pl-4`}
+        className={`lg:w-[calc(752px - 13rem)] flex h-24 flex-col justify-center pl-4 sm:h-28`}
       >
         <h4
           // 524px = 752px - (13rem + 1.25rem)
@@ -45,7 +45,7 @@ function PostOutline({
             <p className="mt-2 text-sm tracking-wide sm:text-base">
               {date ? formatDateToJST(date, "YYYY/MM/DD") : "0000/00/00"}
             </p>
-            <div className="w-20 sm:w-fit">
+            <div className="max-w-20 sm:max-w-fit">
               <PostCategory>
                 {(category && category.name) ?? "カテゴリなし"}
               </PostCategory>

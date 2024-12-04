@@ -55,11 +55,9 @@ function TopIntroActivity({
       <div className="flex w-full flex-col p-8 md:w-[720px] md:flex-row lg:w-[800px] xl:w-[848px]">
         <div>
           <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
-          <div className="prose text-sm sm:text-base md:ml-4 md:mt-4">
-            {children}
-          </div>
+          <div className="prose md:ml-4 md:mt-4">{children}</div>
         </div>
-        <div className="h-60 w-full shrink-0 rounded-sm object-cover sm:h-80 md:ml-8 md:w-80">
+        <div className="h-[calc((100vw-5rem)/1.6)] w-full shrink-0 rounded-sm object-cover sm:h-[calc((100vw-7rem)/1.6)] md:ml-8 md:h-80 md:w-80">
           <div className="embla h-full w-full">
             <div className="embla__viewport h-full w-full" ref={emblaRef}>
               <div className="embla__container h-full w-full">
