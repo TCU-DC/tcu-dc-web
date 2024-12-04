@@ -10,7 +10,11 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "html-react-parser": "^5.1.10",
+    "@tailwindcss/typography": "^0.5.15",
+    "embla-carousel-autoplay": "^8.5.1",
+    "embla-carousel-fade": "^8.5.1",
+    "embla-carousel-react": "^8.5.1",
+    "embla-carousel-wheel-gestures": "^8.0.1",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.3",
     "prettier-plugin-organize-imports": "^3.2.4",
@@ -18,6 +22,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.5",
     "@secretlint/secretlint-rule-preset-recommend": "^8.2.4",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -25,10 +30,12 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-next-on-pages": "^1.13.5",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "postcss": "^8",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "secretlint": "^8.2.4",
     "stylelint": "^16.6.1",
     "stylelint-config-recess-order": "^5.0.1",

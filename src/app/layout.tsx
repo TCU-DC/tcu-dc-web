@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import type { Config } from "@/types/microcms/config";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { getConfig } from "@/utils/microcms/getContents";
-import Banner from "@/components/Banner";
-import Footer from "@/components/Footer";
+import type { Metadata } from "next";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
+import "./global.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
@@ -23,14 +24,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const config: Config = await getConfig();
   return (
     <html lang="ja">
-      <body className={inter.className}>
-        <Banner {...config}></Banner>
-        {children}
-        <Footer {...config}></Footer>
-      </body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className={zenKakuGothicNew.className}>{children}</body>
     </html>
   );
 }

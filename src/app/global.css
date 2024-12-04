@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.embla {
+  overflow: hidden;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.embla__container {
+  display: flex;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}

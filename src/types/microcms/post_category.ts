@@ -2,7 +2,7 @@ export type PostCategory = {
   /**
    * カテゴリ名
    */
-  category?: string;
+  name?: string;
   /**
    * カテゴリの説明
    */
