@@ -10,7 +10,7 @@ export class NoImage {
     };
   }
   static ogpDcLogo: MicroCMSImage = {
-    url: "/ogp.png",
+    url: "/dc_logo_thumbnail.png",
     width: 2400,
     height: 1260,
   };
