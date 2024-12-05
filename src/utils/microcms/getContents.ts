@@ -37,6 +37,14 @@ export const getGroup =
       throw error;
     }
   };
+export const getGroupIds = async () => {
+  try {
+    return await apiClient.getAllContentIds({ endpoint: "groups" });
+  } catch (error) {
+    console.error("Failed to fetch post category IDs:", error);
+    throw error;
+  }
+};
 
 export const getMembers = async (queries?: MicroCMSQueries) => {
   try {
@@ -183,7 +191,6 @@ export const getWorks = async (queries?: MicroCMSQueries) => {
     throw error;
   }
 };
-
 export const getWork =
   (queries?: MicroCMSQueries) => async (contentId: string) => {
     try {
@@ -197,6 +204,14 @@ export const getWork =
       throw error;
     }
   };
+export const getWorkIds = async () => {
+  try {
+    return await apiClient.getAllContentIds({ endpoint: "works" });
+  } catch (error) {
+    console.error("Failed to fetch post IDs:", error);
+    throw error;
+  }
+};
 
 /**
  * ページネーションとカテゴリフィルターを適用した記事一覧取得
@@ -238,4 +253,46 @@ export async function getPostCountsByCategory(
     }),
   );
   return categoryPostCounts;
+}
+
+/**
+ * ページネーションと班フィルターを適用した作品一覧取得
+ */
+export async function getWorksPaginated(
+  currentPage: number = 1,
+  limit: number = 10,
+  groupId?: string,
+  draftKey?: string,
+): Promise<{ works: MicroCMSListResponse<Work>; pager: number[] }> {
+  const works = await getWorks({
+    limit,
+    offset: (currentPage - 1) * limit,
+    filters: groupId ? `group[equals]${groupId}` : "",
+    draftKey: draftKey,
+  });
+  // 最大のページ数を計算
+  const maxPage = Math.ceil(works.totalCount / limit);
+  // ページャーの配列を作成
+  const pager = Array.from({ length: maxPage }, (_, i) => i + 1);
+
+  return { works, pager };
+}
+
+/**
+ * カテゴリと班ごとの作品数の一覧を取得
+ */
+export async function getWorksCountsByGroup(
+  draftKey?: string,
+): Promise<{ group: Group & MicroCMSContentId; count: number }[]> {
+  const groups = await getGroups();
+  const groupWorkCounts = await Promise.all(
+    groups.contents.map(async (group) => {
+      const works = await getWorks({
+        filters: `group[equals]${group.id}`,
+        draftKey: draftKey,
+      });
+      return { group, count: works.totalCount };
+    }),
+  );
+  return groupWorkCounts;
 }
