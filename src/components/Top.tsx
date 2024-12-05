@@ -10,6 +10,7 @@ import TopIntroGroup from "@/components/TopIntroGroup";
 import type { Config } from "@/types/microcms/config";
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
 import type { Post } from "@/types/microcms/post";
+import type { Work } from "@/types/microcms/work";
 import { NoImage } from "@/utils/microcms/NoImage";
 import { normalizedCustomFieldLink } from "@/utils/microcms/normalizedCustomFieldLink";
 import { EmblaOptionsType } from "embla-carousel";
@@ -17,14 +18,26 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+
+const TopGallery = dynamic(() => import("@/components/TopGallery"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[26rem] w-full items-center justify-center">
+      <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+    </div>
+  ),
+});
 
 function Top({
   config,
   posts,
+  works,
 }: {
   config: Config;
   posts: MicroCMSListResponse<Post>;
+  works: MicroCMSListResponse<Work>;
 }) {
   const options: EmblaOptionsType = {
     loop: true,
@@ -35,9 +48,30 @@ function Top({
     Autoplay({ delay: 5000 }),
     Fade(),
   ]);
+  // works の contents の images を配列にする
+  let workImages: { image: MicroCMSImage; id: string }[] = [];
+  works.contents.map((work) => {
+    if (work.images && work.images.length > 0) {
+      for (let i = 0; i < work.images.length; i++) {
+        workImages.push(
+          Object.assign({
+            image: work.images[i],
+            id: work.id,
+          }),
+        );
+      }
+    } else {
+      workImages.push(
+        Object.assign({
+          image: NoImage.ogp(config.ogp, work.title ?? ""),
+          id: work.id,
+        }),
+      );
+    }
+  });
   return (
     <>
-      <Header {...config}></Header>
+      <Header config={config}></Header>
       <div className="relative w-full">
         <div className="absolute top-12 z-30 ml-2 flex h-14 items-center rounded-sm bg-white pl-2 text-4xl font-bold text-black sm:ml-6 sm:h-24 sm:pl-4 sm:text-6xl md:text-7xl lg:top-12 lg:h-32 lg:text-8xl xl:top-[calc(100lvh-(5rem+25rem))] xl:ml-8">
           <span className="bg-gradient-to-r from-[#05C0FF] to-[#0070D9] bg-clip-text text-transparent">
@@ -246,8 +280,8 @@ function Top({
                     fill="white"
                   />
                 </svg>
-                <div className="mx-2 h-96 sm:mx-6 lg:mx-28 xl:mx-36">
-                  <div className="mb-8 mt-16">
+                <div className="mx-2 sm:mx-6 lg:mx-28 xl:mx-36">
+                  <div className="pb-4 pt-16">
                     <Heading
                       heading={config.galleryHeader?.title ?? ""}
                       subheading={config.galleryHeader?.subtitle ?? ""}
@@ -260,6 +294,12 @@ function Top({
                         }}
                       ></div>
                     </Heading>
+                    <TopGallery workImages={workImages} />
+                    <div className="mt-4 flex flex-row-reverse">
+                      <LinkButton href="/works/list/1" theme="white">
+                        作品をみる
+                      </LinkButton>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -378,13 +418,22 @@ function Top({
                               ).link ?? "")
                             : ""
                         }
-                        color="white"
+                        theme="white"
                       >
                         {config.contactLink01 &&
                           normalizedCustomFieldLink(config.contactLink01[0])
                             .title}
                       </LinkButton>
-                      <LinkButton href="/contact" color="white">
+                      <LinkButton
+                        href={
+                          config.contactLink02
+                            ? (normalizedCustomFieldLink(
+                                config.contactLink02[0],
+                              ).link ?? "")
+                            : ""
+                        }
+                        theme="white"
+                      >
                         {config.contactLink02 &&
                           normalizedCustomFieldLink(config.contactLink02[0])
                             .title}
