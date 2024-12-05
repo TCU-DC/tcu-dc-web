@@ -254,19 +254,20 @@ function Top({
                     })}
                 </div>
               </div>
-              <div className="bg-black text-white">
+              <div className="relative bg-black text-white">
+                <div className="absolute top-0 z-10 h-1 w-full bg-white"></div>
                 <svg
                   // セクション始まり 装飾
                   preserveAspectRatio="none"
                   className="mt-0 hidden lg:block"
                   width="100%"
-                  height="80"
-                  viewBox="0 0 1920 80"
+                  height="88"
+                  viewBox="0 0 1920 88"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M0 -4.04102e-05L1920 0V0C1285.98 105.392 633.934 105.936 0 -4.04102e-05V-4.04102e-05Z"
+                    d="M0 8V0H1920V8.00004V8.00004C1285.97 113.392 633.935 113.936 0 8V8Z"
                     fill="white"
                   />
                 </svg>
@@ -275,13 +276,13 @@ function Top({
                   preserveAspectRatio="none"
                   className="mt-0 lg:hidden"
                   width="100%"
-                  height="54"
-                  viewBox="0 0 640 54"
+                  height="62"
+                  viewBox="0 0 640 62"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M0 0L640 4.04101e-05V4.04101e-05C433.055 70.9497 206.83 71.2862 0 0V0Z"
+                    d="M0 8V0H640V8.00004V8.00004C433.055 78.9497 206.83 79.2862 0 8V8Z"
                     fill="white"
                   />
                 </svg>
@@ -309,6 +310,7 @@ function Top({
                 </div>
               </div>
               <div className="relative h-[500px] w-full bg-zinc-100">
+                <div className="absolute top-0 z-10 h-2 w-full bg-black"></div>
                 <svg
                   // セクション終わり 装飾
                   preserveAspectRatio="none"
