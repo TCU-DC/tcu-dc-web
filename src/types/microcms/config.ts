@@ -15,7 +15,11 @@ export type Config = {
   /**
    * 【共通】記事ページで使用する動的生成用のOGP画像（必須）
    */
-  ogp: MicroCMSImage;
+  ogpDynGen: MicroCMSImage;
+  /**
+   * 【共通】サイト全体のデフォルトOGP画像（必須）
+   */
+  ogpDefault: MicroCMSImage;
   /**
    * 【共通】ヘッダーナビゲーションバー
    */
