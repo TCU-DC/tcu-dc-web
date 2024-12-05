@@ -1,14 +1,35 @@
 import type { CustomLink } from "@/types/customLink";
 import Link from "next/link";
 
-function HeaderLink({ link }: { link: CustomLink }) {
+type color = "black" | "white";
+
+function HeaderLink({
+  link,
+  theme = "white",
+}: {
+  link: CustomLink;
+  theme?: color;
+}) {
+  let textColor, textColorSub;
+  switch (theme) {
+    case "black":
+      textColor = "text-zinc-100";
+      textColorSub = "text-zinc-400";
+      break;
+    default:
+    case "white":
+      textColor = "text-black";
+      textColorSub = "text-zinc-500";
+      break;
+  }
+
   return (
     <Link
       href={link.link ?? ""}
-      className="flex min-w-64 flex-col items-center px-3 text-base text-black transition duration-500 hover:opacity-50 lg:min-w-36 xl:min-w-40"
+      className={`${textColor} flex min-w-64 flex-col items-center px-3 text-base transition duration-500 hover:opacity-50 lg:min-w-36 xl:min-w-40`}
     >
       <span className="font-bold">{link?.title}</span>
-      <span className="text-zinc-500">{link?.englishTitle}</span>
+      <span className={`${textColorSub}`}>{link?.englishTitle}</span>
     </Link>
   );
 }
