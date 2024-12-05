@@ -1,6 +1,6 @@
+import CategoryTag from "@/components/CategoryTag";
 import Heading from "@/components/Heading";
 import LinkButton from "@/components/LinkButton";
-import PostCategory from "@/components/PostCategory";
 import PostOutline from "@/components/PostOutline";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
@@ -26,7 +26,7 @@ function Post({
 }) {
   return (
     <div className="bg-zinc-100 py-8 md:pb-16 md:pt-20 lg:pt-32">
-      <div className="mx-2 rounded bg-white px-4 py-8 sm:mx-8 sm:p-16 sm:p-8 md:mx-20 md:p-20 lg:mx-auto lg:w-[848px]">
+      <div className="mx-2 rounded bg-white px-4 py-8 sm:mx-8 sm:p-8 md:mx-20 md:p-20 lg:mx-auto lg:w-[848px]">
         <Heading
           heading={post.title ?? ""}
           subheading={
@@ -41,16 +41,16 @@ function Post({
             href={`/posts/list/${post.category?.id ? `${post.category?.id}/1` : "1"}`}
             className="transition duration-500 hover:opacity-50"
           >
-            <PostCategory>
+            <CategoryTag>
               {(post.category && post.category.name) ?? "カテゴリなし"}
-            </PostCategory>
+            </CategoryTag>
           </Link>
         </div>
-        <div className="pt-4">
+        <div className="mt-4 h-[calc((100vw-3rem)/1.91)] w-full sm:h-[calc((100vw-8rem)/1.91)] md:h-[calc((100vw-20rem)/1.91)] lg:h-[calc((848px-10rem)/1.91)]">
           {post.image ? (
             // OGP がある場合は、OGP を表示
             <Image
-              className="h-[calc(752px/1.91)] rounded-sm object-cover"
+              className="h-full w-full rounded-sm object-cover"
               src={post.image?.url ?? ""}
               alt="OGP"
               width={post.image?.width}
@@ -59,6 +59,7 @@ function Post({
           ) : (
             // OGP がない場合は、記事タイトルから生成
             <Image
+              className="h-full w-full rounded-sm object-cover"
               src={generateOGP(config.ogp.url, post.title)}
               alt="OGP"
               width={config.ogp.width}

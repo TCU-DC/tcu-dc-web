@@ -11,7 +11,7 @@ export default async function RootLayout({
   const config: Config = await getConfig();
   return (
     <>
-      <Header {...config}></Header>
+      <Header config={config}></Header>
       {children}
       <Footer {...config}></Footer>
     </>

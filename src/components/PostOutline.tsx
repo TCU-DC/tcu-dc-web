@@ -1,6 +1,6 @@
-import PostCategory from "@/components/PostCategory";
+import CategoryTag from "@/components/CategoryTag";
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
-import type { PostCategory as PostCategoryType } from "@/types/microcms/post_category";
+import type { PostCategory } from "@/types/microcms/post_category";
 import { formatDateToJST } from "@/utils/dateFormatter";
 import type { MicroCMSContentId } from "microcms-js-sdk";
 import Image from "next/image";
@@ -17,7 +17,7 @@ function PostOutline({
   image: MicroCMSImage;
   headline: string;
   date?: string;
-  category?: PostCategoryType & MicroCMSContentId;
+  category?: PostCategory & MicroCMSContentId;
 }) {
   return (
     <Link
@@ -46,9 +46,9 @@ function PostOutline({
               {date ? formatDateToJST(date, "YYYY/MM/DD") : "0000/00/00"}
             </p>
             <div className="max-w-20 sm:max-w-fit">
-              <PostCategory>
+              <CategoryTag>
                 {(category && category.name) ?? "カテゴリなし"}
-              </PostCategory>
+              </CategoryTag>
             </div>
           </div>
         </div>
