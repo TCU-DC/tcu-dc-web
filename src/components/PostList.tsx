@@ -88,7 +88,7 @@ function PostList({
                     image={
                       post.image
                         ? post.image
-                        : NoImage.ogp(config.ogp, post.title ?? "")
+                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
                     }
                     headline={post.title ?? ""}
                     category={post.category}

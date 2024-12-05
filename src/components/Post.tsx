@@ -62,8 +62,8 @@ function Post({
               className="h-full w-full rounded-sm object-cover"
               src={generateOGP(config.ogp.url, post.title)}
               alt="OGP"
-              width={config.ogp.width}
-              height={config.ogp.height}
+              width={config.ogpDynGen.width}
+              height={config.ogpDynGen.height}
             />
           )}
         </div>
@@ -96,7 +96,7 @@ function Post({
                     image={
                       post.image
                         ? post.image
-                        : NoImage.ogp(config.ogp, post.title ?? "")
+                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
                     }
                     headline={post.title ?? ""}
                     category={post.category}

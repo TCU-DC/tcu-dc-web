@@ -36,7 +36,7 @@ export async function generateMetadata({
   ).catch(() => notFound());
   const config: Config = await getConfig().catch(() => notFound());
 
-  const ogp = post.image?.url ?? generateOGP(config.ogp.url, post.title);
+  const ogp = post.image?.url ?? generateOGP(config.ogpDynGen.url, post.title);
   return {
     title: post.title,
     description: post.description,

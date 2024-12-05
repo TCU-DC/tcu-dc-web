@@ -63,7 +63,7 @@ function Top({
     } else {
       workImages.push(
         Object.assign({
-          image: NoImage.ogp(config.ogp, work.title ?? ""),
+          image: NoImage.ogp(config.ogpDynGen, work.title ?? ""),
           id: work.id,
         }),
       );
@@ -98,7 +98,7 @@ function Top({
                       image={
                         post.image
                           ? post.image
-                          : NoImage.ogp(config.ogp, post.title ?? "")
+                          : NoImage.ogp(config.ogpDynGen, post.title ?? "")
                       }
                       headline={post.title ?? ""}
                       category={post.category}
