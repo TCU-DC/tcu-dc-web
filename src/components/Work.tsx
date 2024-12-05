@@ -7,7 +7,7 @@ import type { Work } from "@/types/microcms/work";
 import { NoImage } from "@/utils/microcms/NoImage";
 import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
-import Autoplay from "embla-carousel-autoplay";
+import AutoHeight from "embla-carousel-auto-height";
 import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
@@ -17,8 +17,8 @@ import Link from "next/link";
 function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
   const options: EmblaOptionsType = { loop: true };
   const [emblaRef] = useEmblaCarousel(options, [
-    Autoplay(),
     WheelGesturesPlugin(),
+    AutoHeight(),
   ]);
   return (
     <div className="w-full bg-zinc-900 py-8 text-zinc-200 md:pb-16 md:pt-20 lg:pt-32">
@@ -39,7 +39,7 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
             </CategoryTag>
           </Link>
         </div>
-        <div className="mt-4 h-[calc((100vw-3rem)/1.91)] w-full sm:h-[calc((100vw-8rem)/1.91)] md:h-[calc((100vw-20rem)/1.91)] lg:h-[calc((848px-10rem)/1.91)]">
+        <div className="mt-4 w-full">
           {work.images ? (
             // 紹介画像 がある場合は、紹介画像 を表示
             <>
