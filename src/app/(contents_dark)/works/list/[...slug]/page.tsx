@@ -1,7 +1,9 @@
 import WorkList from "@/components/WorkList";
+import type { Config } from "@/types/microcms/config";
 import { Group } from "@/types/microcms/group";
 import type { Work } from "@/types/microcms/work";
 import {
+  getConfig,
   getGroupIds,
   getWorksCountsByGroup,
   getWorksPaginated,
@@ -44,7 +46,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const ogp = "/ogp.png";
+  const config: Config = await getConfig();
+  const ogp = config.ogpDefault.url;
   return {
     title: "作品一覧",
     description: "作品の一覧です。",

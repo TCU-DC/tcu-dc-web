@@ -46,7 +46,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const ogp = "/ogp.png";
+  const config: Config = await getConfig();
+  const ogp = config.ogpDefault.url;
   return {
     title: "記事一覧",
     description: "記事の一覧です。",

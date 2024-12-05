@@ -12,7 +12,7 @@ export const dynamicParams = false;
 export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
 
-  const ogp = config.topOgp?.url ?? "/ogp.png";
+  const ogp = config.topOgp?.url ?? config.ogpDefault.url;
   return {
     description: config.description,
     openGraph: {

@@ -1,6 +1,7 @@
 import PageComponent from "@/components/Page";
+import type { Config } from "@/types/microcms/config";
 import type { Page as PageType } from "@/types/microcms/page";
-import { getPage, getPageIds } from "@/utils/microcms/getContents";
+import { getConfig, getPage, getPageIds } from "@/utils/microcms/getContents";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -23,8 +24,9 @@ export async function generateMetadata({
   const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage()(
     params.slug,
   ).catch(() => notFound());
+  const config: Config = await getConfig();
 
-  const ogp = page.ogp?.url ?? "/ogp.png";
+  const ogp = page.ogp?.url ?? config.ogpDefault.url;
   return {
     title: page.title,
     description: page.description,
