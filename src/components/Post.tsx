@@ -7,6 +7,7 @@ import type { Post } from "@/types/microcms/post";
 import { formatDateToJST } from "@/utils/dateFormatter";
 import { generateOGP } from "@/utils/microcms/generateOGP";
 import { NoImage } from "@/utils/microcms/NoImage";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import type {
   MicroCMSContentId,
   MicroCMSDate,
@@ -51,7 +52,11 @@ function Post({
             // OGP がある場合は、OGP を表示
             <Image
               className="h-full w-full rounded-sm object-cover"
-              src={post.image?.url ?? ""}
+              src={setImageQuality(post.image.url, {
+                format: "webp",
+                quality: "50",
+                width: "800",
+              })}
               alt="OGP"
               width={post.image?.width}
               height={post.image?.height}
@@ -60,7 +65,13 @@ function Post({
             // OGP がない場合は、記事タイトルから生成
             <Image
               className="h-full w-full rounded-sm object-cover"
-              src={generateOGP(config.ogp.url, post.title)}
+              src={setImageQuality(
+                generateOGP(config.ogpDynGen.url, post.title),
+                {
+                  format: "webp",
+                  quality: "50",
+                },
+              )}
               alt="OGP"
               width={config.ogpDynGen.width}
               height={config.ogpDynGen.height}

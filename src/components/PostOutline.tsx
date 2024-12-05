@@ -2,6 +2,7 @@ import CategoryTag from "@/components/CategoryTag";
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
 import type { PostCategory } from "@/types/microcms/post_category";
 import { formatDateToJST } from "@/utils/dateFormatter";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import type { MicroCMSContentId } from "microcms-js-sdk";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +20,20 @@ function PostOutline({
   date?: string;
   category?: PostCategory & MicroCMSContentId;
 }) {
+  // image.url のクエリに "blend-mode" が含まれている場合のif文
+  let imageUrl;
+  if (image.url.includes("blend-mode")) {
+    imageUrl = setImageQuality(image.url, {
+      format: "webp",
+      quality: "0",
+    });
+  } else {
+    imageUrl = setImageQuality(image.url, {
+      format: "webp",
+      quality: "50",
+      width: "300",
+    });
+  }
   return (
     <Link
       href={linkHref}
@@ -26,10 +41,10 @@ function PostOutline({
     >
       <Image
         className="h-24 w-24 shrink-0 rounded-sm object-cover sm:h-28 sm:w-28 md:w-52"
-        src={image.url}
+        src={imageUrl}
         alt="OGP"
-        width={image.width ? image.width : 208}
-        height={image.height ? image.height : 112}
+        width={image.width}
+        height={image.height}
       />
       <div
         className={`lg:w-[calc(752px - 13rem)] flex h-24 flex-col justify-center pl-4 sm:h-28`}

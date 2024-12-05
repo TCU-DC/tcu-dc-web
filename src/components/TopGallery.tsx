@@ -1,4 +1,5 @@
 import { NoImage } from "@/utils/microcms/NoImage";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 import useEmblaCarousel from "embla-carousel-react";
@@ -66,10 +67,14 @@ function TopGallery({
                         className="mr-4 h-48 w-80 shrink-0 overflow-hidden rounded-lg"
                       >
                         <Image
-                          src={img.image.url}
+                          src={setImageQuality(img.image.url, {
+                            format: "webp",
+                            quality: "50",
+                            width: "500",
+                          })}
                           alt="作品紹介画像"
-                          width={img.image.width ? img.image.width : 320}
-                          height={img.image.height ? img.image.height : 192}
+                          width={img.image.width}
+                          height={img.image.height}
                           className="h-full w-full object-cover transition duration-500 hover:scale-110"
                         />
                       </Link>
@@ -95,10 +100,14 @@ function TopGallery({
                         className="mr-4 h-48 w-80 shrink-0 overflow-hidden rounded-lg"
                       >
                         <Image
-                          src={img.image.url}
+                          src={setImageQuality(img.image.url, {
+                            format: "webp",
+                            quality: "50",
+                            width: "500",
+                          })}
                           alt="作品紹介画像"
-                          width={img.image.width ? img.image.width : 320}
-                          height={img.image.height ? img.image.height : 192}
+                          width={img.image.width}
+                          height={img.image.height}
                           className="h-full w-full object-cover transition duration-500 hover:scale-110"
                         />
                       </Link>

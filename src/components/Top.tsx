@@ -13,6 +13,7 @@ import type { Post } from "@/types/microcms/post";
 import type { Work } from "@/types/microcms/work";
 import { NoImage } from "@/utils/microcms/NoImage";
 import { normalizedCustomFieldLink } from "@/utils/microcms/normalizedCustomFieldLink";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
@@ -128,7 +129,11 @@ function Top({
                     return (
                       <div className="embla__slide h-full w-full" key={img.url}>
                         <Image
-                          src={img.url}
+                          src={setImageQuality(img.url, {
+                            format: "webp",
+                            quality: "50",
+                            width: "1920",
+                          })}
                           alt="サークル紹介画像"
                           width={img.width ? img.width : 320}
                           height={img.height ? img.height : 192}

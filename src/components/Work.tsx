@@ -5,6 +5,7 @@ import Heading from "@/components/Heading";
 import LinkButton from "@/components/LinkButton";
 import type { Work } from "@/types/microcms/work";
 import { NoImage } from "@/utils/microcms/NoImage";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -52,7 +53,11 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
                           key={img.url}
                         >
                           <Image
-                            src={img.url}
+                            src={setImageQuality(img.url, {
+                              format: "webp",
+                              quality: "50",
+                              width: "800",
+                            })}
                             alt="紹介画像"
                             width={img.width}
                             height={img.height}
@@ -66,7 +71,7 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
               </div>
             </>
           ) : (
-            // OGP がない場合は、画像なし
+            // 紹介画像 がない場合は、画像なし
             <Image
               className="h-full w-full rounded-sm object-cover"
               src={NoImage.gray.url}

@@ -1,6 +1,7 @@
 "use client";
 
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -59,7 +60,11 @@ function TopIntroActivity({
                   return (
                     <div className="embla__slide h-full w-full" key={img.url}>
                       <Image
-                        src={img.url}
+                        src={setImageQuality(img.url, {
+                          format: "webp",
+                          quality: "50",
+                          width: "500",
+                        })}
                         alt="活動紹介画像"
                         width={img.width}
                         height={img.height}
