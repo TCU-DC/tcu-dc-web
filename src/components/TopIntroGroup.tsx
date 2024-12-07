@@ -1,12 +1,12 @@
 "use client";
 
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
+import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import Image from "next/image";
-import { useEffect } from "react";
 
 function TopIntroGroup({
   heading,
@@ -18,15 +18,10 @@ function TopIntroGroup({
   children: React.ReactNode;
 }) {
   const options: EmblaOptionsType = { loop: true };
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+  const [emblaRef] = useEmblaCarousel(options, [
     Autoplay(),
     WheelGesturesPlugin(),
   ]);
-  useEffect(() => {
-    if (emblaApi) {
-      console.log(emblaApi.slideNodes());
-    }
-  }, [emblaApi]);
 
   return (
     <div className="relative rounded-sm bg-zinc-100 md:h-96 md:w-[720px] lg:w-96">
@@ -58,7 +53,7 @@ function TopIntroGroup({
           <h3 className="text-3xl font-bold sm:text-4xl">{heading}</h3>
           <div className="mt-4">{children}</div>
         </div>
-        <div className="h-[calc((100vw-5rem)/1.6)] w-full sm:h-[calc((100vw-7rem)/1.6)] md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:h-80 md:w-80 lg:h-48 lg:w-80">
+        <div className="h-[calc((100vw-5rem)/1.618)] w-full sm:h-[calc((100vw-7rem)/1.618)] md:absolute md:bottom-0 md:right-0 md:z-50 md:m-8 md:h-80 md:w-80 lg:h-48 lg:w-80">
           <div className="embla h-full w-full">
             <div className="embla__viewport h-full w-full" ref={emblaRef}>
               <div className="embla__container h-full w-full">
@@ -66,10 +61,14 @@ function TopIntroGroup({
                   return (
                     <div className="embla__slide h-full w-full" key={img.url}>
                       <Image
-                        src={img.url}
+                        src={setImageQuality(img.url, {
+                          format: "webp",
+                          quality: "50",
+                          width: "500",
+                        })}
                         alt="班紹介画像"
-                        width={img.width ? img.width : 320}
-                        height={img.height ? img.height : 192}
+                        width={img.width}
+                        height={img.height}
                         className="h-full w-full rounded-sm object-cover"
                       />
                     </div>

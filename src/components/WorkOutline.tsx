@@ -1,7 +1,6 @@
-import CategoryTag from "@/components/CategoryTag";
+import PostCategory from "@/components/CategoryTag";
 import type { MicroCMSImage } from "@/types/microcms/microcms-schema";
-import type { PostCategory } from "@/types/microcms/post_category";
-import { formatDateToJST } from "@/utils/dateFormatter";
+import type { PostCategory as PostCategoryType } from "@/types/microcms/post_category";
 import { setImageQuality } from "@/utils/microcms/setImageQuality";
 import type { MicroCMSContentId } from "microcms-js-sdk";
 import Image from "next/image";
@@ -11,29 +10,15 @@ function PostOutline({
   linkHref,
   image,
   headline,
-  date,
+  author,
   category,
 }: {
   linkHref: string;
   image: MicroCMSImage;
   headline: string;
-  date?: string;
-  category?: PostCategory & MicroCMSContentId;
+  author: string;
+  category?: PostCategoryType & MicroCMSContentId;
 }) {
-  // image.url のクエリに "blend-mode" が含まれている場合のif文
-  let imageUrl;
-  if (image.url.includes("blend-mode")) {
-    imageUrl = setImageQuality(image.url, {
-      format: "webp",
-      quality: "0",
-    });
-  } else {
-    imageUrl = setImageQuality(image.url, {
-      format: "webp",
-      quality: "50",
-      width: "300",
-    });
-  }
   return (
     <Link
       href={linkHref}
@@ -41,7 +26,11 @@ function PostOutline({
     >
       <Image
         className="h-24 w-24 shrink-0 rounded-sm object-cover sm:h-28 sm:w-28 md:w-52"
-        src={imageUrl}
+        src={setImageQuality(image.url, {
+          format: "webp",
+          quality: "50",
+          width: "300",
+        })}
         alt="OGP"
         width={image.width}
         height={image.height}
@@ -58,12 +47,12 @@ function PostOutline({
         <div className="w-fit">
           <div className="ml-0 flex flex-row-reverse items-center gap-2 sm:items-start lg:flex-col lg:gap-0">
             <p className="mt-2 text-sm tracking-wide sm:text-base">
-              {date ? formatDateToJST(date, "YYYY/MM/DD") : "0000/00/00"}
+              作者: {author}
             </p>
             <div className="max-w-20 sm:max-w-fit">
-              <CategoryTag>
+              <PostCategory theme="gray">
                 {(category && category.name) ?? "カテゴリなし"}
-              </CategoryTag>
+              </PostCategory>
             </div>
           </div>
         </div>

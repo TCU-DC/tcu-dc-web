@@ -9,6 +9,11 @@ export class NoImage {
       width: baseImage.width,
     };
   }
+  static ogpDcLogo: MicroCMSImage = {
+    url: "/dc_logo_thumbnail.png",
+    width: 2400,
+    height: 1260,
+  };
   static white: MicroCMSImage = {
     url: "/no_image_white.jpg",
     width: 600,

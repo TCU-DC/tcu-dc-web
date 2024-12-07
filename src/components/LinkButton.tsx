@@ -1,37 +1,45 @@
 import Link from "next/link";
 
-type color = "black" | "white" | "gradation";
+type color = "black" | "white" | "gradation" | "gray";
 
 function LinkButton({
   href,
   children,
-  color = "black",
+  theme = "black",
 }: {
   href: string;
   children: React.ReactNode;
-  color?: color;
+  theme?: color;
 }) {
-  let bgColor = "";
-  let textColor = "";
-  let svgColor = "";
-  if (color === "black") {
-    bgColor = "bg-black";
-    textColor = "text-white";
-    svgColor = "white";
-  } else if (color === "white") {
-    bgColor = "bg-white";
-    textColor = "text-black";
-    svgColor = "black";
-  } else {
-    bgColor = "bg-gradient-to-r from-[#05C0FF] to-[#0070D9]";
-    textColor = "text-white";
-    svgColor = "white";
+  let bgColor, textColor, svgColor;
+
+  switch (theme) {
+    case "black":
+      bgColor = "bg-black";
+      textColor = "text-zinc-100";
+      svgColor = "white";
+      break;
+    case "white":
+      bgColor = "bg-white";
+      textColor = "text-black";
+      svgColor = "black";
+      break;
+    case "gray":
+      bgColor = "bg-zinc-200";
+      textColor = "text-black";
+      svgColor = "black";
+      break;
+    case "gradation":
+      bgColor = "bg-gradient-to-r from-[#05C0FF] to-[#0070D9]";
+      textColor = "text-white";
+      svgColor = "white";
+      break;
   }
 
   return (
     <Link
       href={href}
-      className={`${bgColor} ${color === "black" ? "hover:bg-zinc-800" : "hover:bg-zinc-200"} flex h-16 w-64 cursor-pointer items-center rounded transition duration-500 hover:scale-105`}
+      className={`${bgColor} ${theme === "black" ? "hover:bg-zinc-800" : "hover:bg-zinc-200"} flex h-16 w-64 cursor-pointer items-center rounded transition duration-500 hover:scale-105`}
     >
       <svg
         className="shrink-0"

@@ -1,10 +1,10 @@
+import CategoryTag from "@/components/CategoryTag";
 import Heading from "@/components/Heading";
 import Pagination from "@/components/Pagination";
-import PostCategory from "@/components/PostCategory";
 import PostOutline from "@/components/PostOutline";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
-import type { PostCategory as PostCategotyType } from "@/types/microcms/post_category";
+import type { PostCategory as PostCategoty } from "@/types/microcms/post_category";
 import { NoImage } from "@/utils/microcms/NoImage";
 import type { MicroCMSContentId, MicroCMSListResponse } from "microcms-js-sdk";
 
@@ -23,30 +23,30 @@ function PostList({
     pager: number[];
   };
   postCountsByCategory: {
-    category: PostCategotyType & MicroCMSContentId;
+    category: PostCategoty & MicroCMSContentId;
     count: number;
   }[];
   currentPage: number;
   categoryId?: string;
 }) {
   const postCategoryLink = (c: {
-    category: PostCategotyType & MicroCMSContentId;
+    category: PostCategoty & MicroCMSContentId;
     count: number;
   }) => {
     if (c.category.id === categoryId || (!c.category.id && !categoryId)) {
       return (
-        <PostCategory color="black">
+        <CategoryTag theme="black">
           {c.category.name}: {c.count}
-        </PostCategory>
+        </CategoryTag>
       );
     } else {
       return (
-        <PostCategory
-          color="gray"
+        <CategoryTag
+          theme="gray"
           linkHref={`/posts/list/${c.category.id ? `${c.category.id}/` : ""}1`}
         >
           {c.category.name}: {c.count}
-        </PostCategory>
+        </CategoryTag>
       );
     }
   };
@@ -71,7 +71,7 @@ function PostList({
         </div>
         <div className="mb-12 mt-5 flex justify-center">
           <Pagination
-            categoryId={categoryId ?? ""}
+            hrefBase={`/posts/list/${categoryId ? `${categoryId}/` : ""}`}
             pager={postsPaginated.pager}
             currentPage={currentPage}
             maxDisplay={3}
@@ -88,7 +88,7 @@ function PostList({
                     image={
                       post.image
                         ? post.image
-                        : NoImage.ogp(config.ogp, post.title ?? "")
+                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
                     }
                     headline={post.title ?? ""}
                     category={post.category}
@@ -107,7 +107,7 @@ function PostList({
         </div>
         <div className="mt-12 flex justify-center">
           <Pagination
-            categoryId={categoryId ?? ""}
+            hrefBase={`/posts/list/${categoryId ? `${categoryId}/` : ""}`}
             pager={postsPaginated.pager}
             currentPage={currentPage}
             maxDisplay={3}

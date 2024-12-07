@@ -1,12 +1,12 @@
-import PostList from "@/components/PostList";
+import WorkList from "@/components/WorkList";
 import type { Config } from "@/types/microcms/config";
-import type { Post } from "@/types/microcms/post";
-import { PostCategory } from "@/types/microcms/post_category";
+import { Group } from "@/types/microcms/group";
+import type { Work } from "@/types/microcms/work";
 import {
   getConfig,
-  getPostCategoryIds,
-  getPostCountsByCategory,
-  getPostsPaginated,
+  getGroupIds,
+  getWorksCountsByGroup,
+  getWorksPaginated,
 } from "@/utils/microcms/getContents";
 import type { MicroCMSContentId, MicroCMSListResponse } from "microcms-js-sdk";
 import type { Metadata } from "next";
@@ -21,23 +21,23 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   const slug: string[][] = [];
   // 全ページのページ番号のスラッグを追加（/list/[ページ数]）
-  const postsPaginated: {
-    posts: MicroCMSListResponse<Post>;
+  const worksPaginated: {
+    works: MicroCMSListResponse<Work>;
     pager: number[];
-  } = await getPostsPaginated(FIRST_PAGE, PER_PAGE);
-  postsPaginated.pager.forEach((page) => {
-    slug.push([page.toString(), ""] as string[]);
+  } = await getWorksPaginated(FIRST_PAGE, PER_PAGE);
+  worksPaginated.pager.forEach((work) => {
+    slug.push([work.toString(), ""] as string[]);
   });
   // 全カテゴリIDを取得
-  const postCategoryIds: string[] = await getPostCategoryIds();
+  const groupIds: string[] = await getGroupIds();
   // カテゴリIDとページ番号を組み合わせてスラッグを生成（/list/[カテゴリID]/[ページ数]）
-  for (const id of postCategoryIds) {
-    const postsByCategoryPaginated: {
-      posts: MicroCMSListResponse<Post>;
+  for (const id of groupIds) {
+    const worksPaginated: {
+      works: MicroCMSListResponse<Work>;
       pager: number[];
-    } = await getPostsPaginated(FIRST_PAGE, PER_PAGE, id as string);
-    postsByCategoryPaginated.pager.forEach((page) => {
-      slug.push([id, page.toString()] as string[]);
+    } = await getWorksPaginated(FIRST_PAGE, PER_PAGE, id as string);
+    worksPaginated.pager.forEach((work) => {
+      slug.push([id, work.toString()] as string[]);
     });
   }
   return slug.map((s) => ({
@@ -49,8 +49,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
   const ogp = config.ogpDefault.url;
   return {
-    title: "記事一覧",
-    description: "記事の一覧です。",
+    title: "作品一覧",
+    description: "作品の一覧です。",
     openGraph: {
       images: [ogp],
     },
@@ -61,30 +61,28 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   // params から ページ番号を取得。params.slug[1] に 値がない場合 params.slug[0] がページ番号
   const currentPage = Number(params.slug[1] ?? params.slug[0]);
   // params から カテゴリIDを取得。params.slug[1] に 値がある場合 params.slug[0] がカテゴリID。ない場合は undefined
-  const categoryId = params.slug[1] ? params.slug[0] : undefined;
+  const groupId = params.slug[1] ? params.slug[0] : undefined;
 
-  const postsPaginated: {
-    posts: MicroCMSListResponse<Post>;
+  const worksPaginated: {
+    works: MicroCMSListResponse<Work>;
     pager: number[];
-  } = await getPostsPaginated(currentPage, PER_PAGE, categoryId).catch(() =>
+  } = await getWorksPaginated(currentPage, PER_PAGE, groupId).catch(() =>
     notFound(),
   );
-  const posts: MicroCMSListResponse<Post> = postsPaginated.posts;
-  const config: Config = await getConfig().catch(() => notFound());
-  const postCountsByCategory: {
-    category: PostCategory & MicroCMSContentId;
+  const works: MicroCMSListResponse<Work> = worksPaginated.works;
+  const worksCountsByGroup: {
+    group: Group & MicroCMSContentId;
     count: number;
-  }[] = await getPostCountsByCategory().catch(() => notFound());
+  }[] = await getWorksCountsByGroup().catch(() => notFound());
 
   // const pager: number[] = postsPaginated.pager;
   return (
-    <PostList
-      config={config}
-      posts={posts}
-      postsPaginated={postsPaginated}
-      postCountsByCategory={postCountsByCategory}
+    <WorkList
+      works={works}
+      worksPaginated={worksPaginated}
+      worksCountsByGroup={worksCountsByGroup}
       currentPage={currentPage}
-      categoryId={categoryId}
-    ></PostList>
+      groupId={groupId}
+    ></WorkList>
   );
 }

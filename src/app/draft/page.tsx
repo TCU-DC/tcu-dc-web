@@ -3,7 +3,8 @@ export const runtime = "edge";
 import Top from "@/components/Top";
 import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
-import { getConfig, getPosts } from "@/utils/microcms/getContents";
+import type { Work } from "@/types/microcms/work";
+import { getConfig, getPosts, getWorks } from "@/utils/microcms/getContents";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
 import type { Metadata } from "next";
 import { cookies, draftMode } from "next/headers";
@@ -19,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   const REDIRECT_PATH = "/"; // ドラフトモードが無効の場合のリダイレクト先
   const NEWS_LIMIT = 2; // トップページに表示する記事の数
+  const WORKS_LIMIT = 10; // トップページに表示する作品の数
 
   const { isEnabled } = draftMode();
   const currentCookies = cookies();
@@ -36,5 +38,9 @@ export default async function Page() {
     draftKey: draftKey,
     limit: NEWS_LIMIT,
   }).catch(() => redirect(REDIRECT_PATH));
-  return <Top config={config} posts={posts}></Top>;
+  const works: MicroCMSListResponse<Work> = await getWorks({
+    draftKey: draftKey,
+    limit: WORKS_LIMIT,
+  }).catch(() => redirect(REDIRECT_PATH));
+  return <Top config={config} posts={posts} works={works}></Top>;
 }

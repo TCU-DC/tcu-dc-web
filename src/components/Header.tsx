@@ -9,7 +9,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Navbar = (config: Config) => {
+type color = "black" | "white";
+
+const Header = ({
+  config,
+  theme = "white",
+}: {
+  config: Config;
+  theme?: color;
+}) => {
   const leftLink =
     (config?.headerLinks?.link01 &&
       normalizedCustomFieldLink(config.headerLinks.link01[0])) ??
@@ -27,6 +35,26 @@ const Navbar = (config: Config) => {
     ({} as CustomLink);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  let bgColorClass, textColorClass, navMenuBgColorClass, logoUrl, linkColor;
+
+  switch (theme) {
+    case "black":
+      bgColorClass = "bg-black";
+      textColorClass = "text-zinc-100";
+      navMenuBgColorClass = "bg-zinc-900";
+      logoUrl = "/dc_logo_white.svg";
+      linkColor = theme;
+      break;
+    default:
+    case "white":
+      bgColorClass = "bg-white";
+      textColorClass = "text-black";
+      navMenuBgColorClass = "bg-zinc-100";
+      logoUrl = "/dc_logo.svg";
+      linkColor = theme;
+      break;
+  }
   class SvgArrowWhite {
     static w_24 = (
       <svg
@@ -59,22 +87,24 @@ const Navbar = (config: Config) => {
   }
   return (
     <>
-      <div className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white shadow-md lg:h-20">
+      <div
+        className={`${bgColorClass} ${textColorClass} fixed top-0 z-50 flex h-16 w-full items-center justify-between shadow-md lg:h-20`}
+      >
         <Link href="/" className="cursor-pointer">
           <Image
             className="ml-2 h-10 w-fit transition duration-500 hover:opacity-50 sm:ml-6 lg:h-12 xl:ml-8"
-            src="/dc_logo.svg"
+            src={logoUrl}
             alt="東京都市大学デジタルコンテンツ研究会"
             width="307"
             height="48"
           />
         </Link>
         <nav className="ml-auto hidden items-center lg:flex">
-          <HeaderLink link={leftLink} />
-          <div className="h-4 w-px bg-zinc-300"></div>
-          <HeaderLink link={centerLink} />
-          <div className="h-4 w-px bg-zinc-300"></div>
-          <HeaderLink link={rightLink} />
+          <HeaderLink theme={linkColor} link={leftLink} />
+          <div className="h-4 w-px bg-zinc-200"></div>
+          <HeaderLink theme={linkColor} link={centerLink} />
+          <div className="h-4 w-px bg-zinc-200"></div>
+          <HeaderLink theme={linkColor} link={rightLink} />
         </nav>
         <Link
           href={joinLink.link ?? ""}
@@ -126,16 +156,16 @@ const Navbar = (config: Config) => {
         </div>
         <div
           // メニュー表示
-          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} fixed left-0 top-16 z-50 flex h-dvh w-full flex-col items-center justify-center bg-zinc-100 bg-opacity-95 shadow-md transition-opacity duration-500 lg:hidden`}
+          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} ${navMenuBgColorClass} fixed left-0 top-16 z-50 flex h-dvh w-full flex-col items-center justify-center bg-opacity-95 shadow-md transition-opacity duration-500 lg:hidden`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <nav className="flex flex-col items-center justify-center space-y-2">
-            <HeaderLink link={leftLink} />
+            <HeaderLink theme={linkColor} link={leftLink} />
             <span className="flex w-full border-b border-zinc-200"></span>
-            <HeaderLink link={centerLink} />
+            <HeaderLink theme={linkColor} link={centerLink} />
             <span className="flex w-full border-b border-zinc-200"></span>
-            <HeaderLink link={rightLink} />
-            <LinkButton href={joinLink.link ?? ""} color="gradation">
+            <HeaderLink theme={linkColor} link={rightLink} />
+            <LinkButton href={joinLink.link ?? ""} theme="gradation">
               {joinLink.title}
             </LinkButton>
           </nav>
@@ -149,4 +179,4 @@ const Navbar = (config: Config) => {
   );
 };
 
-export default Navbar;
+export default Header;
