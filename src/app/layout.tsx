@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import type { Config } from "@/types/microcms/config";
 import { getConfig } from "@/utils/microcms/getContents";
 import type { Metadata } from "next";
@@ -28,6 +29,7 @@ export default async function RootLayout({
     <html lang="ja">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <GoogleAnalytics />
       </head>
       <body className={zenKakuGothicNew.className}>{children}</body>
     </html>
