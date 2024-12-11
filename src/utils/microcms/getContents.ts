@@ -101,6 +101,14 @@ export const getPageIds = async () => {
     throw error;
   }
 };
+export const getPageAllContents = async (queries?: MicroCMSQueries) => {
+  try {
+    return await apiClient.getAllContents<Page>({ endpoint: "pages", queries });
+  } catch (error) {
+    console.error("Failed to fetch page all contents:", error);
+    throw error;
+  }
+};
 
 export const getPosts = async (queries?: MicroCMSQueries) => {
   try {
@@ -128,6 +136,14 @@ export const getPostIds = async () => {
     return await apiClient.getAllContentIds({ endpoint: "posts" });
   } catch (error) {
     console.error("Failed to fetch post IDs:", error);
+    throw error;
+  }
+};
+export const getPostAllContents = async (queries?: MicroCMSQueries) => {
+  try {
+    return await apiClient.getAllContents<Post>({ endpoint: "posts", queries });
+  } catch (error) {
+    console.error("Failed to fetch post all contents:", error);
     throw error;
   }
 };
@@ -209,6 +225,14 @@ export const getWorkIds = async () => {
     return await apiClient.getAllContentIds({ endpoint: "works" });
   } catch (error) {
     console.error("Failed to fetch post IDs:", error);
+    throw error;
+  }
+};
+export const getWorkAllContents = async (queries?: MicroCMSQueries) => {
+  try {
+    return await apiClient.getAllContents<Work>({ endpoint: "works", queries });
+  } catch (error) {
+    console.error("Failed to fetch work all contents:", error);
     throw error;
   }
 };
