@@ -3,6 +3,7 @@ import type { Config } from "@/types/microcms/config";
 import { getConfig } from "@/utils/microcms/getContents";
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New } from "next/font/google";
+import { Suspense } from "react";
 import "./global.css";
 
 const zenKakuGothicNew = Zen_Kaku_Gothic_New({
@@ -29,7 +30,9 @@ export default async function RootLayout({
     <html lang="ja">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <GoogleAnalytics />
+        <Suspense>
+          <GoogleAnalytics />
+        </Suspense>
       </head>
       <body className={zenKakuGothicNew.className}>{children}</body>
     </html>
