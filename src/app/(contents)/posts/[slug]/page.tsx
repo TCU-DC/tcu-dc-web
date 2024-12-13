@@ -31,7 +31,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const post: PostType & MicroCMSContentId & MicroCMSDate = await getPost()(
+  const post: PostType & MicroCMSContentId & MicroCMSDate = await getPost(
     params.slug,
   ).catch(() => notFound());
   const config: Config = await getConfig().catch(() => notFound());
@@ -53,7 +53,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const NEWS_LIMIT = 2; // 表示する記事一覧の数
 
   const config: Config = await getConfig();
-  const post: PostType & MicroCMSContentId & MicroCMSDate = await getPost()(
+  const post: PostType & MicroCMSContentId & MicroCMSDate = await getPost(
     params.slug,
   ).catch(() => notFound());
   const posts: MicroCMSListResponse<PostType> = await getPosts({

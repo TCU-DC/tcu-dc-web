@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage()(
+  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage(
     params.slug,
   ).catch(() => notFound());
   const config: Config = await getConfig();
@@ -40,7 +40,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage()(
+  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage(
     params.slug,
   ).catch(() => notFound());
 

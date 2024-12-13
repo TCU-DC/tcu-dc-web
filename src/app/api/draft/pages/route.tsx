@@ -19,9 +19,9 @@ export async function GET(request: Request) {
     });
   }
 
-  await getPage({
+  await getPage(contentId, {
     draftKey: draftKey,
-  })(contentId).catch(() => {
+  }).catch(() => {
     throw new Error("Page not found");
   });
 

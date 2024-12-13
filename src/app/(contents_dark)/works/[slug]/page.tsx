@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const work: WorkType & MicroCMSContentId & MicroCMSDate = await getWork()(
+  const work: WorkType & MicroCMSContentId & MicroCMSDate = await getWork(
     params.slug,
   ).catch(() => notFound());
 
@@ -41,7 +41,7 @@ export async function generateMetadata({
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
-  const post: WorkType & MicroCMSContentId & MicroCMSDate = await getWork()(
+  const post: WorkType & MicroCMSContentId & MicroCMSDate = await getWork(
     params.slug,
   ).catch(() => notFound());
 

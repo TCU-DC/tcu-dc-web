@@ -15,7 +15,6 @@ import type {
 
 /**
  * 指定されたクエリを使用して班のリストを取得
- *
  * @param {MicroCMSQueries} [queries] - 班を取得するためのクエリパラメータ
  * @returns {Promise<MicroCMSListResponse<Group>>} 班のリストを含むPromise
  * @throws エラーが発生した場合、エラーをthrow
@@ -33,34 +32,28 @@ export const getGroups = async (
 
 /**
  * 指定されたクエリを使用して班を取得
- *
  * @param {MicroCMSQueries} [queries] - 班を取得するためのクエリパラメータ
  * @param {string} contentId - 取得する班のコンテンツID
  * @returns {Promise<Group & MicroCMSContentId & MicroCMSDate>} 班を含むPromise
  * @throws エラーが発生した場合、エラーをthrow
  */
-export const getGroup =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<Group & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<Group>({
-        endpoint: "groups",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(
-        `Failed to fetch group with contentId ${contentId}:`,
-        error,
-      );
-      throw error;
-    }
-  };
+export const getGroup = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<Group & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<Group>({
+      endpoint: "groups",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(`Failed to fetch group with contentId ${contentId}:`, error);
+    throw error;
+  }
+};
 /**
  * 班のIDを取得する非同期関数
- *
  * @returns {Promise<string[]>} 班IDの配列を返すPromise
  * @throws エラーが発生した場合、エラーをthrowする
  */
@@ -75,7 +68,6 @@ export const getGroupIds = async (): Promise<string[]> => {
 
 /**
  * 指定されたクエリを使用してメンバーのリストを取得
- *
  * @param {MicroCMSQueries} [queries] - メンバーを取得するためのクエリパラメータ
  * @returns {Promise<MicroCMSListResponse<Member>>} メンバーのリストを含むPromise
  * @throws エラーが発生した場合、エラーをthrow
@@ -93,35 +85,29 @@ export const getMembers = async (
 
 /**
  * 指定されたクエリを使用してメンバーを取得
- *
  * @param {MicroCMSQueries} [queries] - メンバーを取得するためのクエリパラメータ
  * @param {string} contentId - 取得するメンバーのコンテンツID
  * @returns {Promise<Member & MicroCMSContentId & MicroCMSDate>} メンバーを含むPromise
  * @throws エラーが発生した場合、エラーをthrow
  */
-export const getMember =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<Member & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<Member>({
-        endpoint: "members",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(
-        `Failed to fetch member with contentId ${contentId}:`,
-        error,
-      );
-      throw error;
-    }
-  };
+export const getMember = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<Member & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<Member>({
+      endpoint: "members",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(`Failed to fetch member with contentId ${contentId}:`, error);
+    throw error;
+  }
+};
 
 /**
  * 指定されたクエリを使用してページのリストを取得
- *
  * @param {MicroCMSQueries} [queries] - ページを取得するためのクエリオプション
  * @returns {Promise<MicroCMSListResponse<Page>>} ページのリストを含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
@@ -137,31 +123,29 @@ export const getPages = async (
   }
 };
 /**
- * 指定されたコンテンツIDに基づいてページの詳細を取得
- *
- * @param queries - MicroCMSクエリオプション（オプション）
- * @returns ページの詳細情報を含むPromiseオブジェクト
- * @throws 指定されたコンテンツIDのページの取得に失敗した場合にエラーをthrow
+ * 指定されたクエリを使用してページを取得
+ * @param {MicroCMSQueries} [queries] - ページを取得するためのオプションのクエリパラメータ
+ * @param {string} contentId - 取得するページのコンテンツID
+ * @returns {Promise<Page & MicroCMSContentId & MicroCMSDate>} ページを含むPromise
+ * @throws {Error} ページの取得に失敗した場合にエラーをthrow
  */
-export const getPage =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<Page & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<Page>({
-        endpoint: "pages",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(`Failed to fetch page with contentId ${contentId}:`, error);
-      throw error;
-    }
-  };
+export const getPage = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<Page & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<Page>({
+      endpoint: "pages",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(`Failed to fetch page with contentId ${contentId}:`, error);
+    throw error;
+  }
+};
 /**
  * ページのIDを取得する非同期関数
- *
  * @returns {Promise<string[]>} ページIDの配列を含むPromise
  * @throws {Error} ページIDの取得に失敗した場合にエラーをthrow
  */
@@ -175,7 +159,6 @@ export const getPageIds = async (): Promise<string[]> => {
 };
 /**
  * すべてのページコンテンツを取得
- *
  * @param {MicroCMSQueries} [queries] - クエリパラメータのオプション
  * @returns {Promise<(Page & MicroCMSContentId & MicroCMSDate)[]>} ページコンテンツの配列を含むPromise
  * @throws {Error} コンテンツの取得に失敗した場合にエラーをthrow
@@ -193,7 +176,6 @@ export const getPageAllContents = async (
 
 /**
  * 指定されたクエリを使用して記事を取得
- *
  * @param {MicroCMSQueries} [queries] - 記事をフィルタリングするためのオプションのクエリパラメータ
  * @returns {Promise<MicroCMSListResponse<Post>>} 記事のリストを含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
@@ -210,30 +192,27 @@ export const getPosts = async (
 };
 /**
  * 指定された contentId に基づいて記事を取得
- *
  * @param {MicroCMSQueries} [queries] - クエリパラメータのオプション
  * @returns {Promise<Post & MicroCMSContentId & MicroCMSDate>} - 指定された contentId に対応する記事の詳細を含む Promise
  * @throws {Error} - 記事の取得に失敗した場合にエラーをthrow
  */
-export const getPost =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<Post & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<Post>({
-        endpoint: "posts",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(`Failed to fetch post with contentId ${contentId}:`, error);
-      throw error;
-    }
-  };
+export const getPost = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<Post & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<Post>({
+      endpoint: "posts",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(`Failed to fetch post with contentId ${contentId}:`, error);
+    throw error;
+  }
+};
 /**
  * 指定されたエンドポイントからすべての記事IDを取得
- *
  * @returns {Promise<string[]>} 記事IDの配列を含むPromise
  * @throws エンドポイントから記事IDの取得に失敗した場合にエラーをthrow
  */
@@ -247,7 +226,6 @@ export const getPostIds = async (): Promise<string[]> => {
 };
 /**
  * すべての記事コンテンツを取得
- *
  * @param {MicroCMSQueries} [queries] - クエリパラメータのオプション
  * @returns {Promise<(Post & MicroCMSContentId & MicroCMSDate)[]>} 記事コンテンツの配列を含むPromise
  * @throws {Error} コンテンツの取得に失敗した場合にエラーをthrow
@@ -265,7 +243,6 @@ export const getPostAllContents = async (
 
 /**
  * 指定されたクエリを使用して記事カテゴリのリストを取得
- *
  * @param {MicroCMSQueries} [queries] - 記事カテゴリを取得するためのオプションのクエリパラメータ
  * @returns {Promise<MicroCMSListResponse<PostCategory>>} 記事カテゴリのリストを含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
@@ -286,35 +263,32 @@ export const getPostCategories = async (
 
 /**
  * 指定されたクエリを使用して記事カテゴリを取得
- *
  * @param {MicroCMSQueries} [queries] - 記事カテゴリを取得するためのオプションのクエリパラメータ
  * @param {string} contentId - 取得する記事カテゴリのコンテンツID
  * @returns {Promise<PostCategory & MicroCMSContentId & MicroCMSDate>} 記事カテゴリを含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
  */
-export const getPostCategory =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<PostCategory & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<PostCategory>({
-        endpoint: "post_categories",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(
-        `Failed to fetch post category with contentId ${contentId}:`,
-        error,
-      );
-      throw error;
-    }
-  };
+export const getPostCategory = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<PostCategory & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<PostCategory>({
+      endpoint: "post_categories",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(
+      `Failed to fetch post category with contentId ${contentId}:`,
+      error,
+    );
+    throw error;
+  }
+};
 
 /**
  * 記事カテゴリのIDを取得する非同期関数
- *
  * @returns {Promise<string[]>} 記事カテゴリIDの配列を含むPromise
  * @throws {Error} 記事カテゴリIDの取得に失敗した場合にエラーをthrow
  */
@@ -329,7 +303,6 @@ export const getPostCategoryIds = async (): Promise<string[]> => {
 
 /**
  * 指定されたクエリを使用して設定を取得
- *
  * @param {MicroCMSQueries} [queries] - 設定を取得するためのオプションのクエリパラメータ
  * @returns {Promise<Config & MicroCMSContentId & MicroCMSDate>} 設定を含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
@@ -351,7 +324,6 @@ export const getConfig = async (
 
 /**
  * 指定されたクエリを使用して作品のリストを取得
- *
  * @param {MicroCMSQueries} [queries] - 作品を取得するためのオプションのクエリパラメータ
  * @returns {Promise<MicroCMSListResponse<Work>>} 作品のリストを含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
@@ -373,22 +345,21 @@ export const getWorks = async (
  * @returns {Promise<Work & MicroCMSContentId & MicroCMSDate>} 作品を含むPromise
  * @throws エラーが発生した場合、エラーメッセージをコンソールに出力し、エラーをthrow
  */
-export const getWork =
-  (queries?: MicroCMSQueries) =>
-  async (
-    contentId: string,
-  ): Promise<Work & MicroCMSContentId & MicroCMSDate> => {
-    try {
-      return await apiClient.getListDetail<Work>({
-        endpoint: "works",
-        contentId,
-        queries,
-      });
-    } catch (error) {
-      console.error(`Failed to fetch work with contentId ${contentId}:`, error);
-      throw error;
-    }
-  };
+export const getWork = async (
+  contentId: string,
+  queries?: MicroCMSQueries,
+): Promise<Work & MicroCMSContentId & MicroCMSDate> => {
+  try {
+    return await apiClient.getListDetail<Work>({
+      endpoint: "works",
+      contentId,
+      queries,
+    });
+  } catch (error) {
+    console.error(`Failed to fetch work with contentId ${contentId}:`, error);
+    throw error;
+  }
+};
 /**
  * 作品のIDを取得する非同期関数
  * @returns {Promise<string[]>} 作品IDの配列を返すPromise

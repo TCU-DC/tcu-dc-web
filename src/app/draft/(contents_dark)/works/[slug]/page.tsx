@@ -21,9 +21,12 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return redirect(REDIRECT_PATH);
   }
 
-  const post: WorkType & MicroCMSContentId & MicroCMSDate = await getWork({
-    draftKey: draftKey,
-  })(params.slug).catch(() => redirect(REDIRECT_PATH));
+  const post: WorkType & MicroCMSContentId & MicroCMSDate = await getWork(
+    params.slug,
+    {
+      draftKey: draftKey,
+    },
+  ).catch(() => redirect(REDIRECT_PATH));
 
   return <WorkComponent work={post} />;
 }
