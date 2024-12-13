@@ -15,8 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const config: Config = await getConfig();
   return {
     title: {
-      template: `%s | ${config.title ?? ""}`,
-      default: config.title ?? "",
+      template: `%s | ${config.title}`,
+      default: config.title,
     },
   };
 }
