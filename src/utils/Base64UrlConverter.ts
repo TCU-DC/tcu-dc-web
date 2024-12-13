@@ -1,5 +1,9 @@
 export class Base64UrlConverter {
-  // Base64エンコード
+  /**
+   * URL を Base64 エンコードします。
+   * @param  {string} url エンコードする URL
+   * @returns {string} Base64 エンコードされた URL
+   */
   static encodeUrl(url: string): string {
     const encodedUrl = Buffer.from(url).toString("base64");
     return encodedUrl
@@ -8,7 +12,11 @@ export class Base64UrlConverter {
       .replace(/=+$/, "");
   }
 
-  // Base64デコード
+  /**
+   * Base64 エンコードされた URL をデコードします。
+   * @param {string} encodedUrl デコードする Base64 エンコードされた URL
+   * @returns {string} デコードされた URL
+   */
   static decodeUrl(encodedUrl: string): string {
     const base64 = encodedUrl
       .replace(/-/g, "+")

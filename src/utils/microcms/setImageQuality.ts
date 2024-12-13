@@ -1,12 +1,12 @@
 /**
  * 指定された画像URLに対して、フォーマット、品質、幅、高さを設定する。
- *
- * @param imageUrl - 画像のURL
- * @param format - 画像のフォーマット (例: 'webp')
- * @param quality - 画像の品質 (0から100の範囲)
- * @param width - 画像の幅
- * @param height - 画像の高さ
- * @returns 変換された画像のURL
+ * @param {string} imageUrl - 画像のURL
+ * @param {Object} options - 画像のオプション
+ * @param {string} [options.format] - 画像のフォーマット (例: 'webp')
+ * @param {string} [options.quality] - 画像の品質 (0から100の範囲)
+ * @param {string} [options.width] - 画像の幅
+ * @param {string} [options.height] - 画像の高さ
+ * @returns {string} 変換された画像のURL
  */
 export function setImageQuality(
   imageUrl: string,

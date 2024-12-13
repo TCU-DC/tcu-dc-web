@@ -7,8 +7,8 @@ import type {
 
 /**
  * ConfigCustomFieldExternalLink, ConfigCustomFieldPageLink, ConfigCustomFieldPostLink 異なる形式のリンクを揃える
- * @param customField - ConfigCustomFieldExternalLink, ConfigCustomFieldPageLink, ConfigCustomFieldPostLinkのいずれか
- * @return - CustomLink に変換されたリンク
+ * @param {ConfigCustomFieldExternalLink | ConfigCustomFieldPageLink | ConfigCustomFieldPostLink} customField - ConfigCustomFieldExternalLink, ConfigCustomFieldPageLink, ConfigCustomFieldPostLinkのいずれか
+ * @return {CustomLink} - CustomLink に変換されたリンク
  */
 export const normalizedCustomFieldLink = (
   customField:
