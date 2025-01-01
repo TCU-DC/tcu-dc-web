@@ -225,10 +225,9 @@ function Top({
                     }}
                   ></div>
                 </Heading>
-                <div className="mb-16 mt-8 flex flex-col flex-wrap justify-center gap-8 md:flex-row">
+                <div className="my-8 flex flex-col flex-wrap justify-center gap-8 md:flex-row">
                   {config.groupCards &&
                     config.groupCards.map((card) => {
-                      // group.image[i].url を 配列にする
                       let image: MicroCMSImage[] = [];
                       if (card.images && card.images.length > 0) {
                         for (let i = 0; i < card.images.length; i++) {
