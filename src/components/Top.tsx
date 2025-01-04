@@ -89,32 +89,29 @@ function Top({
         <div className="absolute top-[calc(100lvh-20rem)] z-40 mx-2 h-fit w-[calc(100%-1rem)] rounded-md bg-white p-4 pb-8 pt-6 sm:mx-6 sm:w-[calc(100%-3rem)] sm:p-8 md:top-[calc(100lvh-20rem)] md:px-12 md:pb-12 md:pt-10 lg:right-6 lg:top-[calc(100lvh-(25rem-1.5rem))] lg:mx-0 lg:w-fit xl:right-20 xl:top-[calc(100lvh-(25rem-5rem))]">
           <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
           <div className="py-5">
-            {
-              // posts を map して表示
-              posts.contents.map((post, i) => {
-                return (
-                  <>
-                    <PostOutline
-                      linkHref={`/posts/${encodeURIComponent(post.id)}`}
-                      image={
-                        post.image
-                          ? post.image
-                          : NoImage.ogp(config.ogpDynGen, post.title ?? "")
-                      }
-                      headline={post.title ?? ""}
-                      category={post.category}
-                      date={post.publishedAt}
-                    ></PostOutline>
-                    {i !== posts.contents.length - 1 && (
-                      // 最後の記事以外は区切り線を表示
-                      <div className="flex justify-center px-10 py-2.5">
-                        <span className="flex w-full border-b border-zinc-200"></span>
-                      </div>
-                    )}
-                  </>
-                );
-              })
-            }
+            {posts.contents.map((post, i) => {
+              return (
+                <>
+                  <PostOutline
+                    linkHref={`/posts/${encodeURIComponent(post.id)}`}
+                    image={
+                      post.image
+                        ? post.image
+                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
+                    }
+                    headline={post.title ?? ""}
+                    category={post.category}
+                    date={post.publishedAt}
+                  ></PostOutline>
+                  {i !== posts.contents.length - 1 && (
+                    // 最後の記事以外は区切り線を表示
+                    <div className="flex justify-center px-10 py-2.5">
+                      <span className="flex w-full border-b border-zinc-200"></span>
+                    </div>
+                  )}
+                </>
+              );
+            })}
           </div>
           <div className="flex flex-row-reverse">
             <LinkButton href="/posts/list/1">もっとみる</LinkButton>

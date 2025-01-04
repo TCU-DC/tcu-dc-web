@@ -78,32 +78,29 @@ function PostList({
           />
         </div>
         <div>
-          {
-            // posts を map して表示
-            posts.contents.map((post, i) => {
-              return (
-                <>
-                  <PostOutline
-                    linkHref={`/posts/${encodeURIComponent(post.id)}`}
-                    image={
-                      post.image
-                        ? post.image
-                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
-                    }
-                    headline={post.title ?? ""}
-                    category={post.category}
-                    date={post.publishedAt}
-                  ></PostOutline>
-                  {i !== posts.contents.length - 1 && (
-                    // 最後の記事以外は区切り線を表示
-                    <div className="flex justify-center px-10 py-2.5">
-                      <span className="flex w-full border-b border-zinc-200"></span>
-                    </div>
-                  )}
-                </>
-              );
-            })
-          }
+          {posts.contents.map((post, i) => {
+            return (
+              <>
+                <PostOutline
+                  linkHref={`/posts/${encodeURIComponent(post.id)}`}
+                  image={
+                    post.image
+                      ? post.image
+                      : NoImage.ogp(config.ogpDynGen, post.title ?? "")
+                  }
+                  headline={post.title ?? ""}
+                  category={post.category}
+                  date={post.publishedAt}
+                ></PostOutline>
+                {i !== posts.contents.length - 1 && (
+                  // 最後の記事以外は区切り線を表示
+                  <div className="flex justify-center px-10 py-2.5">
+                    <span className="flex w-full border-b border-zinc-200"></span>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </div>
         <div className="mt-12 flex justify-center">
           <Pagination

@@ -97,32 +97,29 @@ function Post({
       <div className="mx-2 mt-8 h-fit rounded-md bg-white px-4 py-8 sm:mx-8 sm:px-12 sm:py-10 md:mx-20 md:px-8 lg:mx-auto lg:w-[848px]">
         <Heading heading="News" subheading="お知らせ" level="h2"></Heading>
         <div className="py-5">
-          {
-            // posts を map して表示
-            posts.contents.map((post, i) => {
-              return (
-                <>
-                  <PostOutline
-                    linkHref={`/posts/${encodeURIComponent(post.id)}`}
-                    image={
-                      post.image
-                        ? post.image
-                        : NoImage.ogp(config.ogpDynGen, post.title ?? "")
-                    }
-                    headline={post.title ?? ""}
-                    category={post.category}
-                    date={post.publishedAt}
-                  ></PostOutline>
-                  {i !== posts.contents.length - 1 && (
-                    // 最後の記事以外は区切り線を表示
-                    <div className="flex justify-center px-10 py-2.5">
-                      <span className="flex w-full border-b border-zinc-200"></span>
-                    </div>
-                  )}
-                </>
-              );
-            })
-          }
+          {posts.contents.map((post, i) => {
+            return (
+              <>
+                <PostOutline
+                  linkHref={`/posts/${encodeURIComponent(post.id)}`}
+                  image={
+                    post.image
+                      ? post.image
+                      : NoImage.ogp(config.ogpDynGen, post.title ?? "")
+                  }
+                  headline={post.title ?? ""}
+                  category={post.category}
+                  date={post.publishedAt}
+                ></PostOutline>
+                {i !== posts.contents.length - 1 && (
+                  // 最後の記事以外は区切り線を表示
+                  <div className="flex justify-center px-10 py-2.5">
+                    <span className="flex w-full border-b border-zinc-200"></span>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </div>
         <div className="flex flex-row-reverse">
           <LinkButton href="/posts/list/1">もっとみる</LinkButton>
