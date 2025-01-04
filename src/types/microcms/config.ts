@@ -150,6 +150,10 @@ export type ConfigCustomFieldPageLink = {
    * 英語タイトル（ページに存在しない場合もあります）
    */
   englishTitle?: string;
+  /**
+   * 新しいタブで開く
+   */
+  isTargetBlank?: boolean;
 };
 
 export type ConfigCustomFieldPostLink = {
@@ -169,6 +173,10 @@ export type ConfigCustomFieldPostLink = {
    * 英語タイトル（ページに存在しない場合もあります）
    */
   englishTitle?: string;
+  /**
+   * 新しいタブで開く
+   */
+  isTargetBlank?: boolean;
 };
 
 export type ConfigCustomFieldExternalLink = {
@@ -188,6 +196,10 @@ export type ConfigCustomFieldExternalLink = {
    * 英語タイトル（存在しない場合もあります）
    */
   englishTitle?: string;
+  /**
+   * 新しいタブで開く
+   */
+  isTargetBlank?: boolean;
 };
 
 export type ConfigCustomFieldActivityCard = {
