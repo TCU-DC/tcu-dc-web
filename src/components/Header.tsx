@@ -109,8 +109,8 @@ const Header = ({
         <Link
           href={joinLink.link ?? ""}
           className="hidden h-16 cursor-pointer items-center bg-gradient-to-r from-[#05C0FF] to-[#0070D9] font-bold text-white lg:flex lg:h-20 lg:w-48 lg:text-xl xl:w-80 xl:text-2xl"
-          // 外部リンクの場合は target="_blank" を付与
-          target={joinLink.fieldId === "externalLink" ? "_blank" : undefined}
+          // isTargetBlank が true の場合は target="_blank" を付与
+          target={joinLink.isTargetBlank ? "_blank" : undefined}
         >
           <div className="hidden w-24 xl:inline-block">
             {SvgArrowWhite.w_24}

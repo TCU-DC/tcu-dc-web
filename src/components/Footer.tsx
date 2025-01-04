@@ -18,9 +18,11 @@ const Footer = (config: Config) => {
                 <Link
                   href={normalizedCustomFieldLink(link).link ?? ""}
                   className="line-clamp-1"
-                  // 外部リンクの場合は target="_blank" を付与
+                  // isTargetBlank が true の場合は target="_blank" を付与
                   target={
-                    link.fieldId === "externalLink" ? "_blank" : undefined
+                    normalizedCustomFieldLink(link).isTargetBlank
+                      ? "_blank"
+                      : undefined
                   }
                 >
                   {normalizedCustomFieldLink(link).title ?? ""}
