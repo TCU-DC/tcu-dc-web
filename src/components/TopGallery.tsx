@@ -69,8 +69,8 @@ function TopGallery({
                         <Image
                           src={setImageQuality(img.image.url, {
                             format: "webp",
-                            quality: "50",
-                            width: "500",
+                            quality: "30",
+                            width: "480",
                           })}
                           alt="作品紹介画像"
                           width={img.image.width}
@@ -102,8 +102,8 @@ function TopGallery({
                         <Image
                           src={setImageQuality(img.image.url, {
                             format: "webp",
-                            quality: "50",
-                            width: "500",
+                            quality: "30",
+                            width: "480",
                           })}
                           alt="作品紹介画像"
                           width={img.image.width}

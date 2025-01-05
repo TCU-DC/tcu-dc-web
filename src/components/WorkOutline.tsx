@@ -28,8 +28,8 @@ function PostOutline({
         className="h-24 w-24 shrink-0 rounded-sm object-cover sm:h-28 sm:w-28 md:w-52"
         src={setImageQuality(image.url, {
           format: "webp",
-          quality: "50",
-          width: "300",
+          quality: "30",
+          width: "480",
         })}
         alt="OGP"
         width={image.width}

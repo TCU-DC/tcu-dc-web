@@ -128,7 +128,7 @@ function Top({
                         <Image
                           src={setImageQuality(img.url, {
                             format: "webp",
-                            quality: "50",
+                            quality: "0",
                             width: "1920",
                           })}
                           alt="サークル紹介画像"

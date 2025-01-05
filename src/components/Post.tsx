@@ -54,8 +54,8 @@ function Post({
               className="h-full w-full rounded-sm object-cover"
               src={setImageQuality(post.image.url, {
                 format: "webp",
-                quality: "50",
-                width: "800",
+                quality: "30",
+                width: "960",
               })}
               alt="OGP"
               width={post.image?.width}
@@ -69,7 +69,7 @@ function Post({
                 generateOGP(config.ogpDynGen.url, post.title),
                 {
                   format: "webp",
-                  quality: "50",
+                  quality: "30",
                 },
               )}
               alt="OGP"

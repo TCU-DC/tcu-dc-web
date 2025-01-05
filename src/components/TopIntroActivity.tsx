@@ -62,8 +62,8 @@ function TopIntroActivity({
                       <Image
                         src={setImageQuality(img.url, {
                           format: "webp",
-                          quality: "50",
-                          width: "500",
+                          quality: "30",
+                          width: "480",
                         })}
                         alt="活動紹介画像"
                         width={img.width}
