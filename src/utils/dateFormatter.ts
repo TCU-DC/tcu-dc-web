@@ -2,9 +2,9 @@ type formatVariations = "YYYY/MM/DD" | "YYYY-MM-DD";
 
 /**
  * ISO 8601形式のUTC日時を日本時間の指定形式に変換する関数
- * @param isoDate - ISO 8601形式のUTC日時（例："2024-11-07T14:30:00Z"）
- * @param format - 出力する日付のフォーマット（デフォルトは 'YYYY/MM/DD'）
- * @returns フォーマット済みの日付文字列
+ * @param {string} isoDate - ISO 8601形式のUTC日時（例："2024-11-07T14:30:00Z"）
+ * @param {formatVariations} format - 出力する日付のフォーマット（デフォルトは 'YYYY/MM/DD'）
+ * @returns {string} フォーマット済みの日付文字列
  */
 export function formatDateToJST(
   isoDate: string,

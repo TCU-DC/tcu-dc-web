@@ -19,9 +19,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return redirect(REDIRECT_PATH);
   }
 
-  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage({
-    draftKey: draftKey,
-  })(params.slug).catch(() => redirect(REDIRECT_PATH));
+  const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage(
+    params.slug,
+    {
+      draftKey: draftKey,
+    },
+  ).catch(() => redirect(REDIRECT_PATH));
 
   return <PageComponent page={page} />;
 }

@@ -5,9 +5,9 @@ const IMGIX_TYPESETTING_ENDPOINT: string = "https://assets.imgix.net/~text";
 
 /**
  * imgixの画像URLとテキストを受け取り、OGP画像のURLを生成する
- * @param imgixUrl - imgixAPIが利用可能な画像URL（microCMSは画像CDNにimgixを利用しているためimgixAPIが利用可能）
- * @param text - OGP画像に表示するテキスト
- * @return - OGP画像のURL
+ * @param {string} imgixUrl - imgixAPIが利用可能な画像URL（microCMSは画像CDNにimgixを利用しているためimgixAPIが利用可能）
+ * @param {string} [text] - OGP画像に表示するテキスト
+ * @return {string} - OGP画像のURL
  */
 export function generateOGP(imgixUrl: string, text?: string): string {
   // imgixのテキスト画像のURLパラメータ

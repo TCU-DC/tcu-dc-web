@@ -30,8 +30,8 @@ function PostOutline({
   } else {
     imageUrl = setImageQuality(image.url, {
       format: "webp",
-      quality: "50",
-      width: "300",
+      quality: "30",
+      width: "480",
     });
   }
   return (

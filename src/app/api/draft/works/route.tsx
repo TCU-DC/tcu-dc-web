@@ -19,9 +19,9 @@ export async function GET(request: Request) {
     });
   }
 
-  await getWork({
+  await getWork(contentId, {
     draftKey: draftKey,
-  })(contentId).catch(() => {
+  }).catch(() => {
     throw new Error("Post not found");
   });
 

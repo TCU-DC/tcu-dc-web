@@ -13,7 +13,8 @@ import type {
 } from "microcms-js-sdk";
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.BASE_URL;
+// ベース（BASE_URL にトレイリングスラッシュ "/" がある場合は削除）
+const BASE_URL: string = process.env.BASE_URL?.replace(/\/$/, "")!;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let metadata: MetadataRoute.Sitemap = [];
@@ -26,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // トップページ
   metadata.push({
-    url: BASE_URL ?? "",
+    url: `${BASE_URL}/`,
     lastModified: new Date(),
   });
 

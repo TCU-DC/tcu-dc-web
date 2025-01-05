@@ -55,8 +55,8 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
                           <Image
                             src={setImageQuality(img.url, {
                               format: "webp",
-                              quality: "50",
-                              width: "800",
+                              quality: "30",
+                              width: "960",
                             })}
                             alt="紹介画像"
                             width={img.width}

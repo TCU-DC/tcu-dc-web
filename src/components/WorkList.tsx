@@ -80,28 +80,25 @@ function WorkList({
           />
         </div>
         <div>
-          {
-            // works を map して表示
-            works.contents.map((work, i) => {
-              return (
-                <>
-                  <WorkOutline
-                    linkHref={`/works/${encodeURIComponent(work.id)}`}
-                    image={work.images ? work.images[0] : NoImage.gray}
-                    headline={work.title ?? ""}
-                    category={work.group}
-                    author={work.author.map((a) => a.name).join(", ") ?? ""}
-                  ></WorkOutline>
-                  {i !== works.contents.length - 1 && (
-                    // 最後の記事以外は区切り線を表示
-                    <div className="flex justify-center px-10 py-2.5">
-                      <span className="flex w-full border-b border-zinc-600"></span>
-                    </div>
-                  )}
-                </>
-              );
-            })
-          }
+          {works.contents.map((work, i) => {
+            return (
+              <>
+                <WorkOutline
+                  linkHref={`/works/${encodeURIComponent(work.id)}`}
+                  image={work.images ? work.images[0] : NoImage.gray}
+                  headline={work.title ?? ""}
+                  category={work.group}
+                  author={work.author.map((a) => a.name).join(", ") ?? ""}
+                ></WorkOutline>
+                {i !== works.contents.length - 1 && (
+                  // 最後の記事以外は区切り線を表示
+                  <div className="flex justify-center px-10 py-2.5">
+                    <span className="flex w-full border-b border-zinc-600"></span>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </div>
         <div className="mt-12 flex justify-center">
           <Pagination
