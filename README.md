@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# tcu-dc-web
+
+東京都市大学デジタルコンテンツ研究会 公式サイトのソースコードです。
+
+## サイト更新マニュアル
+
+サイト更新のためのマニュアルは以下のリンクからアクセスできます。
+
+- https://tcu-dc.github.io/docs/website/readme.html
+
+## 使用技術
+
+| 言語 | 開発環境 | ヘッドレスCMS | デプロイ |
+| - | - | - | - |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)<br>![Next.js](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)<br>![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) | ![ESLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)<br>![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)<br>![Stylelint](https://img.shields.io/badge/stylelint-000?style=for-the-badge&logo=stylelint&logoColor=white)<br>![Github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white) | ![MicroCMS](https://img.shields.io/badge/microcms-000000?style=for-the-badge) | ![Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-F38020?style=for-the-badge&logo=Cloudflare%20Pages&logoColor=white) |
+
+## コンテンツ管理（ヘッドレスCMS）
+
+サイト内コンテンツの管理には、[microCMS](https://microcms.io/) を利用しています。
+
+以下のリンクから microCMS の管理画面にアクセスできます。
+
+- https://app.microcms.io/signin
+
+## デプロイ
+
+本リポジトリの `main` ブランチに push もしくは microCMS のコンテンツを更新すると、[Cloudflare Pages](https://pages.cloudflare.com/) に自動デプロイされます。
+
+ビルド時に静的な HTML ファイルを生成する（SSG）ため、サイトに更新が反映されるまで数分かかります。
+
+Next.js プロジェクトを Cloudflare Pages にデプロイするために、[@cloudflare/next-on-pages](https://github.com/cloudflare/next-on-pages) を利用しています。
+
+本プロジェクトは Cloudflare Pages にデプロイ済みですが、現在の設定を削除し再デプロイする場合には以下の設定が必要です。
+
+- `設定 > 変数とシークレット` にて、環境変数を追加（設定内容は `.env.example` 参照）
+
+- `設定 > ランタイム > 互換性フラグ` にて `nodejs_compat` を追加して保存
 
 ## Getting Started
 
-First, run the development server:
+### 環境構築
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ローカルでの開発に加えて、 Devcontainer の利用が可能です。
+
+#### ローカルで環境構築を行う場合
+
+##### 推奨環境
+
+- Node `22.1.0`
+- npm `10.7.0`
+
+##### 手順
+
+1. リポジトリのクローン
+
+```
+git clone https://github.com/TCU-DC/tcu-dc-web.git
+cd tcu-dc-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 依存関係のインストール
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. 環境変数を設定
 
-## Learn More
+ルートに `.env.local` を作成し、 `.env.example` の説明通りに変数を設定してください。
 
-To learn more about Next.js, take a look at the following resources:
+```
+BASE_URL=your-base-url
+MICROCMS_SERVICE_DOMAIN=your-microcms-service-domain
+MICROCMS_API_KEY=your-microcms-api-key
+NEXT_PUBLIC_GA_ID=your-google-analytics-id
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Devcontainer を利用する場合
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+##### 必要環境
 
-## Deploy on Vercel
+- Visual Studio Code (VSCode) 
+- Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##### 手順
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. VSCode の拡張機能 [Dev Containers](vscode:extension/ms-vscode-remote.remote-containers) をインストール
+2. リポジトリのクローン
+3. VSCode でコンテナを実行
+4. Docker イメージのダウンロード、依存関係のインストール完了を待つ
+5. 環境変数を設定
+
+### 開発方法
+
+下記コマンドを実行すると開発サーバーが起動します。
+
+ `http://localhost:3000` にアクセスすると、サイトが表示されます。
+
+```
+npm run dev
+```
+
+## microCMS の API スキーマを更新した場合
+
+
+1. `microcms/api-schema` に microCMS からエクスポートした json を格納
+2. 下記コマンドの実行で、 `src/types/microcms` に型定義が出力される
+
+```
+npx microcms-generate-types microcms/api-schema src/types/microcms
+```
+
+3. 状況に応じて、 `src/types/microcms` 以下のファイルを編集
+
+## Contact
+
+作成者の連絡先です。何かあれば連絡してください。
+
+- info[at]shotaro.jp

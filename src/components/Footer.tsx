@@ -42,7 +42,7 @@ const Footer = (config: Config) => {
             <Image
               className="transition duration-500 hover:opacity-50"
               src="/dc_logo_white.svg"
-              alt="東京都市大学デジタルコンテンツ研究会"
+              alt="東京都市大学デジタルコンテンツ研究会ロゴ"
               width="307"
               height="48"
             />

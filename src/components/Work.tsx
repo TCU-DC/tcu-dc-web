@@ -95,7 +95,7 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
         </div>
         <div className="flex flex-row-reverse">
           <LinkButton href="/works/list/1" theme="gray">
-            作品一覧へ
+            一覧へ戻る
           </LinkButton>
         </div>
       </div>
