@@ -94,7 +94,7 @@ const Header = ({
           <Image
             className="ml-2 h-10 w-fit transition duration-500 hover:opacity-50 sm:ml-6 lg:h-12 xl:ml-8"
             src={logoUrl}
-            alt="東京都市大学デジタルコンテンツ研究会"
+            alt="東京都市大学デジタルコンテンツ研究会ロゴ"
             width="307"
             height="48"
           />
