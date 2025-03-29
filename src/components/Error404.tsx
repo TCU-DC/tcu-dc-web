@@ -102,7 +102,7 @@ function Error404({
                     src={NoImage.gray.url}
                     alt="No Image"
                     width={NoImage.gray.width}
-                    height={NoImage.gray.width}
+                    height={NoImage.gray.height}
                   />
                 )}
               </div>
