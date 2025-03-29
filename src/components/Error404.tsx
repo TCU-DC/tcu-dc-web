@@ -48,8 +48,8 @@ function Error404({
   return (
     <>
       <Header config={config}></Header>
-      <div className="bg-zinc-100 px-6 py-16">
-        <div className="prose !max-w-none text-center">
+      <div className="bg-zinc-100 px-6 py-12 sm:py-16">
+        <div className="prose !max-w-none sm:text-center">
           <h1>ページが見つかりません</h1>
           <p>お探しのページが見つかりませんでした。</p>
           <p>
@@ -58,14 +58,14 @@ function Error404({
         </div>
       </div>
       <div className="w-full">
-        <div className="mx-6 py-16 sm:mx-auto sm:w-[65ch]">
+        <div className="mx-6 py-12 sm:mx-auto sm:w-[65ch] sm:py-16">
           {work ? (
             <>
               <div className="w-full">
                 {work.images ? (
                   // 紹介画像がある場合は、紹介画像を表示
                   <Link href={`/works/${encodeURIComponent(work.id)}`}>
-                    <div className="embla h-full w-full rounded-sm shadow-sm ring ring-slate-100">
+                    <div className="embla h-full w-full rounded-sm shadow-sm ring ring-zinc-100">
                       <div
                         className="embla__viewport h-full w-full"
                         ref={emblaRef}
@@ -123,7 +123,7 @@ function Error404({
               <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
             </div>
           )}
-          <div className="flex justify-center pt-16">
+          <div className="flex justify-center pt-12 sm:pt-16">
             <LinkButton href="/">トップへ戻る</LinkButton>
           </div>
         </div>
