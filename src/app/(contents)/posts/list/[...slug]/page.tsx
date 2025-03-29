@@ -3,8 +3,8 @@ import type { Config } from "@/types/microcms/config";
 import type { Post } from "@/types/microcms/post";
 import { PostCategory } from "@/types/microcms/post_category";
 import {
+  getAllPostCategoryIds,
   getConfig,
-  getPostCategoryIds,
   getPostCountsByCategory,
   getPostsPaginated,
 } from "@/utils/microcms/getContents";
@@ -29,7 +29,7 @@ export async function generateStaticParams() {
     slug.push([page.toString(), ""] as string[]);
   });
   // 全カテゴリIDを取得
-  const postCategoryIds: string[] = await getPostCategoryIds();
+  const postCategoryIds: string[] = await getAllPostCategoryIds();
   // カテゴリIDとページ番号を組み合わせてスラッグを生成（/list/[カテゴリID]/[ページ数]）
   for (const id of postCategoryIds) {
     const postsByCategoryPaginated: {

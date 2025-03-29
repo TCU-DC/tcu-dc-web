@@ -77,7 +77,7 @@ function Work({ work }: { work: Work & MicroCMSContentId & MicroCMSDate }) {
               src={NoImage.gray.url}
               alt="No Image"
               width={NoImage.gray.width}
-              height={NoImage.gray.width}
+              height={NoImage.gray.height}
             />
           )}
         </div>

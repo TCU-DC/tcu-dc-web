@@ -88,7 +88,7 @@ const Header = ({
   return (
     <>
       <div
-        className={`${bgColorClass} ${textColorClass} fixed top-0 z-50 flex h-16 w-full items-center justify-between shadow-md lg:h-20`}
+        className={`${bgColorClass} ${textColorClass} fixed top-0 z-50 flex h-16 w-full items-center justify-between shadow-sm lg:h-20`}
       >
         <Link href="/" className="cursor-pointer">
           <Image
@@ -158,7 +158,7 @@ const Header = ({
         </div>
         <div
           // メニュー表示
-          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} ${navMenuBgColorClass} fixed left-0 top-16 z-50 flex h-dvh w-full flex-col items-center justify-center bg-opacity-95 shadow-md transition-opacity duration-500 lg:hidden`}
+          className={`${isMenuOpen ? "opacity-100" : "invisible opacity-0"} ${navMenuBgColorClass} fixed left-0 top-16 z-50 flex h-dvh w-full flex-col items-center justify-center bg-opacity-95 transition-opacity duration-500 lg:hidden`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <nav className="flex flex-col items-center justify-center space-y-2">

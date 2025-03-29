@@ -57,7 +57,7 @@ export const getGroup = async (
  * @returns {Promise<string[]>} 班IDの配列を返すPromise
  * @throws エラーが発生した場合、エラーをthrowする
  */
-export const getGroupIds = async (): Promise<string[]> => {
+export const getAllGroupIds = async (): Promise<string[]> => {
   try {
     return await apiClient.getAllContentIds({ endpoint: "groups" });
   } catch (error) {
@@ -149,7 +149,7 @@ export const getPage = async (
  * @returns {Promise<string[]>} ページIDの配列を含むPromise
  * @throws {Error} ページIDの取得に失敗した場合にエラーをthrow
  */
-export const getPageIds = async (): Promise<string[]> => {
+export const getAllPageIds = async (): Promise<string[]> => {
   try {
     return await apiClient.getAllContentIds({ endpoint: "pages" });
   } catch (error) {
@@ -163,7 +163,7 @@ export const getPageIds = async (): Promise<string[]> => {
  * @returns {Promise<(Page & MicroCMSContentId & MicroCMSDate)[]>} ページコンテンツの配列を含むPromise
  * @throws {Error} コンテンツの取得に失敗した場合にエラーをthrow
  */
-export const getPageAllContents = async (
+export const getAllPageContents = async (
   queries?: MicroCMSQueries,
 ): Promise<(Page & MicroCMSContentId & MicroCMSDate)[]> => {
   try {
@@ -216,7 +216,7 @@ export const getPost = async (
  * @returns {Promise<string[]>} 記事IDの配列を含むPromise
  * @throws エンドポイントから記事IDの取得に失敗した場合にエラーをthrow
  */
-export const getPostIds = async (): Promise<string[]> => {
+export const getAllPostIds = async (): Promise<string[]> => {
   try {
     return await apiClient.getAllContentIds({ endpoint: "posts" });
   } catch (error) {
@@ -230,7 +230,7 @@ export const getPostIds = async (): Promise<string[]> => {
  * @returns {Promise<(Post & MicroCMSContentId & MicroCMSDate)[]>} 記事コンテンツの配列を含むPromise
  * @throws {Error} コンテンツの取得に失敗した場合にエラーをthrow
  */
-export const getPostAllContents = async (
+export const getAllPostContents = async (
   queries?: MicroCMSQueries,
 ): Promise<(Post & MicroCMSContentId & MicroCMSDate)[]> => {
   try {
@@ -292,7 +292,7 @@ export const getPostCategory = async (
  * @returns {Promise<string[]>} 記事カテゴリIDの配列を含むPromise
  * @throws {Error} 記事カテゴリIDの取得に失敗した場合にエラーをthrow
  */
-export const getPostCategoryIds = async (): Promise<string[]> => {
+export const getAllPostCategoryIds = async (): Promise<string[]> => {
   try {
     return await apiClient.getAllContentIds({ endpoint: "post_categories" });
   } catch (error) {
@@ -365,7 +365,7 @@ export const getWork = async (
  * @returns {Promise<string[]>} 作品IDの配列を返すPromise
  * @throws エラーが発生した場合、エラーをthrowする
  */
-export const getWorkIds = async (): Promise<string[]> => {
+export const getAllWorkIds = async (): Promise<string[]> => {
   try {
     return await apiClient.getAllContentIds({ endpoint: "works" });
   } catch (error) {
@@ -379,7 +379,7 @@ export const getWorkIds = async (): Promise<string[]> => {
  * @returns {Promise<(Work & MicroCMSContentId & MicroCMSDate)[]>} 作品の配列を含むPromise
  * @throws {Error} 作品の取得に失敗した場合にエラーをthrow
  */
-export const getWorkAllContents = async (
+export const getAllWorkContents = async (
   queries?: MicroCMSQueries,
 ): Promise<(Work & MicroCMSContentId & MicroCMSDate)[]> => {
   try {

@@ -3,8 +3,8 @@ import type { Config } from "@/types/microcms/config";
 import { Group } from "@/types/microcms/group";
 import type { Work } from "@/types/microcms/work";
 import {
+  getAllGroupIds,
   getConfig,
-  getGroupIds,
   getWorksCountsByGroup,
   getWorksPaginated,
 } from "@/utils/microcms/getContents";
@@ -29,7 +29,7 @@ export async function generateStaticParams() {
     slug.push([work.toString(), ""] as string[]);
   });
   // 全カテゴリIDを取得
-  const groupIds: string[] = await getGroupIds();
+  const groupIds: string[] = await getAllGroupIds();
   // カテゴリIDとページ番号を組み合わせてスラッグを生成（/list/[カテゴリID]/[ページ数]）
   for (const id of groupIds) {
     const worksPaginated: {

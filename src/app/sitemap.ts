@@ -2,9 +2,9 @@ import type { Page } from "@/types/microcms/page";
 import type { Post } from "@/types/microcms/post";
 import type { Work } from "@/types/microcms/work";
 import {
-  getPageAllContents,
-  getPostAllContents,
-  getWorkAllContents,
+  getAllPageContents,
+  getAllPostContents,
+  getAllWorkContents,
 } from "@/utils/microcms/getContents";
 import type {
   MicroCMSContentId,
@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 固定ページ
   const pages: (Page & MicroCMSContentId & MicroCMSDate)[] =
-    await getPageAllContents(queries);
+    await getAllPageContents(queries);
   metadata.push(
     ...pages.map((page) => ({
       url: `${BASE_URL}/${page.id}`,
@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 記事ページ
   const posts: (Post & MicroCMSContentId & MicroCMSDate)[] =
-    await getPostAllContents(queries);
+    await getAllPostContents(queries);
   metadata.push(
     ...posts.map((post) => ({
       url: `${BASE_URL}/posts/${post.id}`,
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 作品ページ
   const works: (Work & MicroCMSContentId & MicroCMSDate)[] =
-    await getWorkAllContents(queries);
+    await getAllWorkContents(queries);
   metadata.push(
     ...works.map((work) => ({
       url: `${BASE_URL}/works/${work.id}`,
