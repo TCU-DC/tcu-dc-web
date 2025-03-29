@@ -3,9 +3,9 @@ import type { Config } from "@/types/microcms/config";
 import type { Post as PostType } from "@/types/microcms/post";
 import { generateOGP } from "@/utils/microcms/generateOGP";
 import {
+  getAllPostIds,
   getConfig,
   getPost,
-  getPostIds,
   getPosts,
 } from "@/utils/microcms/getContents";
 import type {
@@ -19,7 +19,7 @@ import { notFound } from "next/navigation";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const postIds: string[] = await getPostIds();
+  const postIds: string[] = await getAllPostIds();
 
   return postIds.map((id) => ({
     slug: id,
