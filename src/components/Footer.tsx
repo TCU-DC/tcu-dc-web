@@ -57,7 +57,7 @@ const Footer = (config: Config) => {
           </div>
           <div className="text-sm sm:text-base">
             <p>
-              ©︎2014-{new Date().getFullYear()}{" "}
+              ©︎ 2014-{new Date().getFullYear()}{" "}
               東京都市大学デジタルコンテンツ研究会
             </p>
           </div>
