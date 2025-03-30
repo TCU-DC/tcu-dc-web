@@ -1,7 +1,11 @@
 import PageComponent from "@/components/Page";
 import type { Config } from "@/types/microcms/config";
 import type { Page as PageType } from "@/types/microcms/page";
-import { getConfig, getPage, getPageIds } from "@/utils/microcms/getContents";
+import {
+  getAllPageIds,
+  getConfig,
+  getPage,
+} from "@/utils/microcms/getContents";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -9,7 +13,7 @@ import { notFound } from "next/navigation";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const pageIds: string[] = await getPageIds();
+  const pageIds: string[] = await getAllPageIds();
 
   return pageIds.map((id) => ({
     slug: id,

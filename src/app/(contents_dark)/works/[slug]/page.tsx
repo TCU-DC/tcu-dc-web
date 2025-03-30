@@ -1,6 +1,6 @@
 import WorkComponent from "@/components/Work";
 import type { Work as WorkType } from "@/types/microcms/work";
-import { getWork, getWorkIds } from "@/utils/microcms/getContents";
+import { getAllWorkIds, getWork } from "@/utils/microcms/getContents";
 import { NoImage } from "@/utils/microcms/NoImage";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import type { Metadata } from "next";
@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const workIds: string[] = await getWorkIds();
+  const workIds: string[] = await getAllWorkIds();
 
   return workIds.map((id) => ({
     slug: id,
