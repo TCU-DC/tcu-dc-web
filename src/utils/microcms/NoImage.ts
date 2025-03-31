@@ -19,7 +19,7 @@ export class NoImage {
    * デフォルトの DC ロゴの OGP 画像
    * @type {MicroCMSImage}
    */
-  static ogpDcLogo: MicroCMSImage = {
+  static dcLogoThumbnail: MicroCMSImage = {
     url: "/dc_logo_thumbnail.png",
     width: 2400,
     height: 1260,
