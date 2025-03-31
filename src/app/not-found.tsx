@@ -7,6 +7,21 @@ import {
   getWorks,
 } from "@/utils/microcms/getContents";
 import type { MicroCMSListResponse } from "microcms-js-sdk";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config: Config = await getConfig();
+  return {
+    title: "404 Not Found",
+    description: "ページが見つかりませんでした。",
+    openGraph: {
+      images: [config.ogpDefault.url],
+    },
+    robots: {
+      index: false,
+    },
+  };
+}
 
 export default async function NotFound() {
   // ランダムで取得する作品の件数を定義

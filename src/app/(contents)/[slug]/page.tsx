@@ -28,7 +28,7 @@ export async function generateMetadata({
   const page: PageType & MicroCMSContentId & MicroCMSDate = await getPage(
     params.slug,
   ).catch(() => notFound());
-  const config: Config = await getConfig();
+  const config: Config = await getConfig().catch(() => notFound());
 
   const ogp = page.ogp?.url ?? config.ogpDefault.url;
   return {

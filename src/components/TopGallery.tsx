@@ -32,7 +32,7 @@ function TopGallery({
       for (let i = 0; i < 10 - images.length; i++) {
         randomizedImages.push(
           Object.assign({
-            image: NoImage.ogpDcLogo,
+            image: NoImage.dcLogoThumbnail,
             id: "",
           }),
         );

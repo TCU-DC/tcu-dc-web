@@ -1,7 +1,11 @@
 import WorkComponent from "@/components/Work";
+import type { Config } from "@/types/microcms/config";
 import type { Work as WorkType } from "@/types/microcms/work";
-import { getAllWorkIds, getWork } from "@/utils/microcms/getContents";
-import { NoImage } from "@/utils/microcms/NoImage";
+import {
+  getAllWorkIds,
+  getConfig,
+  getWork,
+} from "@/utils/microcms/getContents";
 import type { MicroCMSContentId, MicroCMSDate } from "microcms-js-sdk";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -24,10 +28,11 @@ export async function generateMetadata({
   const work: WorkType & MicroCMSContentId & MicroCMSDate = await getWork(
     params.slug,
   ).catch(() => notFound());
+  const config: Config = await getConfig().catch(() => notFound());
 
   const ogp = work.images
-    ? (work.images[0]?.url ?? NoImage.ogpDcLogo.url)
-    : NoImage.ogpDcLogo.url;
+    ? (work.images[0]?.url ?? config.ogpDefault.url)
+    : config.ogpDefault.url;
   return {
     title: work.title,
     description: work.description,
